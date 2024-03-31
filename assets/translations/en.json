@@ -48,7 +48,9 @@
   "welcome description": "Choose the method that helps you log in",
   "sign in with google": "Sign in with Google",
     "sign in with apple": "Sign in with Apple",
-  "register as a driver": "Register as a driver"
+  "register as a driver": "Register as a driver",
+  "orders": "Orders",
+  "create new order": "Create new order"
 
 
 

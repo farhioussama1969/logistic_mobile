@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
 import '../modules/sign_in/bindings/sign_in_binding.dart';
 import '../modules/sign_in/views/sign_in_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -10,7 +12,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -22,6 +24,11 @@ class AppPages {
       name: _Paths.SIGN_IN,
       page: () => const SignInView(),
       binding: SignInBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
     ),
   ];
 }
