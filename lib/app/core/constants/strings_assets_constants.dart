@@ -45,4 +45,9 @@ static String get settings{return "settings".tr;}
 static String get logOut{return "log out".tr;}
 static String get successfulProcess{return "successful process".tr;}
 static String get failedProcess{return "failed process".tr;}
+static String get welcome{return "welcome".tr;}
+static String get welcomeDescription{return "welcome description".tr;}
+static String get signInWithGoogle{return "sign in with google".tr;}
+static String get signInWithApple{return "sign in with apple".tr;}
+static String get registerAsADriver{return "register as a driver".tr;}
 }

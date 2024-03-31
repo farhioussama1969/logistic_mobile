@@ -43,6 +43,13 @@
   "settings": "Settings",
   "log out": "Log out",
   "successful process": "Successful process",
-  "failed process": "Failed process"
+  "failed process": "Failed process",
+  "welcome": "Welcome",
+  "welcome description": "Choose the method that helps you log in",
+  "sign in with google": "Sign in with Google",
+    "sign in with apple": "Sign in with Apple",
+  "register as a driver": "Register as a driver"
+
+
 
 }
