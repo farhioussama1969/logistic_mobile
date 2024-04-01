@@ -52,4 +52,5 @@ static String get signInWithApple{return "sign in with apple".tr;}
 static String get registerAsADriver{return "register as a driver".tr;}
 static String get orders{return "orders".tr;}
 static String get createNewOrder{return "create new order".tr;}
+static String get homeNote{return "home note".tr;}
 }
