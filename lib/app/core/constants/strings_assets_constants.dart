@@ -73,4 +73,10 @@ static String get months{return "months".tr;}
 static String get year{return "year".tr;}
 static String get pickUpLocation{return "pick up location".tr;}
 static String get deliveryLocation{return "delivery location".tr;}
+static String get driver{return "driver".tr;}
+static String get orderDetails{return "order details".tr;}
+static String get garage{return "garage".tr;}
+static String get recipient{return "Recipient".tr;}
+static String get remainingDistance{return "Remaining distance".tr;}
+static String get km{return "km".tr;}
 }

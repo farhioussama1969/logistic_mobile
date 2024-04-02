@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'dart:math' as math; // import this
+
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
 import 'package:loogisti/app/core/components/cards/tag_component.dart';
 import 'package:loogisti/app/core/components/text/animated_type_text_component.dart';
@@ -19,6 +21,8 @@ class OrderCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double? progress = 0.9;
+
     return Container(
       decoration: BoxDecoration(
         color: MainColors.backgroundColor(context),
@@ -33,167 +37,286 @@ class OrderCardComponent extends StatelessWidget {
       ),
       child: Column(
         children: [
-          TagComponent(
-            title: 'Finished',
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15.r),
-              topRight: Radius.circular(15.r),
-            ),
-            width: double.infinity,
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(start: 15.w, end: 15.w, top: 8.h, bottom: 0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '${StringsAssetsConstants.orderNumber}: ',
-                          style: TextStyles.largeBodyTextStyle(context),
-                        ),
-                        TextSpan(
-                          text: '17',
-                          style: TextStyles.smallLabelTextStyle(context).copyWith(
-                            color: MainColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Text(
-                  RelativeDateUtil.getRelativeDateSinceNow(
-                      relativeDateInUnix: DateTime.now().add(const Duration(days: -1)).millisecondsSinceEpoch),
-                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    color: MainColors.textColor(context)!.withOpacity(0.6),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: Row(
-              children: [
-                Expanded(
-                  child: LinearPercentIndicator(
-                    lineHeight: 15.r,
-                    percent: 0.7,
-                    animateFromLastPercent: true,
-                    animation: true,
-                    barRadius: Radius.circular(1000.r),
-                    backgroundColor: MainColors.disableColor(context)!.withOpacity(0.25),
-                    progressColor: MainColors.primaryColor,
-                    animationDuration: 300,
-                    restartAnimation: false,
-                    isRTL: Get.locale?.languageCode == 'ar',
-                    padding: EdgeInsets.zero,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-            child: Row(
-              children: [
-                AnimatorComponent(
-                  time: const Duration(milliseconds: 300),
-                  child: Column(
-                    children: [
-                      // SvgPicture.asset(
-                      //   IconsAssetsConstants.pointIcon,
-                      //   width: 22.r,
-                      //   color: MainColors.textColor(context),
-                      // ),
-                      // SizedBox(
-                      //   height: 40.h,
-                      //   child: VerticalDivider(
-                      //     color: MainColors.textColor(context),
-                      //     thickness: 1.r,
-                      //     indent: 0.r,
-                      //     endIndent: 0.r,
-                      //   ),
-                      // ),
-                      SvgPicture.asset(
-                        IconsAssetsConstants.locationIcon,
-                        width: 22.r,
-                        color: MainColors.textColor(context),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                Expanded(
-                    child: Column(
+          Stack(
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.only(start: 15.w, end: 15.w, bottom: 0, top: 8.h),
+                child: Row(
                   children: [
-                    // Column(
-                    //   children: [
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           child: AnimatedTypeTextComponent(
-                    //             text: StringsAssetsConstants.pickUpLocation,
-                    //             textStyle: TextStyles.smallBodyTextStyle(context).copyWith(
-                    //               color: MainColors.textColor(context)!.withOpacity(0.6),
-                    //             ),
-                    //             textAlign: TextAlign.start,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     Row(
-                    //       children: [
-                    //         Expanded(
-                    //           child: Text(
-                    //             'Cairo, Nasr City, 5th Settlement, 90th Street, Building 17, Apartment 17',
-                    //             style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    //               fontFamily: FontsFamilyAssetsConstants.bold,
-                    //             ),
-                    //             maxLines: 1,
-                    //             overflow: TextOverflow.ellipsis,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 15.h),
-                    Column(
-                      children: [
-                        Row(
+                    Expanded(
+                      child: RichText(
+                        text: TextSpan(
                           children: [
-                            Expanded(
-                              child: AnimatedTypeTextComponent(
-                                  text: StringsAssetsConstants.deliveryLocation,
-                                  textStyle: TextStyles.smallBodyTextStyle(context).copyWith(
-                                    color: MainColors.textColor(context)!.withOpacity(0.6),
-                                  ),
-                                  textAlign: TextAlign.start),
+                            TextSpan(
+                              text: '${StringsAssetsConstants.orderNumber}: ',
+                              style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                fontSize: 14.sp,
+                              ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Cairo, Nasr City, 5th Settlement, 90th Street, Building 17, Apartment 17',
-                                style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                  fontFamily: FontsFamilyAssetsConstants.bold,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                            TextSpan(
+                              text: '17',
+                              style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                color: MainColors.primaryColor,
+                                fontSize: 14.sp,
                               ),
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                    Text(
+                      RelativeDateUtil.getRelativeDateSinceNow(
+                          relativeDateInUnix: DateTime.now().add(const Duration(days: -1)).millisecondsSinceEpoch),
+                      style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                        color: MainColors.textColor(context)!.withOpacity(0.6),
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    TagComponent(
+                      title: '${StringsAssetsConstants.driver}: 0663095778',
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(15.r),
+                        bottomLeft: Radius.circular(15.r),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          StringsAssetsConstants.garage,
+                          style: TextStyles.smallBodyTextStyle(context).copyWith(
+                            fontFamily: FontsFamilyAssetsConstants.bold,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.arrowDownIcon,
+                          width: 18.r,
+                          color: MainColors.textColor(context),
+                        ),
+                        SizedBox(height: 4.h),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          StringsAssetsConstants.recipient,
+                          style: TextStyles.smallBodyTextStyle(context).copyWith(
+                            color: MainColors.primaryColor,
+                            fontFamily: FontsFamilyAssetsConstants.bold,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.arrowDownIcon,
+                          width: 18.r,
+                          color: MainColors.primaryColor,
+                        ),
+                        SizedBox(height: 4.h),
                       ],
                     ),
                   ],
-                )),
+                ),
+                Stack(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 4.h, left: 8.w, right: 8.w, bottom: 10.h),
+                            child: LinearPercentIndicator(
+                              lineHeight: 15.r,
+                              percent: progress ?? 0,
+                              animateFromLastPercent: true,
+                              animation: true,
+                              barRadius: Radius.circular(1000.r),
+                              backgroundColor: MainColors.disableColor(context)!.withOpacity(0.25),
+                              progressColor: MainColors.primaryColor,
+                              animationDuration: 300,
+                              restartAnimation: false,
+                              isRTL: Get.locale?.languageCode == 'ar',
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    PositionedDirectional(
+                      end: progress == 0.5
+                          ? 0
+                          : progress > 0.5
+                              ? ((1 - progress) * (0.8.sw))
+                              : null,
+                      start: progress == 0.5
+                          ? 0
+                          : progress < 0.5
+                              ? (progress * (0.8.sw))
+                              : null,
+                      child: Transform(
+                        alignment: Alignment.center,
+                        transform: Get.locale?.languageCode != 'ar' ? Matrix4.rotationY(math.pi) : Matrix4.rotationY(0),
+                        child: SvgPicture.asset(
+                          IconsAssetsConstants.trackIcon,
+                          width: 25.r,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      AnimatorComponent(
+                        time: const Duration(milliseconds: 300),
+                        child: Column(
+                          children: [
+                            // SvgPicture.asset(
+                            //   IconsAssetsConstants.pointIcon,
+                            //   width: 22.r,
+                            //   color: MainColors.textColor(context),
+                            // ),
+                            // SizedBox(
+                            //   height: 40.h,
+                            //   child: VerticalDivider(
+                            //     color: MainColors.textColor(context),
+                            //     thickness: 1.r,
+                            //     indent: 0.r,
+                            //     endIndent: 0.r,
+                            //   ),
+                            // ),
+                            SvgPicture.asset(
+                              IconsAssetsConstants.locationIcon,
+                              width: 18.r,
+                              color: MainColors.textColor(context),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 3.w),
+                      Expanded(
+                          child: Column(
+                        children: [
+                          // Column(
+                          //   children: [
+                          //     Row(
+                          //       children: [
+                          //         Expanded(
+                          //           child: AnimatedTypeTextComponent(
+                          //             text: StringsAssetsConstants.pickUpLocation,
+                          //             textStyle: TextStyles.smallBodyTextStyle(context).copyWith(
+                          //               color: MainColors.textColor(context)!.withOpacity(0.6),
+                          //             ),
+                          //             textAlign: TextAlign.start,
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //     Row(
+                          //       children: [
+                          //         Expanded(
+                          //           child: Text(
+                          //             'Cairo, Nasr City, 5th Settlement, 90th Street, Building 17, Apartment 17',
+                          //             style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                          //               fontFamily: FontsFamilyAssetsConstants.bold,
+                          //             ),
+                          //             maxLines: 1,
+                          //             overflow: TextOverflow.ellipsis,
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 15.h),
+                          Column(
+                            children: [
+                              // Row(
+                              //   children: [
+                              //     Expanded(
+                              //       child: AnimatedTypeTextComponent(
+                              //           text: StringsAssetsConstants.deliveryLocation,
+                              //           textStyle: TextStyles.smallBodyTextStyle(context).copyWith(
+                              //             color: MainColors.textColor(context)!.withOpacity(0.6),
+                              //           ),
+                              //           textAlign: TextAlign.start),
+                              //     ),
+                              //   ],
+                              // ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'alger, algeria',
+                                      style: TextStyles.smallBodyTextStyle(context).copyWith(),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 5.w),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      IconsAssetsConstants.routeIcon,
+                      width: 15.r,
+                      color: MainColors.textColor(context),
+                    ),
+                    SizedBox(width: 5.w),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '${StringsAssetsConstants.remainingDistance}: ',
+                            style: TextStyles.smallBodyTextStyle(context).copyWith(
+                              fontFamily: FontsFamilyAssetsConstants.bold,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '15 ${StringsAssetsConstants.km}',
+                            style: TextStyles.smallBodyTextStyle(context).copyWith(
+                              color: MainColors.primaryColor,
+                              fontFamily: FontsFamilyAssetsConstants.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

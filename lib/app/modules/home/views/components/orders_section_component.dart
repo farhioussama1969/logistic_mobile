@@ -34,7 +34,7 @@ class OrdersSectionComponent extends StatelessWidget {
               return OrderCardComponent();
             },
             separatorBuilder: (context, index) {
-              return SizedBox(height: 15.h);
+              return SizedBox(height: 22.h);
             },
             itemCount: 10,
           ),

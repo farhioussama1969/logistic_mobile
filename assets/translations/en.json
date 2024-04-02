@@ -71,7 +71,12 @@
   "months": "Months",
     "year": "Year",
   "pick up location": "Pick up location",
-    "delivery location": "Delivery location"
-
+    "delivery location": "Delivery location",
+  "driver": "Driver",
+    "order details": "Order details",
+  "garage": "Garage",
+  "Recipient": "Recipient",
+  "Remaining distance": "Remaining distance",
+  "km": "Km"
 
 }
