@@ -79,4 +79,6 @@ static String get garage{return "garage".tr;}
 static String get recipient{return "Recipient".tr;}
 static String get remainingDistance{return "Remaining distance".tr;}
 static String get km{return "km".tr;}
+static String get destinationPoint{return "destination point".tr;}
+static String get orderStatusesHistory{return "order statuses history".tr;}
 }

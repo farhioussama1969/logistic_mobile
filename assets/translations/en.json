@@ -77,6 +77,8 @@
   "garage": "Garage",
   "Recipient": "Recipient",
   "Remaining distance": "Remaining distance",
-  "km": "Km"
+  "km": "Km",
+  "destination point": "Destination point",
+  "order statuses history": "Order statuses history"
 
 }
