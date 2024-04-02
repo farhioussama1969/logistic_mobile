@@ -13,8 +13,12 @@ class OrderStatusCardComponent extends StatelessWidget {
           height: 80.r,
           width: 80.r,
           decoration: BoxDecoration(
-            color: MainColors.warningColor(context),
+            color: MainColors.inputColor(context),
             borderRadius: BorderRadius.circular(1000.r),
+            border: Border.all(
+              color: MainColors.textColor(context)!.withOpacity(0.1),
+              width: 2.r,
+            ),
           ),
         ),
       ],
