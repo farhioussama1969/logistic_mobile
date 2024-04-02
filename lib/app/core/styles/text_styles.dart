@@ -34,7 +34,7 @@ class TextStyles {
 
   static TextStyle smallLabelTextStyle(BuildContext context) => TextStyle(
         height: 1.72,
-        fontSize: 15.sp,
+        fontSize: 16.sp,
         overflow: TextOverflow.ellipsis,
         fontFamily: FontsFamilyAssetsConstants.bold,
         fontWeight: FontWeight.bold,

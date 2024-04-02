@@ -51,8 +51,27 @@
   "register as a driver": "Register as a driver",
   "orders": "Orders",
   "create new order": "Create new order",
-  "home note": "Logistics is the application that allows you to request the delivery of any product or commodity, deliver it to the specified place and at the specified time, and track it from the place of the order to the place of receipt in simple steps."
-
+  "home note": "Logistics is the application that allows you to request the delivery of any product or commodity, deliver it to the specified place and at the specified time, and track it from the place of the order to the place of receipt in simple steps.",
+  "order number": "Order number",
+  "item price": "Item price",
+    "delivery price": "Delivery price",
+    "total price": "Total price",
+    "order status": "Order status",
+  "day": "Day",
+    "hour": "Hour",
+    "minute": "Minute",
+    "second": "Second",
+  "week": "Week",
+    "month": "Month",
+  "two week": "Two weeks",
+    "three weeks": "Three weeks",
+    "four weeks": "Four weeks",
+  "two months": "Two months",
+    "three months": "Three months",
+  "months": "Months",
+    "year": "Year",
+  "pick up location": "Pick up location",
+    "delivery location": "Delivery location"
 
 
 }

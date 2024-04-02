@@ -53,4 +53,24 @@ static String get registerAsADriver{return "register as a driver".tr;}
 static String get orders{return "orders".tr;}
 static String get createNewOrder{return "create new order".tr;}
 static String get homeNote{return "home note".tr;}
+static String get orderNumber{return "order number".tr;}
+static String get itemPrice{return "item price".tr;}
+static String get deliveryPrice{return "delivery price".tr;}
+static String get totalPrice{return "total price".tr;}
+static String get orderStatus{return "order status".tr;}
+static String get day{return "day".tr;}
+static String get hour{return "hour".tr;}
+static String get minute{return "minute".tr;}
+static String get second{return "second".tr;}
+static String get week{return "week".tr;}
+static String get month{return "month".tr;}
+static String get twoWeek{return "two week".tr;}
+static String get threeWeeks{return "three weeks".tr;}
+static String get fourWeeks{return "four weeks".tr;}
+static String get twoMonths{return "two months".tr;}
+static String get threeMonths{return "three months".tr;}
+static String get months{return "months".tr;}
+static String get year{return "year".tr;}
+static String get pickUpLocation{return "pick up location".tr;}
+static String get deliveryLocation{return "delivery location".tr;}
 }
