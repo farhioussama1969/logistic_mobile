@@ -79,6 +79,26 @@
   "Remaining distance": "Remaining distance",
   "km": "Km",
   "destination point": "Destination point",
-  "order statuses history": "Order statuses history"
+  "order statuses history": "Order statuses history",
+
+
+  "pending order title": "Your order is under review",
+    "pending order description": "Your order is under review, please wait until the order is accepted",
+    "accepted order title": "Your order has been accepted",
+    "accepted order description": "Your order has been accepted, the driver will started soon",
+  "contact the sender order title": "Contact the sender",
+  "contact the sender order description": "The sender answered the call",
+        "driver started order title": "The driver started",
+          "driver started order description": "The driver is on his way to the pick-up location",
+  "your order has been picked up title": "Your order has been picked up",
+    "your order has been picked up description": "The driver has picked up the order",
+  "contact the receiver order title": "Contact the receiver",
+    "contact the receiver order description": "The receiver answered the call",
+  "driver started delivery order title": "The driver started delivery",
+    "driver started delivery order description": "The driver is on his way to the delivery location",
+    "your order has been delivered title": "Your order has been delivered",
+    "your order has been delivered description": "The driver has delivered the order to the receiver"
+
+
 
 }

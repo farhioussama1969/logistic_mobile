@@ -81,4 +81,20 @@ static String get remainingDistance{return "Remaining distance".tr;}
 static String get km{return "km".tr;}
 static String get destinationPoint{return "destination point".tr;}
 static String get orderStatusesHistory{return "order statuses history".tr;}
+static String get pendingOrderTitle{return "pending order title".tr;}
+static String get pendingOrderDescription{return "pending order description".tr;}
+static String get acceptedOrderTitle{return "accepted order title".tr;}
+static String get acceptedOrderDescription{return "accepted order description".tr;}
+static String get contactTheSenderOrderTitle{return "contact the sender order title".tr;}
+static String get contactTheSenderOrderDescription{return "contact the sender order description".tr;}
+static String get driverStartedOrderTitle{return "driver started order title".tr;}
+static String get driverStartedOrderDescription{return "driver started order description".tr;}
+static String get yourOrderHasBeenPickedUpTitle{return "your order has been picked up title".tr;}
+static String get yourOrderHasBeenPickedUpDescription{return "your order has been picked up description".tr;}
+static String get contactTheReceiverOrderTitle{return "contact the receiver order title".tr;}
+static String get contactTheReceiverOrderDescription{return "contact the receiver order description".tr;}
+static String get driverStartedDeliveryOrderTitle{return "driver started delivery order title".tr;}
+static String get driverStartedDeliveryOrderDescription{return "driver started delivery order description".tr;}
+static String get yourOrderHasBeenDeliveredTitle{return "your order has been delivered title".tr;}
+static String get yourOrderHasBeenDeliveredDescription{return "your order has been delivered description".tr;}
 }
