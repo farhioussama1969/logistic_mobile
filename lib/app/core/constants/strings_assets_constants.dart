@@ -103,4 +103,8 @@ static String get to{return "to".tr;}
 static String get estimatedDistance{return "estimated distance".tr;}
 static String get senderPhoneNumber{return "sender phone number".tr;}
 static String get receiverPhoneNumber{return "receiver phone number".tr;}
+static String get next{return "next".tr;}
+static String get step2Description{return "step 2 description".tr;}
+static String get step2EnterItemPrice{return "step 2 enter item price".tr;}
+static String get uploadTheItemInvoice{return "upload the item invoice".tr;}
 }

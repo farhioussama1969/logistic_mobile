@@ -37,6 +37,7 @@ class TextInputComponent extends StatelessWidget {
   final Function(String value)? onSubmit;
   TextInputAction? textInputAction;
   Color? fillColor;
+  Color? borderColor;
 
   TextInputComponent(
       {super.key,
@@ -66,7 +67,8 @@ class TextInputComponent extends StatelessWidget {
       this.onSubmit,
       this.textInputFormatter,
       this.textInputAction,
-      this.fillColor});
+      this.fillColor,
+      this.borderColor});
   @override
   Widget build(BuildContext context) {
     return AnimatorComponent(
@@ -79,8 +81,7 @@ class TextInputComponent extends StatelessWidget {
                   child: Row(
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            bottom: 5.h, start: 14.w),
+                        padding: EdgeInsetsDirectional.only(bottom: 5.h, start: 14.w),
                         child: Text(
                           label == null ? "" : label!,
                           style: TextStyles.mediumBodyTextStyle(context),
@@ -106,15 +107,13 @@ class TextInputComponent extends StatelessWidget {
               keyboardType: textInputType ?? TextInputType.text,
               textInputAction: textInputAction ?? TextInputAction.next,
               cursorColor: MainColors.primaryColor,
-              inputFormatters:
-                  textInputFormatter != null ? [textInputFormatter!] : null,
+              inputFormatters: textInputFormatter != null ? [textInputFormatter!] : null,
               decoration: InputDecoration(
                 counterText: '',
                 hintStyle: TextStyles.mediumBodyTextStyle(context).copyWith(
                   color: MainColors.disableColor(context),
                 ),
-                contentPadding: contentPadding ??
-                    EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+                contentPadding: contentPadding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
                 errorStyle: TextStyles.smallBodyTextStyle(context).copyWith(
                   color: MainColors.errorColor(context),
                   fontSize: 13.sp,
@@ -134,14 +133,14 @@ class TextInputComponent extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
                   borderSide: BorderSide(
-                    color: MainColors.disableColor(context)!.withOpacity(0.2),
+                    color: borderColor ?? MainColors.disableColor(context)!.withOpacity(0.2),
                     width: 1,
                   ),
                 ),
                 disabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
                   borderSide: BorderSide(
-                    color: MainColors.disableColor(context)!.withOpacity(0.2),
+                    color: borderColor ?? MainColors.disableColor(context)!.withOpacity(0.2),
                     width: 1,
                   ),
                 ),
@@ -155,7 +154,7 @@ class TextInputComponent extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
                   borderSide: BorderSide(
-                    color: MainColors.disableColor(context)!.withOpacity(0.2),
+                    color: borderColor ?? MainColors.disableColor(context)!.withOpacity(0.2),
                     width: 1,
                   ),
                 ),
@@ -182,9 +181,7 @@ class TextInputComponent extends StatelessWidget {
               ),
               onFieldSubmitted: (value) {
                 if (onSubmit != null) onSubmit!(value);
-                nextNode == null
-                    ? FocusScope.of(context).unfocus()
-                    : FocusScope.of(context).requestFocus(nextNode);
+                nextNode == null ? FocusScope.of(context).unfocus() : FocusScope.of(context).requestFocus(nextNode);
               },
               onChanged: onChange ?? null,
             ),

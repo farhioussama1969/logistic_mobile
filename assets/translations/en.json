@@ -104,7 +104,11 @@
     "to": "To",
   "estimated distance": "Estimated distance",
   "sender phone number": "Sender phone number",
-    "receiver phone number": "Receiver phone number"
+    "receiver phone number": "Receiver phone number",
+  "next": "Next",
+  "step 2 description": "The order price is the price you give to a driver until he delivers your order to you",
+    "step 2 enter item price": "Specify the price of the order you want to deliver",
+  "upload the item invoice": "Upload the item invoice"
 
 
 
