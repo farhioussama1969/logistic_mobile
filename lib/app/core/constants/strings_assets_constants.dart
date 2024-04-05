@@ -97,4 +97,10 @@ static String get driverStartedDeliveryOrderTitle{return "driver started deliver
 static String get driverStartedDeliveryOrderDescription{return "driver started delivery order description".tr;}
 static String get yourOrderHasBeenDeliveredTitle{return "your order has been delivered title".tr;}
 static String get yourOrderHasBeenDeliveredDescription{return "your order has been delivered description".tr;}
+static String get pleasePickStartAndDestinationLocation{return "please pick start and destination location".tr;}
+static String get from{return "from".tr;}
+static String get to{return "to".tr;}
+static String get estimatedDistance{return "estimated distance".tr;}
+static String get senderPhoneNumber{return "sender phone number".tr;}
+static String get receiverPhoneNumber{return "receiver phone number".tr;}
 }

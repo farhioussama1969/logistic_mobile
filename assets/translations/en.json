@@ -97,7 +97,14 @@
   "driver started delivery order title": "The driver started delivery",
     "driver started delivery order description": "The driver is on his way to the delivery location",
     "your order has been delivered title": "Your order has been delivered",
-    "your order has been delivered description": "The driver has delivered the order to the receiver"
+    "your order has been delivered description": "The driver has delivered the order to the receiver",
+
+  "please pick start and destination location": "Please pick start & destination location",
+  "from": "From",
+    "to": "To",
+  "estimated distance": "Estimated distance",
+  "sender phone number": "Sender phone number",
+    "receiver phone number": "Receiver phone number"
 
 
 

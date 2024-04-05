@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
+import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 
 class CreateNewOrderController extends GetxController {
-  //TODO: Implement CreateNewOrderController
+  int step = 1;
+  void setStep(int value) {
+    step = value;
+    update([GetBuildersIdsConstants.createOrderSteps]);
+  }
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +22,4 @@ class CreateNewOrderController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
