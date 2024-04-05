@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/create_new_order/bindings/create_new_order_binding.dart';
+import '../modules/create_new_order/views/create_new_order_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/order_details/bindings/order_details_binding.dart';
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.ORDER_DETAILS,
       page: () => const OrderDetailsView(),
       binding: OrderDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_NEW_ORDER,
+      page: () => const CreateNewOrderView(),
+      binding: CreateNewOrderBinding(),
     ),
   ];
 }

@@ -7,6 +7,7 @@ abstract class Routes {
   static const SIGN_IN = _Paths.SIGN_IN;
   static const HOME = _Paths.HOME;
   static const ORDER_DETAILS = _Paths.ORDER_DETAILS;
+  static const CREATE_NEW_ORDER = _Paths.CREATE_NEW_ORDER;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const SIGN_IN = '/sign-in';
   static const HOME = '/home';
   static const ORDER_DETAILS = '/order-details';
+  static const CREATE_NEW_ORDER = '/create-new-order';
 }

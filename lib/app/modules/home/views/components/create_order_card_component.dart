@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
 import 'package:loogisti/app/core/components/cards/tag_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
@@ -9,6 +10,7 @@ import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/routes/app_pages.dart';
 
 class CreateOrderCardComponent extends StatelessWidget {
   const CreateOrderCardComponent({super.key});
@@ -51,7 +53,7 @@ class CreateOrderCardComponent extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(Routes.CREATE_NEW_ORDER),
                   child: TagComponent(
                     title: '',
                     disableShadow: true,
