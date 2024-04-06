@@ -108,8 +108,12 @@
   "next": "Next",
   "step 2 description": "The order price is the price you give to a driver until he delivers your order to you",
     "step 2 enter item price": "Specify the price of the order you want to deliver",
-  "upload the item invoice": "Upload the item invoice"
-
+  "upload the item invoice": "Upload the item invoice",
+  "step 3 description": "The delivery time is the appropriate time for you to receive your order at the specified location, either receiving it at the earliest time or specifying a time when you are available",
+    "step 3 enter time": "Choose the delivery time when you are available to receive your order",
+  "preferred pickup time": "Preferred pickup time",
+    "order summary": "Order summary",
+  "specific time": "Specific time"
 
 
 }

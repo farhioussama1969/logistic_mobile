@@ -18,6 +18,13 @@ class CreateNewOrderController extends GetxController {
     update([GetBuildersIdsConstants.createOrderStep2]);
   }
 
+  //step 03
+  bool isChosenTime = false;
+  void changeChosenTime(bool value) {
+    isChosenTime = value;
+    update([GetBuildersIdsConstants.createOrderStep3]);
+  }
+
   @override
   void onInit() {
     super.onInit();

@@ -107,4 +107,9 @@ static String get next{return "next".tr;}
 static String get step2Description{return "step 2 description".tr;}
 static String get step2EnterItemPrice{return "step 2 enter item price".tr;}
 static String get uploadTheItemInvoice{return "upload the item invoice".tr;}
+static String get step3Description{return "step 3 description".tr;}
+static String get step3EnterTime{return "step 3 enter time".tr;}
+static String get preferredPickupTime{return "preferred pickup time".tr;}
+static String get orderSummary{return "order summary".tr;}
+static String get specificTime{return "specific time".tr;}
 }
