@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loogisti/app/core/components/cards/tag_component.dart';
+import 'package:loogisti/app/core/components/inputs/time_input_component.dart';
 import 'package:loogisti/app/core/components/inputs/text_input_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
@@ -92,15 +94,23 @@ class Step3Component extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
-                TextInputComponent(
-                  label: StringsAssetsConstants.preferredPickupTime,
-                  isLabelOutside: true,
-                  readOnly: true,
-                  borderColor: MainColors.textColor(context),
-                  hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
-                  textInputType: TextInputType.number,
-                ),
+                if (logic.isChosenTime) SizedBox(height: 10.h),
+                if (logic.isChosenTime)
+                  TextInputComponent(
+                    label: StringsAssetsConstants.preferredPickupTime,
+                    isLabelOutside: true,
+                    readOnly: true,
+                    suffix: Row(
+                      children: [
+                        SizedBox(width: 10.w),
+                        TimeInputComponent(child: TagComponent(title: StringsAssetsConstants.pickTime)),
+                        SizedBox(width: 10.w),
+                      ],
+                    ),
+                    borderColor: MainColors.textColor(context),
+                    hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
+                    textInputType: TextInputType.number,
+                  ),
                 SizedBox(height: 15.h),
               ],
             ),

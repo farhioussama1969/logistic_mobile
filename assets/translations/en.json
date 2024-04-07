@@ -113,7 +113,8 @@
     "step 3 enter time": "Choose the delivery time when you are available to receive your order",
   "preferred pickup time": "Preferred pickup time",
     "order summary": "Order summary",
-  "specific time": "Specific time"
+  "specific time": "Specific time",
+  "pick time": "Pick time"
 
 
 }

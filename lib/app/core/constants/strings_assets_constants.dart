@@ -112,4 +112,5 @@ static String get step3EnterTime{return "step 3 enter time".tr;}
 static String get preferredPickupTime{return "preferred pickup time".tr;}
 static String get orderSummary{return "order summary".tr;}
 static String get specificTime{return "specific time".tr;}
+static String get pickTime{return "pick time".tr;}
 }
