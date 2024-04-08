@@ -114,7 +114,9 @@
   "preferred pickup time": "Preferred pickup time",
     "order summary": "Order summary",
   "specific time": "Specific time",
-  "pick time": "Pick time"
+  "pick time": "Pick time",
+  "enter coupon code": "Enter coupon code",
+  "coupon code": "Coupon code"
 
 
 }

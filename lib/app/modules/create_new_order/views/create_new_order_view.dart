@@ -26,7 +26,7 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
       body: ScrollableBodyComponent(
         children: [
           CreateNewOrderStepsComponent(
-            step: 1,
+            step: 3,
           ),
           AnimatedSize(
             alignment: Alignment.topCenter,

@@ -113,4 +113,6 @@ static String get preferredPickupTime{return "preferred pickup time".tr;}
 static String get orderSummary{return "order summary".tr;}
 static String get specificTime{return "specific time".tr;}
 static String get pickTime{return "pick time".tr;}
+static String get enterCouponCode{return "enter coupon code".tr;}
+static String get couponCode{return "coupon code".tr;}
 }
