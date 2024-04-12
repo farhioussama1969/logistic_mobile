@@ -3,12 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
+import 'package:loogisti/app/core/components/text/animated_type_text_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
-import '../inputs/icon_button_component.dart';
+import '../buttons/icon_button_component.dart';
 
 class ConfirmWindowComponent extends StatelessWidget {
   const ConfirmWindowComponent(
@@ -37,7 +38,9 @@ class ConfirmWindowComponent extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
           decoration: BoxDecoration(
             color: MainColors.backgroundColor(context),
-            borderRadius: BorderRadius.circular(30.r),
+            borderRadius: BorderRadiusDirectional.vertical(
+              top: Radius.circular(30.r),
+            ),
           ),
           child: SizedBox(
             width: double.infinity,
@@ -61,11 +64,10 @@ class ConfirmWindowComponent extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Center(
-                  child: Text(
-                    subtitle,
-                    style: TextStyles.mediumBodyTextStyle(context),
+                  child: AnimatedTypeTextComponent(
+                    text: subtitle,
+                    textStyle: TextStyles.mediumBodyTextStyle(context),
                     textAlign: TextAlign.center,
-                    overflow: TextOverflow.fade,
                   ),
                 ),
                 SizedBox(height: 20.h),
@@ -107,8 +109,7 @@ class ConfirmWindowComponent extends StatelessWidget {
                 buttonHeight: 23.r,
                 iconWidth: 15.r,
                 iconHeight: 15.r,
-                backgroundColor:
-                    MainColors.disableColor(context)?.withOpacity(0.5),
+                backgroundColor: MainColors.disableColor(context)?.withOpacity(0.5),
                 iconColor: MainColors.whiteColor,
               ),
             ],

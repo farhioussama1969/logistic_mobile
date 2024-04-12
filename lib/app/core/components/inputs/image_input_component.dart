@@ -17,14 +17,7 @@ class ImageInputComponent extends StatefulWidget {
   bool? isRectangularImage;
   bool? disable;
 
-  ImageInputComponent(
-      {super.key,
-      this.saveImage,
-      this.imageFile,
-      this.child,
-      this.cropImage,
-      this.isRectangularImage,
-      this.disable});
+  ImageInputComponent({super.key, this.saveImage, this.imageFile, this.child, this.cropImage, this.isRectangularImage, this.disable});
 
   @override
   _ImageInputComponentState createState() => _ImageInputComponentState();
@@ -52,26 +45,22 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+                  padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
                   //height: 100,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       InkWell(
                         borderRadius: BorderRadius.circular(12.r),
-                        onTap: () => _getImage(
-                            ImageSources.camera, widget.isRectangularImage),
+                        onTap: () => _getImage(ImageSources.camera, widget.isRectangularImage),
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30.r, vertical: 15.r),
+                          padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 15.r),
                           decoration: BoxDecoration(
                               color: MainColors.backgroundColor(context),
                               borderRadius: BorderRadius.circular(12.r),
                               boxShadow: [
                                 BoxShadow(
-                                  color: MainColors.shadowColor(context)!
-                                      .withOpacity(0.3),
+                                  color: MainColors.shadowColor(context)!.withOpacity(0.3),
                                   offset: const Offset(0, 0),
                                   spreadRadius: 0,
                                   blurRadius: 15.r,
@@ -90,8 +79,7 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
                               Center(
                                 child: Text(
                                   StringsAssetsConstants.camera,
-                                  style:
-                                      TextStyles.mediumBodyTextStyle(context),
+                                  style: TextStyles.mediumBodyTextStyle(context),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -102,18 +90,15 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
                       SizedBox(width: 20.w),
                       InkWell(
                         borderRadius: BorderRadius.circular(12.r),
-                        onTap: () => _getImage(
-                            ImageSources.image, widget.isRectangularImage),
+                        onTap: () => _getImage(ImageSources.image, widget.isRectangularImage),
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30.r, vertical: 15.r),
+                          padding: EdgeInsets.symmetric(horizontal: 30.r, vertical: 15.r),
                           decoration: BoxDecoration(
                               color: MainColors.backgroundColor(context),
                               borderRadius: BorderRadius.circular(12.r),
                               boxShadow: [
                                 BoxShadow(
-                                  color: MainColors.shadowColor(context)!
-                                      .withOpacity(0.3),
+                                  color: MainColors.shadowColor(context)!.withOpacity(0.3),
                                   offset: const Offset(0, 0),
                                   spreadRadius: 0,
                                   blurRadius: 15.r,
@@ -132,8 +117,7 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
                               Center(
                                 child: Text(
                                   StringsAssetsConstants.gallery,
-                                  style:
-                                      TextStyles.mediumBodyTextStyle(context),
+                                  style: TextStyles.mediumBodyTextStyle(context),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -161,18 +145,15 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
           callbackFunction: (imageDetails) async {
             if (imageDetails.selectedFiles.isNotEmpty == true) {
               setState(() {
-                widget.imageFile =
-                    File(imageDetails!.selectedFiles[0].selectedFile.path);
-                widget.saveImage!(
-                    File(imageDetails!.selectedFiles[0].selectedFile.path));
+                widget.imageFile = File(imageDetails!.selectedFiles[0].selectedFile.path);
+                widget.saveImage!(File(imageDetails!.selectedFiles[0].selectedFile.path));
               });
               Navigator.pop(context);
               Navigator.pop(context);
             }
           },
           tabsTexts: TabsTexts(),
-          appTheme:
-              AppTheme(focusColor: Colors.white, primaryColor: Colors.black),
+          appTheme: AppTheme(focusColor: Colors.white, primaryColor: Colors.black),
           cropImage: true,
           showImagePreview: true,
           maximumSelection: 1,
@@ -186,18 +167,15 @@ class _ImageInputComponentState extends State<ImageInputComponent> {
           callbackFunction: (imageDetails) async {
             if (imageDetails.selectedFiles.isNotEmpty == true) {
               setState(() {
-                widget.imageFile =
-                    File(imageDetails!.selectedFiles[0].selectedFile.path);
-                widget.saveImage!(
-                    File(imageDetails!.selectedFiles[0].selectedFile.path));
+                widget.imageFile = File(imageDetails!.selectedFiles[0].selectedFile.path);
+                widget.saveImage!(File(imageDetails!.selectedFiles[0].selectedFile.path));
               });
               Navigator.pop(context);
               Navigator.pop(context);
             }
           },
           tabsTexts: TabsTexts(),
-          appTheme:
-              AppTheme(focusColor: Colors.white, primaryColor: Colors.black),
+          appTheme: AppTheme(focusColor: Colors.white, primaryColor: Colors.black),
           cropImage: true,
           showImagePreview: true,
           maximumSelection: 1,

@@ -18,21 +18,18 @@ class IconButtonComponent extends StatelessWidget {
     this.gradientBackgroundColor,
     this.child,
     this.border,
-    this.noBoxShadow,
   }) : super(key: key);
 
   final String iconLink;
   final Color? iconColor;
   final Color? backgroundColor;
   final Function onTap;
-
   final double? iconWidth;
   final double? iconHeight;
   final double? buttonWidth;
   final double? buttonHeight;
   final double? borderRadius;
   final Gradient? gradientBackgroundColor;
-  final bool? noBoxShadow;
   final Widget? child;
   final BoxBorder? border;
 
@@ -43,27 +40,22 @@ class IconButtonComponent extends StatelessWidget {
       height: buttonHeight ?? 50.r,
       decoration: BoxDecoration(
         gradient: gradientBackgroundColor,
-        color: gradientBackgroundColor == null
-            ? backgroundColor ?? MainColors.backgroundColor(context)
-            : null,
+        color: gradientBackgroundColor == null ? backgroundColor ?? MainColors.backgroundColor(context) : null,
         borderRadius: BorderRadius.circular(borderRadius ?? 1000.r),
-        boxShadow: noBoxShadow == true
-            ? null
-            : [
-                BoxShadow(
-                  color: MainColors.shadowColor(context)!.withOpacity(0.5),
-                  spreadRadius: 0,
-                  blurRadius: 10,
-                  offset: const Offset(0, 0), // changes position of shadow
-                ),
-              ],
+        boxShadow: [
+          BoxShadow(
+            color: MainColors.shadowColor(context)!.withOpacity(0.5),
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: const Offset(0, 0), // changes position of shadow
+          ),
+        ],
         border: border,
       ),
       child: TextButton(
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 1000.r)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 1000.r)),
           backgroundColor: MainColors.transparentColor,
           primary: iconColor ?? MainColors.textColor(context),
         ),

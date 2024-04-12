@@ -6,13 +6,7 @@ import 'package:loogisti/app/core/styles/main_colors.dart';
 
 class SwitchComponent extends StatelessWidget {
   const SwitchComponent(
-      {Key? key,
-      required this.enable,
-      required this.onChange,
-      this.activeIconPath,
-      this.inactiveIconPath,
-      this.height,
-      this.width})
+      {Key? key, required this.enable, required this.onChange, this.activeIconPath, this.inactiveIconPath, this.height, this.width})
       : super(key: key);
 
   final bool enable;
@@ -27,12 +21,8 @@ class SwitchComponent extends StatelessWidget {
     return FlutterSwitch(
       activeColor: MainColors.primaryColor,
       inactiveColor: MainColors.disableColor(context)!,
-      activeIcon: activeIconPath != null
-          ? SvgPicture.asset(activeIconPath!, color: MainColors.primaryColor)
-          : null,
-      inactiveIcon: inactiveIconPath != null
-          ? SvgPicture.asset(inactiveIconPath!, color: MainColors.primaryColor)
-          : null,
+      activeIcon: activeIconPath != null ? SvgPicture.asset(activeIconPath!, color: MainColors.primaryColor) : null,
+      inactiveIcon: inactiveIconPath != null ? SvgPicture.asset(inactiveIconPath!, color: MainColors.primaryColor) : null,
       height: height ?? 22.r,
       width: width ?? 38.r,
       valueFontSize: 20.0.r,

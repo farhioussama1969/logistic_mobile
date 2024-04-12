@@ -38,8 +38,7 @@ class BackButtonComponent extends StatelessWidget {
           ]),
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(1000.r)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000.r)),
           backgroundColor: MainColors.transparentColor,
           primary: MainColors.primaryColor,
         ),

@@ -21,17 +21,19 @@ class BottomSheetComponent {
       enableDrag: false,
       backgroundColor: MainColors.transparentColor,
       builder: (context) {
-        return Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: 0,
-                maxHeight: 0.8.sh,
+        return PopScope(
+          canPop: dismissible ?? true,
+          child: Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: 0,
+                  maxHeight: 0.8.sh,
+                ),
+                child: body,
               ),
-              child: body,
             ),
           ),
         );

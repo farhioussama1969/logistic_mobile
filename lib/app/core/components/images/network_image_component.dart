@@ -1,17 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:loogisti/app/core/constants/animations_assets_constants.dart';
+import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 
 class NetworkImageComponent extends StatelessWidget {
-  const NetworkImageComponent(
-      {Key? key,
-      required this.imageLink,
-      this.fit,
-      this.errorWidget,
-      this.thumb})
-      : super(key: key);
+  const NetworkImageComponent({Key? key, required this.imageLink, this.fit, this.errorWidget, this.thumb}) : super(key: key);
 
   final String imageLink;
   final String? thumb;
@@ -37,11 +34,16 @@ class NetworkImageComponent extends StatelessWidget {
         ),
         errorWidget: (context, url, error) =>
             errorWidget ??
-            SizedBox(
-              child: SvgPicture.asset(
-                '',
-                fit: BoxFit.contain,
-                color: MainColors.primaryColor,
+            Container(
+              decoration: BoxDecoration(
+                color: MainColors.inputColor(context),
+              ),
+              child: Center(
+                child: Lottie.asset(
+                  AnimationsAssetsConstants.noInternetAnimation,
+                  width: 100,
+                  height: 100,
+                ),
               ),
             ),
       ),

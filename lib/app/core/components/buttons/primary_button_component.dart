@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
-import 'package:loogisti/app/core/components/animations/loading_component.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 
 import '../../../core/styles/text_styles.dart';
+import '../animations/loading_component.dart';
 
 class PrimaryButtonComponent extends StatelessWidget {
   const PrimaryButtonComponent(
@@ -60,9 +60,7 @@ class PrimaryButtonComponent extends StatelessWidget {
       width: width,
       padding: EdgeInsets.symmetric(vertical: 4.h),
       decoration: BoxDecoration(
-        gradient: backgroundColor == null
-            ? gradient ?? MainColors.primaryGradientColor
-            : null,
+        gradient: backgroundColor == null ? gradient ?? MainColors.primaryGradientColor : null,
         color: backgroundColor,
         border: Border.all(
           color: borderColor ?? Colors.transparent,
@@ -82,10 +80,10 @@ class PrimaryButtonComponent extends StatelessWidget {
       ),
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(1000.r)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1000.r)),
           backgroundColor: MainColors.transparentColor,
           primary: MainColors.primaryColor,
+          padding: EdgeInsets.symmetric(vertical: 10.h),
         ),
         onPressed: () {
           FocusScope.of(context).requestFocus(FocusNode());
@@ -97,8 +95,8 @@ class PrimaryButtonComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (isLoading == true)
-                  const LoadingComponent(
-                    color: MainColors.whiteColor,
+                  LoadingComponent(
+                    color: loadingColor ?? MainColors.whiteColor,
                   ),
                 if (isLoading == false || isLoading == null)
                   Expanded(
@@ -114,8 +112,7 @@ class PrimaryButtonComponent extends StatelessWidget {
                             width: iconSize ?? 25.r,
                             color: iconColor ?? MainColors.textColor(context),
                           ),
-                        if (iconPath != null && text != '')
-                          SizedBox(width: 6.w),
+                        if (iconPath != null && text != '') SizedBox(width: 6.w),
                         if (text != '')
                           Text(
                             text,

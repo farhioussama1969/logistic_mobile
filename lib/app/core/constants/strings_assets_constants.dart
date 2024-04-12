@@ -10,6 +10,7 @@ static String get serverErrorMessage{return "server error message".tr;}
 static String get sessionExpired{return "session expired".tr;}
 static String get internetErrorMessage{return "internet error message".tr;}
 static String get enter{return "enter".tr;}
+static String get select{return "select".tr;}
 static String get check{return "check".tr;}
 static String get passwordValidation{return "password validation".tr;}
 static String get passwordConfirmationValidation{return "password confirmation validation".tr;}
@@ -17,34 +18,40 @@ static String get camera{return "camera".tr;}
 static String get gallery{return "gallery".tr;}
 static String get done{return "done".tr;}
 static String get cancel{return "cancel".tr;}
-static String get start{return "start".tr;}
-static String get createAccount{return "create account".tr;}
-static String get createAccountDescription{return "create account description".tr;}
-static String get fullName{return "full name".tr;}
-static String get email{return "email".tr;}
+static String get developedBy{return "developed by".tr;}
 static String get confirm{return "confirm".tr;}
-static String get update{return "update".tr;}
-static String get currency{return "currency".tr;}
-static String get createNewAccount{return "create new account".tr;}
-static String get createNewAccountDescription{return "create new account description".tr;}
-static String get state{return "state".tr;}
-static String get city{return "city".tr;}
-static String get personnelInformations{return "personnel informations".tr;}
-static String get search{return "search".tr;}
-static String get emptyText{return "empty text".tr;}
-static String get profile{return "profile".tr;}
-static String get contactUs{return "contact us".tr;}
-static String get aboutUs{return "about us".tr;}
-static String get inviteAFriend{return "invite a friend".tr;}
-static String get termsAndConditions{return "terms and conditions".tr;}
-static String get darkMode{return "dark mode".tr;}
-static String get language{return "language".tr;}
-static String get changeLanguage{return "Change language".tr;}
-static String get deleteAccount{return "delete account".tr;}
-static String get settings{return "settings".tr;}
-static String get logOut{return "log out".tr;}
 static String get successfulProcess{return "successful process".tr;}
 static String get failedProcess{return "failed process".tr;}
+static String get bannedAccountText{return "banned account text".tr;}
+static String get yourAccountIsBanned{return "your account is banned".tr;}
+static String get newUpdate{return "new update".tr;}
+static String get required{return "required".tr;}
+static String get updateLater{return "update later".tr;}
+static String get requiredUpdateDescription{return "required update description".tr;}
+static String get optionalUpdateDescription{return "optional update description".tr;}
+static String get optional{return "optional".tr;}
+static String get update{return "update".tr;}
+static String get second{return "second".tr;}
+static String get currency{return "currency".tr;}
+static String get allRightsReserved{return "all rights reserved".tr;}
+static String get min{return "min".tr;}
+static String get meterUnit{return "meter unit".tr;}
+static String get kilometerUnit{return "kilometer unit".tr;}
+static String get minuteUnit{return "minute unit".tr;}
+static String get hourUnit{return "hour unit".tr;}
+static String get secondUnit{return "second unit".tr;}
+static String get save{return "save".tr;}
+static String get logout{return "logout".tr;}
+static String get logoutConfirmationText{return "logout confirmation text".tr;}
+static String get male{return "male".tr;}
+static String get female{return "female".tr;}
+static String get selectGander{return "select gander".tr;}
+static String get selectGanderDescription{return "select gander description".tr;}
+static String get gander{return "gander".tr;}
+static String get changeLanguage{return "change language".tr;}
+static String get deleteAccount{return "delete account".tr;}
+static String get darkMode{return "dark mode".tr;}
+static String get pleaseWait{return "please wait".tr;}
 static String get welcome{return "welcome".tr;}
 static String get welcomeDescription{return "welcome description".tr;}
 static String get signInWithGoogle{return "sign in with google".tr;}
@@ -61,7 +68,6 @@ static String get orderStatus{return "order status".tr;}
 static String get day{return "day".tr;}
 static String get hour{return "hour".tr;}
 static String get minute{return "minute".tr;}
-static String get second{return "second".tr;}
 static String get week{return "week".tr;}
 static String get month{return "month".tr;}
 static String get twoWeek{return "two week".tr;}
@@ -115,4 +121,6 @@ static String get specificTime{return "specific time".tr;}
 static String get pickTime{return "pick time".tr;}
 static String get enterCouponCode{return "enter coupon code".tr;}
 static String get couponCode{return "coupon code".tr;}
+static String get pickLocation{return "pick location".tr;}
+static String get gettingLocation{return "getting location".tr;}
 }

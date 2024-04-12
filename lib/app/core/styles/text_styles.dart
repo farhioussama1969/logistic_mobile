@@ -26,7 +26,7 @@ class TextStyles {
       );
 
   static TextStyle buttonTextStyle(BuildContext context) => TextStyle(
-        fontSize: 15.sp,
+        fontSize: 16.sp,
         overflow: TextOverflow.clip,
         fontFamily: FontsFamilyAssetsConstants.bold,
         color: MainColors.textColor(context),
@@ -34,7 +34,7 @@ class TextStyles {
 
   static TextStyle smallLabelTextStyle(BuildContext context) => TextStyle(
         height: 1.72,
-        fontSize: 16.sp,
+        fontSize: 15.sp,
         overflow: TextOverflow.ellipsis,
         fontFamily: FontsFamilyAssetsConstants.bold,
         fontWeight: FontWeight.bold,

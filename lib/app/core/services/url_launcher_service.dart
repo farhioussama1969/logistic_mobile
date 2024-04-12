@@ -20,7 +20,14 @@ class UrlLauncherService {
   }
 
   static Future<void> openLink({required String link, bool? internalLaunch}) async {
-    await launchUrl(Uri.parse(link),
-        mode: internalLaunch != true ? LaunchMode.externalApplication : LaunchMode.inAppWebView);
+    await launchUrl(Uri.parse(link), mode: internalLaunch != true ? LaunchMode.externalApplication : LaunchMode.inAppWebView);
+  }
+
+  static Future<void> sendMail({required String mail}) async {
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: mail,
+    );
+    await launchUrl(params);
   }
 }

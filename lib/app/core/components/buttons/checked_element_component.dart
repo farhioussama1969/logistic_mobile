@@ -9,14 +9,7 @@ import 'package:loogisti/app/core/styles/text_styles.dart';
 
 class CheckedElementComponent extends StatelessWidget {
   const CheckedElementComponent(
-      {Key? key,
-      required this.title,
-      required this.isChecked,
-      this.isExpanded,
-      this.onTap,
-      this.hideCheckedIcon,
-      this.padding,
-      this.color})
+      {Key? key, required this.title, required this.isChecked, this.isExpanded, this.onTap, this.hideCheckedIcon, this.padding, this.color})
       : super(key: key);
 
   final String title;
@@ -39,17 +32,12 @@ class CheckedElementComponent extends StatelessWidget {
             width: isExpanded == true ? double.infinity : null,
             margin: EdgeInsets.all(4.r),
             duration: const Duration(milliseconds: 300),
-            padding: padding ??
-                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+            padding: padding ?? EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             decoration: BoxDecoration(
-              color: (isChecked)
-                  ? (color ?? MainColors.primaryColor)
-                  : MainColors.backgroundColor(context),
+              color: (isChecked) ? (color ?? MainColors.primaryColor) : MainColors.backgroundColor(context),
               borderRadius: BorderRadius.circular(8.r),
               border: Border.all(
-                color: (isChecked)
-                    ? (color ?? MainColors.primaryColor)
-                    : MainColors.disableColor(context)!.withOpacity(0.1),
+                color: (isChecked) ? (color ?? MainColors.primaryColor) : MainColors.disableColor(context)!.withOpacity(0.1),
                 width: 1.5.r,
               ),
             ),
@@ -60,9 +48,7 @@ class CheckedElementComponent extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                    color: (isChecked)
-                        ? MainColors.whiteColor
-                        : MainColors.textColor(context),
+                    color: (isChecked) ? MainColors.whiteColor : MainColors.textColor(context),
                   ),
                 ),
               ],
@@ -98,9 +84,7 @@ class CheckedElementComponent extends StatelessWidget {
     )
         .animate(delay: (100).ms)
         .fadeIn(duration: 900.ms, delay: 50.ms)
-        .shimmer(
-            blendMode: BlendMode.srcOver,
-            color: MainColors.backgroundColor(context)?.withOpacity(0.1))
+        .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.1))
         .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad);
     ;
   }

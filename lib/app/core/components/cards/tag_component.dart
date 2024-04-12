@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loogisti/app/core/components/animations/animator_component.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
@@ -44,14 +45,13 @@ class TagComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       width: width,
       height: flexibleHeight == true ? null : height ?? 35.h,
       padding: padding ?? EdgeInsets.symmetric(horizontal: 15.w),
       decoration: BoxDecoration(
-        gradient: backgroundColor != null
-            ? null
-            : gradientBackgroundColor ?? MainColors.primaryGradientColor,
+        gradient: backgroundColor != null ? null : gradientBackgroundColor ?? MainColors.primaryGradientColor,
         color: backgroundColor,
         border: border,
         borderRadius: borderRadius ?? BorderRadius.circular(1000.r),
@@ -71,10 +71,13 @@ class TagComponent extends StatelessWidget {
         children: [
           if (iconPath != null)
             if (titleWidget == null)
-              SvgPicture.asset(
-                iconPath!,
-                width: iconWidth ?? 13.r,
-                color: iconColor ?? MainColors.whiteColor,
+              AnimatorComponent(
+                time: const Duration(milliseconds: 100),
+                child: SvgPicture.asset(
+                  iconPath!,
+                  width: iconWidth ?? 13.r,
+                  color: iconColor ?? MainColors.whiteColor,
+                ),
               ),
           if (iconPath != null)
             if (titleWidget == null) SizedBox(width: 5.r),

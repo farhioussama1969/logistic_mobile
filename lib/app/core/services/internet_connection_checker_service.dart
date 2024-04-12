@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class InternetConnectionCheckerService {
@@ -19,7 +20,7 @@ class InternetConnectionCheckerService {
             // }
             break;
           case InternetConnectionStatus.disconnected:
-            //Get.to(() => const NoConnectionScreenComponent());
+            // Get.to(() => const NoConnectionScreenComponent());
             backFromNoConnectionScreen = true;
             break;
         }

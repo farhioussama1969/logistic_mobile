@@ -14,7 +14,7 @@ import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
-import '../../../../core/components/inputs/icon_button_component.dart';
+import '../../../../core/components/buttons/icon_button_component.dart';
 
 class OrderSummaryWindowComponent extends StatelessWidget {
   const OrderSummaryWindowComponent({super.key});

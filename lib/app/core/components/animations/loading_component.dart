@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 
 class LoadingComponent extends StatelessWidget {
-  const LoadingComponent({Key? key, this.iOSSize, this.androidSize, this.color})
-      : super(key: key);
+  const LoadingComponent({Key? key, this.iOSSize, this.androidSize, this.color}) : super(key: key);
 
   final double? iOSSize;
   final double? androidSize;
@@ -33,6 +32,5 @@ class LoadingComponent extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      _getIndicatorWidget(Theme.of(context).platform);
+  Widget build(BuildContext context) => _getIndicatorWidget(Theme.of(context).platform);
 }

@@ -1,5 +1,3 @@
-import 'package:loogisti/app/data/models/partner_model.dart';
-
 class UserModel {
   int? id;
   String? firstName;
@@ -11,33 +9,30 @@ class UserModel {
   String? phone;
   String? birthday;
   String? gender;
-  String? avatar;
   String? status;
-  Null? wilaya;
+  String? avatar;
   String? lastLogin;
   String? emailVerifiedAt;
   String? createdAt;
-  PartnerModel? partner;
+  String? updatedAt;
 
-  UserModel({
-    this.id,
-    this.firstName,
-    this.lastName,
-    this.role,
-    this.email,
-    this.lang,
-    this.callingCode,
-    this.phone,
-    this.birthday,
-    this.gender,
-    this.avatar,
-    this.status,
-    this.wilaya,
-    this.lastLogin,
-    this.emailVerifiedAt,
-    this.createdAt,
-    this.partner,
-  });
+  UserModel(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.role,
+      this.email,
+      this.lang,
+      this.callingCode,
+      this.phone,
+      this.birthday,
+      this.gender,
+      this.status,
+      this.avatar,
+      this.lastLogin,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -50,15 +45,12 @@ class UserModel {
     phone = json['phone'];
     birthday = json['birthday'];
     gender = json['gender'];
-    avatar = json['avatar'];
     status = json['status'];
-    wilaya = json['wilaya'];
+    avatar = json['avatar'];
     lastLogin = json['last_login'];
     emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];
-    partner = json['partner'] != null
-        ? new PartnerModel.fromJson(json['partner'])
-        : null;
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,16 +65,12 @@ class UserModel {
     data['phone'] = this.phone;
     data['birthday'] = this.birthday;
     data['gender'] = this.gender;
-    data['avatar'] = this.avatar;
     data['status'] = this.status;
-    data['wilaya'] = this.wilaya;
+    data['avatar'] = this.avatar;
     data['last_login'] = this.lastLogin;
     data['email_verified_at'] = this.emailVerifiedAt;
     data['created_at'] = this.createdAt;
-    if (this.partner != null) {
-      data['partner'] = this.partner!.toJson();
-    }
-
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

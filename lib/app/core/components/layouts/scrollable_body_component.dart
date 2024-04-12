@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ScrollableBodyComponent extends StatelessWidget {
-  const ScrollableBodyComponent(
-      {Key? key, this.padding, required this.children})
-      : super(key: key);
+  const ScrollableBodyComponent({Key? key, this.padding, required this.children}) : super(key: key);
 
   final EdgeInsets? padding;
   final List<Widget> children;
@@ -16,8 +14,7 @@ class ScrollableBodyComponent extends StatelessWidget {
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: ConstrainedBox(
-            constraints:
-                BoxConstraints(minHeight: constraint.maxHeight, minWidth: 1.sw),
+            constraints: BoxConstraints(minHeight: constraint.maxHeight, minWidth: 1.sw),
             child: Padding(
               padding: padding ?? EdgeInsets.zero,
               child: IntrinsicHeight(

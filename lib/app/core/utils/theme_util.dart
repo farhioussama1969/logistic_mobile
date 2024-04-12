@@ -11,30 +11,26 @@ class ThemeUtil {
 
   static void changeTheme({required ThemeMode theme}) {
     LocalStorageService.saveData(
-        key: StorageKeysConstants.localeTheme,
-        value: (theme == ThemeMode.dark) ? 'dark' : 'light',
-        type: DataTypes.string);
+        key: StorageKeysConstants.localeTheme, value: (theme == ThemeMode.dark) ? 'dark' : 'light', type: DataTypes.string);
     isDarkMode = theme == ThemeMode.dark;
     Get.changeThemeMode(theme);
     currentTheme = theme;
   }
 
   static Future<void> initialize() async {
-    if (await LocalStorageService.loadData(
-            key: StorageKeysConstants.localeTheme, type: DataTypes.string) !=
-        null) {
-      isDarkMode = await LocalStorageService.loadData(
-              key: StorageKeysConstants.localeTheme, type: DataTypes.string) ==
-          'dark';
-      currentTheme = (await LocalStorageService.loadData(
-                  key: StorageKeysConstants.localeTheme,
-                  type: DataTypes.string) ==
-              'dark')
+    if (await LocalStorageService.loadData(key: StorageKeysConstants.localeTheme, type: DataTypes.string) != null) {
+      isDarkMode = await LocalStorageService.loadData(key: StorageKeysConstants.localeTheme, type: DataTypes.string) == 'dark';
+      currentTheme = (await LocalStorageService.loadData(key: StorageKeysConstants.localeTheme, type: DataTypes.string) == 'dark')
           ? ThemeMode.dark
           : ThemeMode.light;
+      if (currentTheme == ThemeMode.dark) {
+        isDarkMode = true;
+      } else {
+        isDarkMode = false;
+      }
     } else {
-      isDarkMode = SchedulerBinding.instance.window.platformBrightness ==
-          Brightness.dark;
+      isDarkMode = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
     }
+    print('isDarkMode: $isDarkMode');
   }
 }

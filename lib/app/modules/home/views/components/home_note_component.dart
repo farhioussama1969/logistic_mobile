@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
+import 'package:loogisti/app/core/components/buttons/icon_button_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
-
-import '../../../../core/components/inputs/icon_button_component.dart';
 
 class HomeNoteComponent extends StatelessWidget {
   const HomeNoteComponent({super.key});

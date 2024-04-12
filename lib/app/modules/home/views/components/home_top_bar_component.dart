@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loogisti/app/core/components/images/network_image_component.dart';
-import 'package:loogisti/app/core/components/inputs/icon_button_component.dart';
-import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
+import 'package:loogisti/app/core/components/buttons/icon_button_component.dart';
+import 'package:loogisti/app/core/components/images/network_image_component.dart';import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 

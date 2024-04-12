@@ -126,8 +126,7 @@ class ToastComponent {
     }
   }
 
-  static void showInfoToast(BuildContext context,
-      {required String text, String? title}) {
+  static void showInfoToast(BuildContext context, {required String text, String? title}) {
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
         '',

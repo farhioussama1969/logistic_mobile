@@ -2,10 +2,8 @@ import 'package:get/get.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/services/app_version_info_service.dart';
 import 'package:loogisti/app/core/utils/translation_util.dart';
-import 'package:loogisti/app/data/app_data.dart';
-import 'package:loogisti/app/data/models/partner_model.dart';
-
-import 'package:loogisti/app/modules/user_controller.dart';
+import 'package:loogisti/app/data/models/general_settings_model.dart';
+import 'package:loogisti/app/data/providers/taxili_api/config_provider.dart';
 
 class ConfigController extends GetxController {
   String? appVersion;
@@ -15,8 +13,19 @@ class ConfigController extends GetxController {
     update([GetBuildersIdsConstants.splashVersionText]);
   }
 
+  GeneralSettingsModel? generalSettingsData;
+
+  Future<void> getGeneralSettingsData() async {
+    await ConfigProvider().generalSettings(onLoading: () {}, onFinal: () {}).then((value) {
+      if (value != null) {
+        generalSettingsData = value;
+      }
+    });
+  }
+
   initialize() async {
-    getPackageVersion();
+    await getPackageVersion();
+    await getGeneralSettingsData();
   }
 
   String selectedAppLang = Get.locale?.languageCode ?? 'ar';
@@ -35,6 +44,8 @@ class ConfigController extends GetxController {
 
   void saveAppLang() {
     TranslationUtil.changeLang(lang: selectedAppLang);
+    //AuthProvider().updateProfile(onLoading: () {}, onFinal: () {});
+    // Get.find<HomeController>().refreshHome();
     Get.back();
   }
 }

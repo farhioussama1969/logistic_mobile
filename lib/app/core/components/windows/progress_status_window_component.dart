@@ -10,11 +10,7 @@ import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
 class ProgressStatusWindowComponent extends StatelessWidget {
-  const ProgressStatusWindowComponent(
-      {super.key,
-      required this.success,
-      required this.text,
-      required this.onDone});
+  const ProgressStatusWindowComponent({super.key, required this.success, required this.text, required this.onDone});
 
   final bool success;
   final String text;
@@ -28,8 +24,7 @@ class ProgressStatusWindowComponent extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           decoration: BoxDecoration(
             color: MainColors.backgroundColor(context),
-            borderRadius:
-                BorderRadiusDirectional.vertical(top: Radius.circular(30.r)),
+            borderRadius: BorderRadiusDirectional.vertical(top: Radius.circular(30.r)),
           ),
           child: SafeArea(
             child: Column(
@@ -41,16 +36,12 @@ class ProgressStatusWindowComponent extends StatelessWidget {
                     height: 100.r,
                     width: 100.r,
                     decoration: BoxDecoration(
-                      color: success
-                          ? MainColors.successColor(context)
-                          : MainColors.errorColor(context),
+                      color: success ? MainColors.successColor(context) : MainColors.errorColor(context),
                       borderRadius: BorderRadius.circular(1000.r),
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                        success
-                            ? IconsAssetsConstants.successIcon
-                            : IconsAssetsConstants.errorIcon,
+                        success ? IconsAssetsConstants.successIcon : IconsAssetsConstants.errorIcon,
                         color: MainColors.whiteColor,
                         width: 40.r,
                       ),
@@ -60,9 +51,7 @@ class ProgressStatusWindowComponent extends StatelessWidget {
                 SizedBox(height: 20.h),
                 Center(
                   child: Text(
-                    success
-                        ? StringsAssetsConstants.successfulProcess
-                        : StringsAssetsConstants.failedProcess,
+                    success ? StringsAssetsConstants.successfulProcess : StringsAssetsConstants.failedProcess,
                     style: TextStyles.mediumLabelTextStyle(context),
                   ),
                 ),
@@ -82,9 +71,7 @@ class ProgressStatusWindowComponent extends StatelessWidget {
                   child: PrimaryButtonComponent(
                     onTap: () => onDone(),
                     text: StringsAssetsConstants.done,
-                    backgroundColor: success
-                        ? MainColors.successColor(context)
-                        : MainColors.errorColor(context),
+                    backgroundColor: success ? MainColors.successColor(context) : MainColors.errorColor(context),
                   ),
                 ),
                 SizedBox(height: 10.h),

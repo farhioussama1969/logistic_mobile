@@ -10,6 +10,11 @@ class ThemeStyles {
     appBarTheme: const AppBarTheme(
       backgroundColor: MainColors.primaryColor,
     ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: MainColors.primaryColor,
+      selectionColor: MainColors.primaryColor,
+      selectionHandleColor: MainColors.primaryColor,
+    ),
     splashColor: MainColors.primaryColor,
     highlightColor: MainColors.primaryColor,
     buttonTheme: ButtonThemeData(
@@ -20,8 +25,7 @@ class ThemeStyles {
         primary: MainColors.primaryColor,
       ),
     ),
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: MainColors.primaryColor),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: MainColors.primaryColor),
     extensions: <ThemeExtension<dynamic>>[
       const ColorsStyles(
         backgroundColor: LightColors.backgroundColor,
@@ -47,6 +51,11 @@ class ThemeStyles {
     appBarTheme: const AppBarTheme(
       backgroundColor: MainColors.primaryColor,
     ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: MainColors.primaryColor,
+      selectionColor: MainColors.primaryColor,
+      selectionHandleColor: MainColors.primaryColor,
+    ),
     splashColor: MainColors.primaryColor,
     highlightColor: MainColors.primaryColor,
     buttonTheme: ButtonThemeData(
@@ -57,8 +66,7 @@ class ThemeStyles {
         primary: MainColors.primaryColor,
       ),
     ),
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: MainColors.primaryColor),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: MainColors.primaryColor),
     extensions: <ThemeExtension<dynamic>>[
       const ColorsStyles(
         backgroundColor: DarkColors.backgroundColor,

@@ -3,8 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
 class AnimatedTypeTextComponent extends StatelessWidget {
-  const AnimatedTypeTextComponent(
-      {super.key, required this.text, this.textStyle, this.textAlign});
+  const AnimatedTypeTextComponent({super.key, required this.text, this.textStyle, this.textAlign});
 
   final String text;
   final TextStyle? textStyle;

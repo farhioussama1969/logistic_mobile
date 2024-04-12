@@ -9,6 +9,7 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/routes/app_pages.dart';
 
 class Step1Component extends StatelessWidget {
   const Step1Component({super.key});
@@ -97,6 +98,8 @@ class Step1Component extends StatelessWidget {
                     TextInputComponent(
                       label: StringsAssetsConstants.pickUpLocation,
                       isLabelOutside: true,
+                      readOnly: true,
+                      onTap: (context) => Get.toNamed(Routes.PICK_LOCATION),
                       borderColor: MainColors.textColor(context),
                       hint: '${StringsAssetsConstants.pickUpLocation}...',
                       suffix: Container(
@@ -112,6 +115,8 @@ class Step1Component extends StatelessWidget {
                     TextInputComponent(
                       label: StringsAssetsConstants.deliveryLocation,
                       isLabelOutside: true,
+                      readOnly: true,
+                      onTap: (context) => Get.toNamed(Routes.PICK_LOCATION),
                       hint: '${StringsAssetsConstants.deliveryLocation}...',
                       borderColor: MainColors.textColor(context),
                       suffix: Container(

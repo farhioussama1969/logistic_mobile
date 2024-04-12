@@ -31,7 +31,7 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
           AnimatedSize(
             alignment: Alignment.topCenter,
             duration: Duration(milliseconds: 300),
-            child: Step3Component(),
+            child: Step1Component(),
           ),
           const Expanded(child: SizedBox.shrink()),
           Padding(

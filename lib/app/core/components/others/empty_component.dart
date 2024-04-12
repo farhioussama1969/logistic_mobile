@@ -13,8 +13,7 @@ class EmptyComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Lottie.asset(AnimationsAssetsConstants.emptyTransactionsAnimation,
-            width: 300.r),
+        Lottie.asset(AnimationsAssetsConstants.emptyAnimation, width: 300.r),
         if (text != null)
           Center(
             child: Text(
