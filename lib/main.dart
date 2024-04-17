@@ -23,50 +23,50 @@ import 'package:loogisti/app/modules/user_controller.dart';
 import 'app/core/services/local_notification_service.dart';
 import 'app/routes/app_pages.dart';
 
-// late final FirebaseMessaging _messaging;
-//
-// Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
-//
-// Future<void> requestAndRegisterNotification() async {
-//   await Firebase.initializeApp();
-//   _messaging = FirebaseMessaging.instance;
-//   print('firebase token: ${await _messaging.getToken()}');
-//   if (await LocalStorageService.loadData(key: StorageKeysConstants.fcmToken, type: DataTypes.string) == null) {
-//     _messaging.getToken().then((token) async {
-//       print('firebase token: ${token}');
-//       LocalStorageService.saveData(key: StorageKeysConstants.fcmToken, type: DataTypes.string, value: token);
-//       _messaging.subscribeToTopic(FirebaseMessagingTobicsConstants.allClients);
-//     });
-//   }
-//
-//   NotificationSettings settings = await _messaging.requestPermission(
-//     alert: true,
-//     badge: true,
-//     provisional: false,
-//     sound: true,
-//   );
-//
-//   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-//     FirebaseMessaging.onMessage.listen(
-//       (RemoteMessage message) {
-//         LocalNotificationService.showNotification(title: message.notification?.title, body: message.notification?.body);
-//       },
-//     );
-//     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {});
-//   }
-// }
-//
-// void startFirebaseCrashlytics() {
-//   FlutterError.onError = (errorDetails) {
-//     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-//   };
-//   PlatformDispatcher.instance.onError = (error, stack) {
-//     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-//     return true;
-//   };
-//
-//   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-// }
+late final FirebaseMessaging _messaging;
+
+Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+
+Future<void> requestAndRegisterNotification() async {
+  await Firebase.initializeApp();
+  _messaging = FirebaseMessaging.instance;
+  print('firebase token: ${await _messaging.getToken()}');
+  if (await LocalStorageService.loadData(key: StorageKeysConstants.fcmToken, type: DataTypes.string) == null) {
+    _messaging.getToken().then((token) async {
+      print('firebase token: ${token}');
+      LocalStorageService.saveData(key: StorageKeysConstants.fcmToken, type: DataTypes.string, value: token);
+      _messaging.subscribeToTopic(FirebaseMessagingTobicsConstants.allClients);
+    });
+  }
+
+  NotificationSettings settings = await _messaging.requestPermission(
+    alert: true,
+    badge: true,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    FirebaseMessaging.onMessage.listen(
+      (RemoteMessage message) {
+        LocalNotificationService.showNotification(title: message.notification?.title, body: message.notification?.body);
+      },
+    );
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {});
+  }
+}
+
+void startFirebaseCrashlytics() {
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,10 +75,10 @@ Future<void> main() async {
   await TranslationUtil.initialize();
   await ThemeUtil.initialize();
 
-  //LocalNotificationService.initialize();
-  // await requestAndRegisterNotification();
-  //FirebaseAnalytics.instance;
-  //startFirebaseCrashlytics();
+  LocalNotificationService.initialize();
+  await requestAndRegisterNotification();
+  FirebaseAnalytics.instance;
+  startFirebaseCrashlytics();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
