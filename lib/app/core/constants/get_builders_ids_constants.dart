@@ -13,4 +13,5 @@ class GetBuildersIdsConstants {
   static const String chooseLocationOnMapCurrentAddress = "choose_location_on_map_current_address";
   static const String chooseLocationOnMapGoogleMapsMoving = "choose_location_o_map_google_maps_moving";
   static const String chooseLocationOnMapPlacesSuggestions = "choose_location_on_map_places_suggestions";
+  static const String signInGoogleButton = "sign_in_google_button";
 }

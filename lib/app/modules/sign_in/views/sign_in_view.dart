@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/animations/animated_possition_component.dart';
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
 import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
+import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/images_assets_constants.dart';
 import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
@@ -19,6 +20,7 @@ import '../controllers/sign_in_controller.dart';
 
 class SignInView extends GetView<SignInController> {
   const SignInView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,12 +122,16 @@ class SignInView extends GetView<SignInController> {
                   const Expanded(flex: 1, child: SizedBox.shrink()),
                   Column(
                     children: [
-                      SocialLoginButtonComponent(
-                        iconPath: IconsAssetsConstants.googleIcon,
-                        title: StringsAssetsConstants.signInWithGoogle,
-                        onTap: () {},
-                        isLoading: false,
-                      )
+                      GetBuilder<SignInController>(
+                              id: GetBuildersIdsConstants.signInGoogleButton,
+                              builder: (logic) {
+                                return SocialLoginButtonComponent(
+                                  iconPath: IconsAssetsConstants.googleIcon,
+                                  title: StringsAssetsConstants.signInWithGoogle,
+                                  onTap: () => logic.signInWithGoogle(),
+                                  isLoading: logic.googleSignInLoading,
+                                );
+                              })
                           .animate(delay: (1 * 200).ms)
                           .fadeIn(duration: 900.ms, delay: 300.ms)
                           .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))

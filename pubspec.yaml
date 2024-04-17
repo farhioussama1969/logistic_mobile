@@ -51,6 +51,9 @@ dependencies:
   maps_curved_line: ^1.0.2
   geolocator: ^10.1.0
   percent_indicator: ^4.2.3
+  sign_in_with_apple: ^5.0.0
+  crypto: ^3.0.3
+  google_sign_in: ^5.4.4
   flutter:
     sdk: flutter
 

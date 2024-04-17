@@ -54,7 +54,7 @@ class SocialLoginButtonComponent extends StatelessWidget {
           children: [
             if (isLoading == true)
               const LoadingComponent(
-                color: MainColors.whiteColor,
+                color: MainColors.primaryColor,
               ),
             if (isLoading == false || isLoading == null)
               Expanded(
