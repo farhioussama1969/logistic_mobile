@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_google_maps_webservices/places.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loogisti/app/core/components/animations/loading_component.dart';
 import 'package:loogisti/app/modules/pick_location/views/components/places_suggestion_card_component.dart';
 
 class PlacesSuggestionsListComponent extends StatelessWidget {
@@ -15,22 +16,30 @@ class PlacesSuggestionsListComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return show
-        ? Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
-              itemBuilder: (context, index) {
-                return PlaceSuggestionCardComponent(
-                  placesSuggestions: placesSuggestions[index],
-                  onTap: (placesSuggestions) => onTap(placesSuggestions),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(height: 15.h);
-              },
-              itemCount: placesSuggestions.length,
-            ),
-          )
+        ? isLoading
+            ? Column(
+                children: [
+                  SizedBox(height: 15.h),
+                  LoadingComponent(),
+                  SizedBox(height: 30.h),
+                ],
+              )
+            : Expanded(
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 15.h),
+                  itemBuilder: (context, index) {
+                    return PlaceSuggestionCardComponent(
+                      placesSuggestions: placesSuggestions[index],
+                      onTap: (placesSuggestions) => onTap(placesSuggestions),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 15.h);
+                  },
+                  itemCount: placesSuggestions.length,
+                ),
+              )
         : const SizedBox.shrink();
   }
 }

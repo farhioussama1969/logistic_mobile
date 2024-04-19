@@ -123,4 +123,11 @@ static String get enterCouponCode{return "enter coupon code".tr;}
 static String get couponCode{return "coupon code".tr;}
 static String get pickLocation{return "pick location".tr;}
 static String get gettingLocation{return "getting location".tr;}
+static String get myAccount{return "my account".tr;}
+static String get myPersonalInformation{return "my personal information".tr;}
+static String get support{return "support".tr;}
+static String get contactUs{return "contact us".tr;}
+static String get aboutUs{return "about us".tr;}
+static String get termsAndConditions{return "terms and conditions".tr;}
+static String get signOut{return "sign out".tr;}
 }
