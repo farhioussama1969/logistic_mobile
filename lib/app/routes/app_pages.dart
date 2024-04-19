@@ -8,6 +8,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/my_account/bindings/my_account_binding.dart';
 import '../modules/my_account/views/my_account_view.dart';
+import '../modules/my_personnel_information/bindings/my_personnel_information_binding.dart';
+import '../modules/my_personnel_information/views/my_personnel_information_view.dart';
 import '../modules/new_update/bindings/new_update_binding.dart';
 import '../modules/new_update/views/new_update_view.dart';
 import '../modules/order_details/bindings/order_details_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.MY_ACCOUNT,
       page: () => const MyAccountView(),
       binding: MyAccountBinding(),
+    ),
+    GetPage(
+      name: _Paths.MY_PERSONNEL_INFORMATION,
+      page: () => const MyPersonnelInformationView(),
+      binding: MyPersonnelInformationBinding(),
     ),
   ];
 }

@@ -11,6 +11,7 @@ import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/modules/my_account/views/components/my_account_item_component.dart';
+import 'package:loogisti/app/routes/app_pages.dart';
 
 import '../controllers/my_account_controller.dart';
 
@@ -72,7 +73,7 @@ class MyAccountView extends GetView<MyAccountController> {
                     MyAccountItemComponent(
                       iconLink: IconsAssetsConstants.myAccountIcon,
                       title: StringsAssetsConstants.myPersonalInformation,
-                      onTap: () {},
+                      onTap: () => Get.toNamed(Routes.MY_PERSONNEL_INFORMATION),
                     ),
                     SizedBox(height: 15.h),
                     MyAccountItemComponent(

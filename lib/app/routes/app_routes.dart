@@ -12,6 +12,7 @@ abstract class Routes {
   static const CREATE_NEW_ORDER = _Paths.CREATE_NEW_ORDER;
   static const PICK_LOCATION = _Paths.PICK_LOCATION;
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
+  static const MY_PERSONNEL_INFORMATION = _Paths.MY_PERSONNEL_INFORMATION;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const CREATE_NEW_ORDER = '/create-new-order';
   static const PICK_LOCATION = '/pick-location';
   static const MY_ACCOUNT = '/my-account';
+  static const MY_PERSONNEL_INFORMATION = '/my-personnel-information';
 }
