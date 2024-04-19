@@ -130,4 +130,6 @@ static String get contactUs{return "contact us".tr;}
 static String get aboutUs{return "about us".tr;}
 static String get termsAndConditions{return "terms and conditions".tr;}
 static String get signOut{return "sign out".tr;}
+static String get fullName{return "full name".tr;}
+static String get phoneNumber{return "phone number".tr;}
 }
