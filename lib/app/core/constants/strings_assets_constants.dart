@@ -132,4 +132,5 @@ static String get termsAndConditions{return "terms and conditions".tr;}
 static String get signOut{return "sign out".tr;}
 static String get fullName{return "full name".tr;}
 static String get phoneNumber{return "phone number".tr;}
+static String get updatePersonalInformationSuccess{return "update personal information success".tr;}
 }

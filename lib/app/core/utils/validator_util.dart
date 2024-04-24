@@ -56,8 +56,8 @@ class ValidatorUtil {
 
   static String? phoneValidation(String phone, {String? customMessage}) {
     if (RegExp(r"^[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$").hasMatch(phone) != true ||
-        phone.length != 9 ||
-        !(phone[0] == '6' || phone[0] == '5' || phone[0] == '7')) {
+        phone.length != 10 ||
+        !(phone[1] == '6' || phone[1] == '5' || phone[1] == '7')) {
       return customMessage ?? StringsAssetsConstants.validatorDefaultErrorMessage;
     }
     return null;

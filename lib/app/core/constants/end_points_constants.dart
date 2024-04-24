@@ -7,4 +7,5 @@ class EndPointsConstants {
 //auth provider
   static const String socialSignIn = 'user/login';
   static const String getUserData = 'user/info';
+  static const String updateUserData = 'user/update';
 }

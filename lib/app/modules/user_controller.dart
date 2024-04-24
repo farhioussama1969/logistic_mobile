@@ -44,11 +44,11 @@ class UserController extends GetxController {
   }
 
   void refreshUserData() {
-    // AuthProvider().getUserData(onLoading: () {}, onFinal: () {}).then((user) {
-    //   if (user != null) {
-    //     setUser(user);
-    //   }
-    // });
+    AuthProvider().getUserData(onLoading: () {}, onFinal: () {}).then((user) {
+      if (user != null) {
+        setUser(user);
+      }
+    });
   }
 
   bool logoutLoading = false;

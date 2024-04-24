@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:dio/dio.dart' as dio;
+
 import 'package:loogisti/app/core/constants/end_points_constants.dart';
 import 'package:loogisti/app/core/constants/storage_keys_constants.dart';
 import 'package:loogisti/app/core/services/http_client_service.dart';
@@ -40,6 +43,39 @@ class AuthProvider {
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.getUserData,
       requestType: HttpRequestTypes.get,
+      onLoading: () {
+        if (onLoading != null) onLoading();
+      },
+      onFinal: () {
+        if (onFinal != null) onFinal();
+      },
+    );
+    if (response?.body != null) {
+      if (response?.body?['user'] != null) {
+        return UserModel.fromJson(response?.body?['user']);
+      }
+    }
+    return null;
+  }
+
+  Future<UserModel?> updateUserData({
+    required String fullName,
+    required String phoneNumber,
+    required String gender,
+    File? avatarFile,
+    Function? onLoading,
+    Function? onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.updateUserData,
+      requestType: HttpRequestTypes.post,
+      data: {
+        "fullname": fullName,
+        "gender": gender,
+        "phone": phoneNumber,
+        if (avatarFile == null)
+          "photo": avatarFile == null ? null : await dio.MultipartFile.fromFile(avatarFile.path, filename: avatarFile.path.split('/').last),
+      },
       onLoading: () {
         if (onLoading != null) onLoading();
       },

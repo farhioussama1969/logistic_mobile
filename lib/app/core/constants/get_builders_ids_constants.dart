@@ -14,4 +14,6 @@ class GetBuildersIdsConstants {
   static const String chooseLocationOnMapGoogleMapsMoving = "choose_location_o_map_google_maps_moving";
   static const String chooseLocationOnMapPlacesSuggestions = "choose_location_on_map_places_suggestions";
   static const String signInGoogleButton = "sign_in_google_button";
+  static const String updateMyPersonnelInformationButton = "update_my_personnel_information_button";
+  static const String myPersonnelInformationAvatar = "update_my_personnel_information_avatar";
 }

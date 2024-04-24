@@ -10,7 +10,6 @@ class SplashController extends GetxController {
     await Get.find<ConfigController>().initialize();
     Future.delayed(const Duration(seconds: 2), () {
       Get.find<UserController>().initialize();
-      Get.toNamed(Routes.SIGN_IN);
     });
     super.onInit();
   }

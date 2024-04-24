@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/buttons/icon_button_component.dart';
 import 'package:loogisti/app/core/components/images/network_image_component.dart';
+import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/modules/user_controller.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
 class HomeTopBarComponent extends StatelessWidget {
@@ -36,30 +38,38 @@ class HomeTopBarComponent extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(1000.r),
-                        child: NetworkImageComponent(
-                          imageLink: 'https://avatar.iran.liara.run/public/boy?username=Ash',
-                          fit: BoxFit.cover,
-                        ),
+                        child: GetBuilder<UserController>(
+                            id: GetBuildersIdsConstants.userInfosComponents,
+                            builder: (logic) {
+                              return NetworkImageComponent(
+                                imageLink: '${logic.user?.photo}',
+                                fit: BoxFit.cover,
+                              );
+                            }),
                       ),
                     ),
                   ),
                   SizedBox(width: 10.w),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Ashkan',
-                          style: TextStyles.mediumLabelTextStyle(context),
-                        ),
-                        Text(
-                          'Algeria, ben aknoun',
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            color: MainColors.textColor(context)!.withOpacity(0.6),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: GetBuilder<UserController>(
+                        id: GetBuildersIdsConstants.userInfosComponents,
+                        builder: (logic) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${logic.user?.fullname}',
+                                style: TextStyles.mediumLabelTextStyle(context),
+                              ),
+                              Text(
+                                'Algeria, ben aknoun',
+                                style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                  color: MainColors.textColor(context)!.withOpacity(0.6),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
                   )
                 ],
               ),

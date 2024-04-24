@@ -25,7 +25,7 @@ class ConfigController extends GetxController {
 
   initialize() async {
     await getPackageVersion();
-    await getGeneralSettingsData();
+    //await getGeneralSettingsData();
   }
 
   String selectedAppLang = Get.locale?.languageCode ?? 'ar';
