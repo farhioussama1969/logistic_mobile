@@ -59,22 +59,20 @@ class UserController extends GetxController {
 
   Future<void> clearUser({bool? withoutLogout}) async {
     if (withoutLogout != true) {
-      // await AuthProvider().logout(
-      //   onLoading: () => changeLogoutLoading(true),
-      //   onFinal: () => changeLogoutLoading(false),
-      // );
+      await AuthProvider().logout(
+        onLoading: () => changeLogoutLoading(true),
+        onFinal: () => changeLogoutLoading(false),
+      );
     }
     await LocalStorageService.deleteData(key: StorageKeysConstants.userData);
     await LocalStorageService.deleteData(key: StorageKeysConstants.serverApiToken);
     await LocalStorageService.deleteData(key: StorageKeysConstants.fcmToken);
-    FirebaseMessaging.instance.unsubscribeFromTopic(FirebaseMessagingTobicsConstants.clientsRegistered);
 
-    await FirebaseMessaging.instance.deleteToken();
     user = null;
     FirebaseMessaging.instance.getToken().then((token) async {
       LocalStorageService.saveData(key: StorageKeysConstants.fcmToken, type: DataTypes.string, value: token);
-      FirebaseMessaging.instance.subscribeToTopic(FirebaseMessagingTobicsConstants.clientsNotRegistered);
-      FirebaseMessaging.instance.subscribeToTopic(FirebaseMessagingTobicsConstants.allClients);
     });
+
+    Get.offAllNamed(Routes.SIGN_IN);
   }
 }

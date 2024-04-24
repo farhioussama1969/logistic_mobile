@@ -8,6 +8,7 @@ import 'package:loogisti/app/core/components/inputs/text_input_component.dart';
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
+import 'package:loogisti/app/core/components/windows/confirm_window_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';

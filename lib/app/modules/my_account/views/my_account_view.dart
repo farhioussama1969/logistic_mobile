@@ -6,6 +6,8 @@ import 'package:loogisti/app/core/components/buttons/primary_button_component.da
 import 'package:loogisti/app/core/components/images/network_image_component.dart';
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
+import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
+import 'package:loogisti/app/core/components/windows/confirm_window_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
@@ -134,7 +136,7 @@ class MyAccountView extends GetView<MyAccountController> {
                       ),
                       SizedBox(height: 50.h),
                       PrimaryButtonComponent(
-                        onTap: () {},
+                        onTap: () => showLogoutConfirmationWindow(context),
                         text: StringsAssetsConstants.logout,
                         backgroundColor: MainColors.backgroundColor(context),
                         textColor: MainColors.errorColor(context),
@@ -148,6 +150,26 @@ class MyAccountView extends GetView<MyAccountController> {
                 }),
           ],
         ),
+      ),
+    );
+  }
+
+  void showLogoutConfirmationWindow(BuildContext context) {
+    BottomSheetComponent.show(
+      context,
+      body: GetBuilder<UserController>(
+        id: GetBuildersIdsConstants.logoutConfirmationWindow,
+        builder: (logic) {
+          return ConfirmWindowComponent(
+            title: StringsAssetsConstants.logout,
+            subtitle: StringsAssetsConstants.logoutConfirmationText,
+            onCancel: () => Get.back(),
+            onConfirm: () => logic.clearUser(),
+            baseColor: MainColors.errorColor(context),
+            iconPath: IconsAssetsConstants.logoutIcon,
+            isLoading: logic.logoutLoading,
+          );
+        },
       ),
     );
   }
