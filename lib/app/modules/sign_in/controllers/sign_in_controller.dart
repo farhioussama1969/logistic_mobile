@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/services/firebase_authentication_service.dart';
+import 'package:loogisti/app/modules/user_controller.dart';
+
+import '../../../data/providers/taxili_api/auth_provider.dart';
 
 class SignInController extends GetxController {
   bool googleSignInLoading = false;
@@ -14,9 +17,21 @@ class SignInController extends GetxController {
   void signInWithGoogle() {
     FirebaseAuthenticationService()
         .googleAuthentication(onLoading: () => changeGoogleSignInLoading(true), onFinal: () => changeGoogleSignInLoading(false))
-        .then((value) async {
-      if (value != null) {
-        log('auth token: ${await value.firebaseUserCredential?.user?.getIdToken()}');
+        .then((auth) async {
+      if (auth?.firebaseUserCredential != null) {
+        log('${await auth?.firebaseUserCredential?.user?.getIdToken()}');
+        AuthProvider()
+            .socialLogin(
+          firebaseAuthToken: await auth?.firebaseUserCredential?.user?.getIdToken(),
+          onLoading: () => changeGoogleSignInLoading(true),
+          onFinal: () => changeGoogleSignInLoading(false),
+        )
+            .then((user) async {
+          if (user != null) {
+            await Get.find<UserController>().setUser(user);
+            await Get.find<UserController>().initialize(skipUpdateChecker: true);
+          }
+        });
       }
     });
   }

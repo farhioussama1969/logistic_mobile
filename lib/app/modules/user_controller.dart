@@ -11,6 +11,7 @@ import 'package:loogisti/app/core/constants/storage_keys_constants.dart';
 import 'package:loogisti/app/core/services/app_version_info_service.dart';
 import 'package:loogisti/app/core/services/local_storage_service.dart';
 import 'package:loogisti/app/data/models/user_model.dart';
+import 'package:loogisti/app/data/providers/taxili_api/auth_provider.dart';
 import 'package:loogisti/app/modules/config_controller.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
@@ -18,32 +19,16 @@ class UserController extends GetxController {
   UserModel? user;
 
   initialize({bool? skipUpdateChecker}) async {
-    String currentAppVersion = Get.find<ConfigController>().appVersion ?? '1.0.0';
-    String lastRequiredAppVersion = Platform.isAndroid
-        ? Get.find<ConfigController>().generalSettingsData?.androidAppVersion?.required ?? '1.0.0'
-        : Get.find<ConfigController>().generalSettingsData?.iosAppVersion?.required ?? '1.0.0';
-    String lastOptionalAppVersion = Platform.isAndroid
-        ? Get.find<ConfigController>().generalSettingsData?.androidAppVersion?.optional ?? '1.0.0'
-        : Get.find<ConfigController>().generalSettingsData?.iosAppVersion?.optional ?? '1.0.0';
-    if ((AppVersionInfoService.getExtendedVersionNumber(currentAppVersion) <
-                AppVersionInfoService.getExtendedVersionNumber(lastRequiredAppVersion) ||
-            AppVersionInfoService.getExtendedVersionNumber(currentAppVersion) <
-                AppVersionInfoService.getExtendedVersionNumber(lastOptionalAppVersion)) &&
-        skipUpdateChecker != true) {
-      Get.offAllNamed(Routes.NEW_UPDATE);
+    if (await LocalStorageService.loadData(key: StorageKeysConstants.serverApiToken, type: DataTypes.string) != null) {
+      log(await LocalStorageService.loadData(key: StorageKeysConstants.serverApiToken, type: DataTypes.string));
+      await AuthProvider().getUserData().then((user) {
+        if (user != null) {
+          setUser(user);
+          Get.offAllNamed(Routes.HOME);
+        }
+      });
     } else {
-      if (await LocalStorageService.loadData(key: StorageKeysConstants.serverApiToken, type: DataTypes.string) != null) {
-        log(await LocalStorageService.loadData(key: StorageKeysConstants.serverApiToken, type: DataTypes.string));
-        // await AuthProvider().getUserData().then((user) {
-        //   if (user != null) {
-        //     setUser(user);
-        //     if (user.status == 'Banned') return;
-        //     Get.offAllNamed(Routes.HOME);
-        //   }
-        // });
-      } else {
-        //Get.offAllNamed(Routes.GET_STARTED);
-      }
+      Get.offAllNamed(Routes.SIGN_IN);
     }
   }
 
@@ -56,10 +41,6 @@ class UserController extends GetxController {
       type: DataTypes.string,
     );
     log('User data: ${this.user?.toJson()}');
-    if (user.status == 'Banned') {
-      Get.offAllNamed(Routes.BANNED);
-      return;
-    }
   }
 
   void refreshUserData() {
