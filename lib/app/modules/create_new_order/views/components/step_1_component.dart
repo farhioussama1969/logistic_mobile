@@ -12,7 +12,25 @@ import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
 class Step1Component extends StatelessWidget {
-  const Step1Component({super.key});
+  const Step1Component(
+      {super.key,
+      required this.pickUpLocationController,
+      required this.dropOffLocationController,
+      this.pickUpLatitude,
+      this.pickUpLongitude,
+      this.dropOffLatitude,
+      this.dropOffLongitude,
+      required this.onPickUpLocationSelected,
+      required this.onDropOffLocationSelected});
+
+  final TextEditingController pickUpLocationController;
+  final TextEditingController dropOffLocationController;
+  final double? pickUpLatitude;
+  final double? pickUpLongitude;
+  final double? dropOffLatitude;
+  final double? dropOffLongitude;
+  final Function(double? lat, double? lng) onPickUpLocationSelected;
+  final Function(double? lat, double? lng) onDropOffLocationSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +114,20 @@ class Step1Component extends StatelessWidget {
                 child: Column(
                   children: [
                     TextInputComponent(
+                      controller: pickUpLocationController,
                       label: StringsAssetsConstants.pickUpLocation,
                       isLabelOutside: true,
                       readOnly: true,
-                      onTap: (context) => Get.toNamed(Routes.PICK_LOCATION),
+                      onTap: (context) async {
+                        var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
+                          'latitude': pickUpLatitude,
+                          'longitude': pickUpLongitude,
+                        });
+                        if (result != null) {
+                          pickUpLocationController.text = result['address'];
+                          onPickUpLocationSelected(result['latitude'], result['longitude']);
+                        }
+                      },
                       borderColor: MainColors.textColor(context),
                       hint: '${StringsAssetsConstants.pickUpLocation}...',
                       suffix: Container(
@@ -113,10 +141,20 @@ class Step1Component extends StatelessWidget {
                     ),
                     SizedBox(height: 15.h),
                     TextInputComponent(
+                      controller: dropOffLocationController,
                       label: StringsAssetsConstants.deliveryLocation,
                       isLabelOutside: true,
                       readOnly: true,
-                      onTap: (context) => Get.toNamed(Routes.PICK_LOCATION),
+                      onTap: (context) async {
+                        var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
+                          'latitude': dropOffLatitude,
+                          'longitude': dropOffLongitude,
+                        });
+                        if (result != null) {
+                          dropOffLocationController.text = result['address'];
+                          onDropOffLocationSelected(result['latitude'], result['longitude']);
+                        }
+                      },
                       hint: '${StringsAssetsConstants.deliveryLocation}...',
                       borderColor: MainColors.textColor(context),
                       suffix: Container(

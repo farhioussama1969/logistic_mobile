@@ -30,8 +30,23 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
           ),
           AnimatedSize(
             alignment: Alignment.topCenter,
-            duration: Duration(milliseconds: 300),
-            child: Step1Component(),
+            duration: const Duration(milliseconds: 300),
+            child: Step1Component(
+              pickUpLocationController: controller.pickUpLocationController,
+              dropOffLocationController: controller.dropOffLocationController,
+              pickUpLatitude: controller.pickUpLatitude,
+              pickUpLongitude: controller.pickUpLongitude,
+              dropOffLatitude: controller.dropOffLatitude,
+              dropOffLongitude: controller.dropOffLongitude,
+              onPickUpLocationSelected: (lat, lng) {
+                controller.pickUpLatitude = lat;
+                controller.pickUpLongitude = lng;
+              },
+              onDropOffLocationSelected: (double? lat, double? lng) {
+                controller.dropOffLatitude = lat;
+                controller.dropOffLongitude = lng;
+              },
+            ),
           ),
           const Expanded(child: SizedBox.shrink()),
           Padding(

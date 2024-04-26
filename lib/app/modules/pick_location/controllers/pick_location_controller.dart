@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_google_maps_webservices/places.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,15 +12,10 @@ import '../../../core/constants/get_builders_ids_constants.dart';
 import '../../../core/services/geocoding_service.dart';
 
 class PickLocationController extends GetxController {
-  String currentAddress = '';
+  final TextEditingController addressSearchController = TextEditingController();
 
-  void changeCurrentAddress(String newCurrentAddress) {
-    currentAddress = newCurrentAddress;
-    update([GetBuildersIdsConstants.chooseLocationOnMapCurrentAddress]);
-  }
-
-  double currentLatitude = 0.0;
-  double currentLongitude = 0.0;
+  double? currentLatitude;
+  double? currentLongitude;
 
   void changeChooseWhatLocation(String newChooseWhatLocation) {
     //chooseWhatLocation = newChooseWhatLocation;
@@ -31,14 +27,18 @@ class PickLocationController extends GetxController {
   Future<void> changeIsMapCameraMoving(bool newIsMapCameraMoving) async {
     if (isMapCameraMoving == newIsMapCameraMoving) return;
     isMapCameraMoving = newIsMapCameraMoving;
+
     if (isMapCameraMoving) {
-      changeCurrentAddress('');
+      addressSearchController.clear();
+      currentLatitude = null;
+      currentLongitude = null;
     } else if (!isMapCameraMoving) {
-      await getAddressFromCoordinates(currentLatitude, currentLongitude);
+      await getAddressFromCoordinates(currentLatitude!, currentLongitude!);
     }
     update([
       GetBuildersIdsConstants.chooseLocationOnMapGoogleMapsMoving,
       GetBuildersIdsConstants.chooseLocationOnMapCurrentAddress,
+      GetBuildersIdsConstants.pickCurrentActionButton,
     ]);
   }
 
@@ -46,13 +46,26 @@ class PickLocationController extends GetxController {
 
   void updateGoogleMapsController(GoogleMapController mapController) {
     googleMapsController = mapController;
-    // if (ThemeUtil.isDarkMode) {
-    //   String _mapStyleString = '';
-    //   rootBundle.loadString(GoogleMapsStylesAssetsConstants.darkModeStyle).then((string) {
-    //     _mapStyleString = string;
-    //     googleMapsController?.setMapStyle(_mapStyleString);
-    //   });
-    // }
+    if (Get.arguments != null) {
+      if (Get.arguments['latitude'] != null && Get.arguments['longitude'] != null) {
+        print('ok');
+        changeStartingPosition(
+          Position(
+            latitude: Get.arguments['latitude'],
+            longitude: Get.arguments['longitude'],
+            timestamp: DateTime.now(),
+            headingAccuracy: 0,
+            altitudeAccuracy: 0,
+            accuracy: 0,
+            altitude: 0,
+            heading: 0,
+            speed: 0,
+            speedAccuracy: 0,
+            floor: 0,
+          ),
+        );
+      }
+    }
   }
 
   CameraPosition? initialGoogleMapsCameraPosition;
@@ -64,7 +77,10 @@ class PickLocationController extends GetxController {
   Future<void> getAddressFromCoordinates(double lat, double lng) async {
     await GeocodingService.getPlaceMarkFromCoordinates(lat, lng).then((value) {
       if (value != null) {
-        changeCurrentAddress(value);
+        addressSearchController.text = value;
+        update([
+          GetBuildersIdsConstants.pickCurrentActionButton,
+        ]);
       }
     });
   }
@@ -80,16 +96,28 @@ class PickLocationController extends GetxController {
       ));
       googleMapsController
           ?.animateCamera(CameraUpdate.newLatLngZoom(LatLng(selectedPosition!.latitude!, selectedPosition!.longitude!), 14));
-
       if (withoutGetPlace == null || !withoutGetPlace) {
         getAddressFromCoordinates(selectedPosition!.latitude!, selectedPosition!.longitude!);
-      }
+      } else {}
     }
   }
 
+  bool getCurrentPositionLoading = false;
+
+  void changeGetCurrentPositionLoading(bool newGetCurrentPositionLoading) {
+    getCurrentPositionLoading = newGetCurrentPositionLoading;
+    update([GetBuildersIdsConstants.pickCurrentLocationButton]);
+  }
+
   Future<void> enableAndGetStartingPositionFromGeolocator() async {
-    Position? newPosition = await GeolocatorLocationService.getCurrentLocation();
-    log('new position:::: $newPosition');
+    Position? newPosition = await GeolocatorLocationService.getCurrentLocation(
+      onLoading: () {
+        changeGetCurrentPositionLoading(true);
+      },
+      onFinal: () {
+        changeGetCurrentPositionLoading(false);
+      },
+    );
     if (newPosition != null) {
       changeStartingPosition(newPosition);
     }
@@ -110,7 +138,7 @@ class PickLocationController extends GetxController {
   List<PlacesSearchResult> placesSuggestions = [];
   void changePlacesSuggestions(List<PlacesSearchResult> newPlacesSuggestions) {
     placesSuggestions = newPlacesSuggestions;
-    update([GetBuildersIdsConstants.chooseLocationOnMapPlacesSuggestions]);
+    update([GetBuildersIdsConstants.chooseLocationOnMapPlacesSuggestions, GetBuildersIdsConstants.pickCurrentActionButton]);
   }
 
   void getPlacesSuggestions(String searchText) async {

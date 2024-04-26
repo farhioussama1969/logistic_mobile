@@ -1,9 +1,19 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 
 class CreateNewOrderController extends GetxController {
+  final TextEditingController pickUpLocationController = TextEditingController();
+  final TextEditingController dropOffLocationController = TextEditingController();
+
+  double? pickUpLatitude;
+  double? pickUpLongitude;
+
+  double? dropOffLatitude;
+  double? dropOffLongitude;
+
   int step = 1;
   void setStep(int value) {
     step = value;

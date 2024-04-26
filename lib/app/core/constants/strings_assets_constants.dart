@@ -133,4 +133,6 @@ static String get signOut{return "sign out".tr;}
 static String get fullName{return "full name".tr;}
 static String get phoneNumber{return "phone number".tr;}
 static String get updatePersonalInformationSuccess{return "update personal information success".tr;}
+static String get placesNotFound{return "places not found".tr;}
+static String get back{return "back".tr;}
 }

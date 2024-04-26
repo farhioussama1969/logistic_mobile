@@ -16,4 +16,6 @@ class GetBuildersIdsConstants {
   static const String signInGoogleButton = "sign_in_google_button";
   static const String updateMyPersonnelInformationButton = "update_my_personnel_information_button";
   static const String myPersonnelInformationAvatar = "update_my_personnel_information_avatar";
+  static const String pickCurrentLocationButton = "pick_current_location_button";
+  static const String pickCurrentActionButton = "pick_current_action_button";
 }

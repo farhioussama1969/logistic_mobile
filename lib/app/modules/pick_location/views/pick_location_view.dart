@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loogisti/app/core/components/animations/loading_component.dart';
 import 'package:loogisti/app/core/components/buttons/back_button_component.dart';
 import 'package:loogisti/app/core/components/buttons/icon_button_component.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
@@ -80,23 +81,6 @@ class PickLocationView extends GetView<PickLocationController> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-                  child: IconButtonComponent(
-                    iconLink: IconsAssetsConstants.myLocationIcon,
-                    onTap: () async => controller.enableAndGetStartingPositionFromGeolocator(),
-                    buttonHeight: 45.r,
-                    buttonWidth: 45.r,
-                  ),
-                ),
-              ],
-            ),
-          ),
           Container(
             width: 1.sw,
             //height: 1.sh,
@@ -115,22 +99,31 @@ class PickLocationView extends GetView<PickLocationController> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextInputComponent(
-                  label: StringsAssetsConstants.pickUpLocation,
-                  isLabelOutside: true,
-                  borderColor: MainColors.textColor(context),
-                  hint: '${StringsAssetsConstants.pickUpLocation}...',
-                  onChange: (value) => DebouncerUtil.debounce(() => controller.getPlacesSuggestions(value)),
-                  prefix: Row(
-                    children: [
-                      SizedBox(width: 20.w),
-                      SvgPicture.asset(
-                        IconsAssetsConstants.searchIcon,
-                        width: 22.r,
-                        color: MainColors.textColor(context),
-                      ),
-                      SizedBox(width: 10.w),
-                    ],
+                Focus(
+                  onFocusChange: (hasFocus) {
+                    if (hasFocus) {
+                      controller.addressSearchController.selection =
+                          TextSelection(baseOffset: 0, extentOffset: controller.addressSearchController.text.length);
+                    }
+                  },
+                  child: TextInputComponent(
+                    controller: controller.addressSearchController,
+                    label: StringsAssetsConstants.pickUpLocation,
+                    isLabelOutside: true,
+                    borderColor: MainColors.textColor(context),
+                    hint: '${StringsAssetsConstants.pickUpLocation}...',
+                    onChange: (value) => DebouncerUtil.debounce(() => controller.getPlacesSuggestions(value)),
+                    prefix: Row(
+                      children: [
+                        SizedBox(width: 20.w),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.searchIcon,
+                          width: 22.r,
+                          color: MainColors.textColor(context),
+                        ),
+                        SizedBox(width: 10.w),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 10.h),
@@ -141,8 +134,13 @@ class PickLocationView extends GetView<PickLocationController> {
                         placesSuggestions: logic.placesSuggestions,
                         isLoading: logic.getPlaceSuggestionsLoading,
                         show: logic.showPlacesSuggestions,
+                        onBack: () {
+                          logic.changeShowPlacesSuggestions(false);
+                          FocusScope.of(context).unfocus();
+                        },
                         onTap: (placesSuggestions) {
                           logic.changeShowPlacesSuggestions(false);
+                          FocusScope.of(context).unfocus();
                           logic.changeStartingPosition(Position(
                             latitude: placesSuggestions.geometry!.location.lat,
                             longitude: placesSuggestions.geometry!.location.lng,
@@ -163,6 +161,52 @@ class PickLocationView extends GetView<PickLocationController> {
               ],
             ),
           ),
+          GetBuilder<PickLocationController>(
+              id: GetBuildersIdsConstants.pickCurrentActionButton,
+              builder: (logic) {
+                return logic.showPlacesSuggestions
+                    ? SizedBox()
+                    : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GetBuilder<PickLocationController>(
+                                id: GetBuildersIdsConstants.pickCurrentLocationButton,
+                                builder: (logic) {
+                                  return IconButtonComponent(
+                                    iconLink: IconsAssetsConstants.myLocationIcon,
+                                    onTap: () async => controller.enableAndGetStartingPositionFromGeolocator(),
+                                    buttonHeight: 45.r,
+                                    buttonWidth: 45.r,
+                                    child: logic.getCurrentPositionLoading
+                                        ? const LoadingComponent()
+                                        : SvgPicture.asset(
+                                            IconsAssetsConstants.myLocationIcon,
+                                            color: MainColors.textColor(context),
+                                            width: 22.r,
+                                          ),
+                                  );
+                                }),
+                            SizedBox(height: 10.h),
+                            if (logic.currentLatitude != null &&
+                                logic.currentLongitude != null &&
+                                logic.addressSearchController.text.isNotEmpty)
+                              PrimaryButtonComponent(
+                                onTap: () {
+                                  Get.back(result: {
+                                    'latitude': logic.currentLatitude,
+                                    'longitude': logic.currentLongitude,
+                                    'address': logic.addressSearchController.text,
+                                  });
+                                },
+                                text: StringsAssetsConstants.confirm,
+                              ),
+                          ],
+                        ),
+                      );
+              }),
         ],
       ),
     );
