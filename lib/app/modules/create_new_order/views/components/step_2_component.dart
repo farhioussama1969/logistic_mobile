@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,11 +11,18 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/validator_util.dart';
 import 'package:loogisti/app/modules/create_new_order/controllers/create_new_order_controller.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/invoice_uploading_component.dart';
 
 class Step2Component extends StatelessWidget {
-  const Step2Component({super.key});
+  const Step2Component(
+      {super.key, required this.itemPriceController, this.selectedInvoiceFile, required this.onFileSelected, required this.formKey});
+
+  final TextEditingController itemPriceController;
+  final File? selectedInvoiceFile;
+  final Function(File?) onFileSelected;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -78,12 +87,28 @@ class Step2Component extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 15.h),
-                TextInputComponent(
-                  label: StringsAssetsConstants.itemPrice,
-                  isLabelOutside: true,
-                  borderColor: MainColors.textColor(context),
-                  hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.itemPrice}...',
-                  textInputType: TextInputType.number,
+                Form(
+                  key: formKey,
+                  child: TextInputComponent(
+                    controller: itemPriceController,
+                    label: StringsAssetsConstants.itemPrice,
+                    isLabelOutside: true,
+                    borderColor: MainColors.textColor(context),
+                    hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.itemPrice}...',
+                    textInputType: TextInputType.number,
+                    suffix: Row(
+                      children: [
+                        SizedBox(width: 10.w),
+                        Text(
+                          StringsAssetsConstants.currency,
+                          style: TextStyles.largeBodyTextStyle(context),
+                        ),
+                        SizedBox(width: 20.w),
+                      ],
+                    ),
+                    validate: (value) => ValidatorUtil.numericValidation(value,
+                        customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.itemPrice}'),
+                  ),
                 ),
                 SizedBox(height: 10.h),
                 Divider(

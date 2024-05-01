@@ -140,6 +140,9 @@
   "update personal information success": "Personal information updated successfully",
 
   "places not found": "There are no places found",
-  "back": "Back"
+  "back": "Back",
+  "item invoice": "Item invoice"
+
+
 
 }

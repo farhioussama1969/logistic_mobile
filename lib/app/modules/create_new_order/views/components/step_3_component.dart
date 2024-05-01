@@ -11,10 +11,17 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/validator_util.dart';
 import 'package:loogisti/app/modules/create_new_order/controllers/create_new_order_controller.dart';
 
 class Step3Component extends StatelessWidget {
-  const Step3Component({super.key});
+  const Step3Component(
+      {super.key, required this.pickupTimeController, this.pickupTime, required this.onPickupTimeSelected, required this.formKey});
+
+  final TextEditingController pickupTimeController;
+  final DateTime? pickupTime;
+  final Function(DateTime) onPickupTimeSelected;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +103,30 @@ class Step3Component extends StatelessWidget {
                 ),
                 if (logic.isChosenTime) SizedBox(height: 10.h),
                 if (logic.isChosenTime)
-                  TextInputComponent(
-                    label: StringsAssetsConstants.preferredPickupTime,
-                    isLabelOutside: true,
-                    readOnly: true,
-                    suffix: Row(
-                      children: [
-                        SizedBox(width: 10.w),
-                        TimeInputComponent(child: TagComponent(title: StringsAssetsConstants.pickTime)),
-                        SizedBox(width: 10.w),
-                      ],
+                  Form(
+                    key: formKey,
+                    child: TextInputComponent(
+                      controller: pickupTimeController,
+                      label: StringsAssetsConstants.preferredPickupTime,
+                      isLabelOutside: true,
+                      readOnly: true,
+                      suffix: Row(
+                        children: [
+                          SizedBox(width: 10.w),
+                          TimeInputComponent(
+                            selectedDate: pickupTime,
+                            callBack: onPickupTimeSelected,
+                            child: TagComponent(title: StringsAssetsConstants.pickTime),
+                          ),
+                          SizedBox(width: 10.w),
+                        ],
+                      ),
+                      borderColor: MainColors.textColor(context),
+                      hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
+                      textInputType: TextInputType.number,
+                      validate: (value) => ValidatorUtil.nullableValidation(pickupTime,
+                          customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.pickTime}'),
                     ),
-                    borderColor: MainColors.textColor(context),
-                    hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
-                    textInputType: TextInputType.number,
                   ),
                 SizedBox(height: 15.h),
               ],

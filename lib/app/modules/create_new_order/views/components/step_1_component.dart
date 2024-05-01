@@ -9,6 +9,7 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/validator_util.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
 class Step1Component extends StatelessWidget {
@@ -21,7 +22,10 @@ class Step1Component extends StatelessWidget {
       this.dropOffLatitude,
       this.dropOffLongitude,
       required this.onPickUpLocationSelected,
-      required this.onDropOffLocationSelected});
+      required this.onDropOffLocationSelected,
+      required this.fromKey,
+      required this.senderPhoneNumberController,
+      required this.receiverPhoneNumberController});
 
   final TextEditingController pickUpLocationController;
   final TextEditingController dropOffLocationController;
@@ -31,6 +35,9 @@ class Step1Component extends StatelessWidget {
   final double? dropOffLongitude;
   final Function(double? lat, double? lng) onPickUpLocationSelected;
   final Function(double? lat, double? lng) onDropOffLocationSelected;
+  final GlobalKey fromKey;
+  final TextEditingController senderPhoneNumberController;
+  final TextEditingController receiverPhoneNumberController;
 
   @override
   Widget build(BuildContext context) {
@@ -48,226 +55,254 @@ class Step1Component extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  StringsAssetsConstants.pleasePickStartAndDestinationLocation,
-                  style: TextStyles.largeBodyTextStyle(context),
+      child: Form(
+        key: fromKey,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    StringsAssetsConstants.pleasePickStartAndDestinationLocation,
+                    style: TextStyles.largeBodyTextStyle(context),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              Column(
-                children: [
-                  Column(
-                    children: [
-                      Center(
-                        child: Text(
-                          StringsAssetsConstants.from,
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            color: MainColors.textColor(context)!.withOpacity(0.6),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            StringsAssetsConstants.from,
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              color: MainColors.textColor(context)!.withOpacity(0.6),
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        IconsAssetsConstants.locationIcon,
-                        width: 22.r,
-                        color: MainColors.textColor(context),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 5.h),
-                    height: 60.h,
-                    child: VerticalDivider(
-                      color: MainColors.textColor(context)!.withOpacity(0.3),
-                      thickness: 2.w,
+                        SvgPicture.asset(
+                          IconsAssetsConstants.locationIcon,
+                          width: 22.r,
+                          color: MainColors.textColor(context),
+                        ),
+                      ],
                     ),
-                  ),
-                  Column(
-                    children: [
-                      Center(
-                        child: Text(
-                          StringsAssetsConstants.to,
-                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                            color: MainColors.textColor(context)!.withOpacity(0.6),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 5.h),
+                      height: 60.h,
+                      child: VerticalDivider(
+                        color: MainColors.textColor(context)!.withOpacity(0.3),
+                        thickness: 2.w,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            StringsAssetsConstants.to,
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              color: MainColors.textColor(context)!.withOpacity(0.6),
+                            ),
                           ),
                         ),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.locationIcon,
+                          width: 22.r,
+                          color: MainColors.primaryColor,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: Column(
+                    children: [
+                      TextInputComponent(
+                        controller: pickUpLocationController,
+                        label: StringsAssetsConstants.pickUpLocation,
+                        isLabelOutside: true,
+                        readOnly: true,
+                        onTap: (context) async {
+                          var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
+                            'latitude': pickUpLatitude,
+                            'longitude': pickUpLongitude,
+                          });
+                          if (result != null) {
+                            pickUpLocationController.text = result['address'];
+                            onPickUpLocationSelected(result['latitude'], result['longitude']);
+                          }
+                        },
+                        borderColor: MainColors.textColor(context),
+                        hint: '${StringsAssetsConstants.pickUpLocation}...',
+                        suffix: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          child: SvgPicture.asset(
+                            IconsAssetsConstants.selectedLocationIcon,
+                            width: 22.r,
+                            color: MainColors.textColor(context),
+                          ),
+                        ),
+                        validate: (value) {
+                          if (pickUpLatitude == null || pickUpLongitude == null) {
+                            return '${StringsAssetsConstants.check} ${StringsAssetsConstants.pickLocation}';
+                          }
+                        },
                       ),
-                      SvgPicture.asset(
-                        IconsAssetsConstants.locationIcon,
-                        width: 22.r,
-                        color: MainColors.primaryColor,
+                      SizedBox(height: 15.h),
+                      TextInputComponent(
+                        controller: dropOffLocationController,
+                        label: StringsAssetsConstants.deliveryLocation,
+                        isLabelOutside: true,
+                        readOnly: true,
+                        onTap: (context) async {
+                          var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
+                            'latitude': dropOffLatitude,
+                            'longitude': dropOffLongitude,
+                          });
+                          if (result != null) {
+                            dropOffLocationController.text = result['address'];
+                            onDropOffLocationSelected(result['latitude'], result['longitude']);
+                          }
+                        },
+                        hint: '${StringsAssetsConstants.deliveryLocation}...',
+                        borderColor: MainColors.textColor(context),
+                        suffix: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          child: SvgPicture.asset(
+                            IconsAssetsConstants.selectedLocationIcon,
+                            width: 22.r,
+                            color: MainColors.textColor(context),
+                          ),
+                        ),
+                        validate: (value) {
+                          if (dropOffLatitude == null || dropOffLongitude == null) {
+                            return '${StringsAssetsConstants.check} ${StringsAssetsConstants.deliveryLocation}';
+                          }
+                        },
                       ),
                     ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20.h),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              Row(
+                children: [
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        text: '${StringsAssetsConstants.estimatedDistance}: ',
+                        style: TextStyles.largeBodyTextStyle(context),
+                        children: [
+                          TextSpan(
+                            text: '40 ${StringsAssetsConstants.km}',
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              color: MainColors.primaryColor,
+                              fontFamily: FontsFamilyAssetsConstants.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
-              SizedBox(width: 10.w),
-              Expanded(
-                child: Column(
-                  children: [
-                    TextInputComponent(
-                      controller: pickUpLocationController,
-                      label: StringsAssetsConstants.pickUpLocation,
-                      isLabelOutside: true,
-                      readOnly: true,
-                      onTap: (context) async {
-                        var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
-                          'latitude': pickUpLatitude,
-                          'longitude': pickUpLongitude,
-                        });
-                        if (result != null) {
-                          pickUpLocationController.text = result['address'];
-                          onPickUpLocationSelected(result['latitude'], result['longitude']);
-                        }
-                      },
-                      borderColor: MainColors.textColor(context),
-                      hint: '${StringsAssetsConstants.pickUpLocation}...',
-                      suffix: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: SvgPicture.asset(
-                          IconsAssetsConstants.selectedLocationIcon,
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              SizedBox(height: 10.h),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Get.locale?.languageCode == 'ar' ? IconsAssetsConstants.arrowLeftIcon : IconsAssetsConstants.arrowRightIcon,
+                    width: 22.r,
+                    color: MainColors.primaryColor,
+                  ),
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        text: '${StringsAssetsConstants.deliveryPrice}: ',
+                        style: TextStyles.mediumLabelTextStyle(context),
+                        children: [
+                          TextSpan(
+                            text: '600 ${StringsAssetsConstants.currency}',
+                            style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                              color: MainColors.primaryColor,
+                              fontFamily: FontsFamilyAssetsConstants.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              SizedBox(height: 10.h),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              Divider(
+                color: MainColors.textColor(context)!.withOpacity(0.1),
+              ),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              SizedBox(height: 10.h),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              Column(
+                children: [
+                  TextInputComponent(
+                    controller: senderPhoneNumberController,
+                    label: StringsAssetsConstants.senderPhoneNumber,
+                    isLabelOutside: true,
+                    borderColor: MainColors.textColor(context),
+                    hint: '${StringsAssetsConstants.senderPhoneNumber}...',
+                    textInputType: TextInputType.phone,
+                    maxLength: 10,
+                    prefix: Row(
+                      children: [
+                        SizedBox(width: 20.w),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.phoneIcon,
                           width: 22.r,
                           color: MainColors.textColor(context),
                         ),
-                      ),
+                        SizedBox(width: 10.w),
+                      ],
                     ),
-                    SizedBox(height: 15.h),
-                    TextInputComponent(
-                      controller: dropOffLocationController,
-                      label: StringsAssetsConstants.deliveryLocation,
-                      isLabelOutside: true,
-                      readOnly: true,
-                      onTap: (context) async {
-                        var result = await Get.toNamed(Routes.PICK_LOCATION, arguments: {
-                          'latitude': dropOffLatitude,
-                          'longitude': dropOffLongitude,
-                        });
-                        if (result != null) {
-                          dropOffLocationController.text = result['address'];
-                          onDropOffLocationSelected(result['latitude'], result['longitude']);
-                        }
-                      },
-                      hint: '${StringsAssetsConstants.deliveryLocation}...',
-                      borderColor: MainColors.textColor(context),
-                      suffix: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: SvgPicture.asset(
-                          IconsAssetsConstants.selectedLocationIcon,
+                    validate: (value) => ValidatorUtil.phoneValidation(value,
+                        customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.senderPhoneNumber}'),
+                  ),
+                  SizedBox(height: 15.h),
+                  TextInputComponent(
+                    controller: receiverPhoneNumberController,
+                    label: StringsAssetsConstants.receiverPhoneNumber,
+                    isLabelOutside: true,
+                    borderColor: MainColors.textColor(context),
+                    hint: '${StringsAssetsConstants.receiverPhoneNumber}...',
+                    maxLength: 10,
+                    textInputType: TextInputType.phone,
+                    prefix: Row(
+                      children: [
+                        SizedBox(width: 20.w),
+                        SvgPicture.asset(
+                          IconsAssetsConstants.phoneIcon,
                           width: 22.r,
                           color: MainColors.textColor(context),
                         ),
-                      ),
+                        SizedBox(width: 10.w),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    text: '${StringsAssetsConstants.estimatedDistance}: ',
-                    style: TextStyles.largeBodyTextStyle(context),
-                    children: [
-                      TextSpan(
-                        text: '40 ${StringsAssetsConstants.km}',
-                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                          color: MainColors.primaryColor,
-                          fontFamily: FontsFamilyAssetsConstants.bold,
-                        ),
-                      ),
-                    ],
+                    validate: (value) => ValidatorUtil.phoneValidation(value,
+                        customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.receiverPhoneNumber}'),
                   ),
-                ),
+                  SizedBox(height: 15.h),
+                ],
               ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Row(
-            children: [
-              SvgPicture.asset(
-                Get.locale?.languageCode == 'ar' ? IconsAssetsConstants.arrowLeftIcon : IconsAssetsConstants.arrowRightIcon,
-                width: 22.r,
-                color: MainColors.primaryColor,
-              ),
-              Expanded(
-                child: RichText(
-                  text: TextSpan(
-                    text: '${StringsAssetsConstants.deliveryPrice}: ',
-                    style: TextStyles.mediumLabelTextStyle(context),
-                    children: [
-                      TextSpan(
-                        text: '600 ${StringsAssetsConstants.currency}',
-                        style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                          color: MainColors.primaryColor,
-                          fontFamily: FontsFamilyAssetsConstants.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Divider(
-            color: MainColors.textColor(context)!.withOpacity(0.1),
-          ),
-          SizedBox(height: 10.h),
-          Column(
-            children: [
-              TextInputComponent(
-                label: StringsAssetsConstants.senderPhoneNumber,
-                isLabelOutside: true,
-                borderColor: MainColors.textColor(context),
-                hint: '${StringsAssetsConstants.senderPhoneNumber}...',
-                textInputType: TextInputType.phone,
-                prefix: Row(
-                  children: [
-                    SizedBox(width: 20.w),
-                    SvgPicture.asset(
-                      IconsAssetsConstants.phoneIcon,
-                      width: 22.r,
-                      color: MainColors.textColor(context),
-                    ),
-                    SizedBox(width: 10.w),
-                  ],
-                ),
-              ),
-              SizedBox(height: 15.h),
-              TextInputComponent(
-                label: StringsAssetsConstants.receiverPhoneNumber,
-                isLabelOutside: true,
-                borderColor: MainColors.textColor(context),
-                hint: '${StringsAssetsConstants.receiverPhoneNumber}...',
-                textInputType: TextInputType.phone,
-                prefix: Row(
-                  children: [
-                    SizedBox(width: 20.w),
-                    SvgPicture.asset(
-                      IconsAssetsConstants.phoneIcon,
-                      width: 22.r,
-                      color: MainColors.textColor(context),
-                    ),
-                    SizedBox(width: 10.w),
-                  ],
-                ),
-              ),
-              SizedBox(height: 15.h),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

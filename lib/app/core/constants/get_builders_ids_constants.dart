@@ -7,6 +7,7 @@ class GetBuildersIdsConstants {
   static const String logoutConfirmationWindow = "logout_confirmation_window";
   static const String profileGanderWindow = "profile_gander_window";
   static const String createOrderSteps = "create_order_steps";
+  static const String createOrderStep1 = "create_order_step1";
   static const String createOrderStep2 = "create_order_step2";
   static const String createOrderStep3 = "create_order_step3";
   static const String chooseLocationOnMapGoogleMaps = "choose_location_on_map_google_maps";
@@ -18,4 +19,6 @@ class GetBuildersIdsConstants {
   static const String myPersonnelInformationAvatar = "update_my_personnel_information_avatar";
   static const String pickCurrentLocationButton = "pick_current_location_button";
   static const String pickCurrentActionButton = "pick_current_action_button";
+  static const String createNewOrderButton = "create_new_order_button";
+  static const String createNewOrderSummary = "create_new_order_summary";
 }

@@ -6,6 +6,7 @@ import 'package:loogisti/app/core/components/buttons/primary_button_component.da
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
+import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/create_new_order_steps_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/order_summary_window_component.dart';
@@ -17,6 +18,7 @@ import '../controllers/create_new_order_controller.dart';
 
 class CreateNewOrderView extends GetView<CreateNewOrderController> {
   const CreateNewOrderView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,28 +27,55 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
       ),
       body: ScrollableBodyComponent(
         children: [
-          CreateNewOrderStepsComponent(
-            step: 3,
-          ),
+          GetBuilder<CreateNewOrderController>(
+              id: GetBuildersIdsConstants.createOrderSteps,
+              builder: (logic) {
+                return CreateNewOrderStepsComponent(
+                  step: logic.step,
+                );
+              }),
           AnimatedSize(
             alignment: Alignment.topCenter,
             duration: const Duration(milliseconds: 300),
-            child: Step1Component(
-              pickUpLocationController: controller.pickUpLocationController,
-              dropOffLocationController: controller.dropOffLocationController,
-              pickUpLatitude: controller.pickUpLatitude,
-              pickUpLongitude: controller.pickUpLongitude,
-              dropOffLatitude: controller.dropOffLatitude,
-              dropOffLongitude: controller.dropOffLongitude,
-              onPickUpLocationSelected: (lat, lng) {
-                controller.pickUpLatitude = lat;
-                controller.pickUpLongitude = lng;
-              },
-              onDropOffLocationSelected: (double? lat, double? lng) {
-                controller.dropOffLatitude = lat;
-                controller.dropOffLongitude = lng;
-              },
-            ),
+            child: GetBuilder<CreateNewOrderController>(
+                id: GetBuildersIdsConstants.createOrderSteps,
+                builder: (logic) {
+                  return logic.step == 1
+                      ? Step1Component(
+                          fromKey: controller.step1FormKey,
+                          pickUpLocationController: controller.pickUpLocationController,
+                          dropOffLocationController: controller.dropOffLocationController,
+                          pickUpLatitude: controller.pickUpLatitude,
+                          pickUpLongitude: controller.pickUpLongitude,
+                          dropOffLatitude: controller.dropOffLatitude,
+                          dropOffLongitude: controller.dropOffLongitude,
+                          onPickUpLocationSelected: (lat, lng) {
+                            controller.pickUpLatitude = lat;
+                            controller.pickUpLongitude = lng;
+                            controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                          },
+                          onDropOffLocationSelected: (double? lat, double? lng) {
+                            controller.dropOffLatitude = lat;
+                            controller.dropOffLongitude = lng;
+                            controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                          },
+                          senderPhoneNumberController: controller.senderPhoneNumberController,
+                          receiverPhoneNumberController: controller.receiverPhoneNumberController,
+                        )
+                      : logic.step == 2
+                          ? Step2Component(
+                              formKey: controller.step2FormKey,
+                              itemPriceController: controller.itemPriceController,
+                              selectedInvoiceFile: controller.selectedInvoiceFile,
+                              onFileSelected: controller.onFileSelected,
+                            )
+                          : Step3Component(
+                              formKey: controller.step3FormKey,
+                              pickupTimeController: controller.pickupTimeController,
+                              pickupTime: controller.pickupTime,
+                              onPickupTimeSelected: controller.onPickupTimeSelected,
+                            );
+                }),
           ),
           const Expanded(child: SizedBox.shrink()),
           Padding(
@@ -54,9 +83,14 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
               horizontal: 20.w,
               vertical: 40.h,
             ),
-            child: PrimaryButtonComponent(
-              text: StringsAssetsConstants.next,
-              onTap: () => showOrderSummaryWindow(),
+            child: GetBuilder<CreateNewOrderController>(
+              id: GetBuildersIdsConstants.createNewOrderButton,
+              builder: (logic) {
+                return PrimaryButtonComponent(
+                  text: StringsAssetsConstants.next,
+                  onTap: () => controller.nextStep(),
+                );
+              },
             ),
           ),
         ],
