@@ -11,6 +11,8 @@ class GeocodingService {
     final places = GoogleMapsGeocoding(apiKey: FlutterConfig.get('GOOGLE_MAPS_API_KEY'));
     GeocodingResponse response = await places.searchByLocation(googleMapsWebServices.Location(lat: lat, lng: lng));
 
+    log('error message::: ${response.errorMessage}');
+
     response.results.first.addressComponents.forEach((element) {
       log('address component::: ${element.toJson()}');
     });
