@@ -69,13 +69,13 @@ class AuthProvider {
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.updateUserData,
       requestType: HttpRequestTypes.post,
-      data: {
+      data: dio.FormData.fromMap({
         "fullname": fullName,
         "gender": gender,
         "phone": phoneNumber,
         if (avatarFile == null)
           "photo": avatarFile == null ? null : await dio.MultipartFile.fromFile(avatarFile.path, filename: avatarFile.path.split('/').last),
-      },
+      }),
       onLoading: () {
         if (onLoading != null) onLoading();
       },

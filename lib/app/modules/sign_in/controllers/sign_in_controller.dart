@@ -3,9 +3,8 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/services/firebase_authentication_service.dart';
+import 'package:loogisti/app/data/providers/loogistic_api/auth_provider.dart';
 import 'package:loogisti/app/modules/user_controller.dart';
-
-import '../../../data/providers/taxili_api/auth_provider.dart';
 
 class SignInController extends GetxController {
   bool googleSignInLoading = false;

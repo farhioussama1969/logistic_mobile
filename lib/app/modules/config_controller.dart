@@ -3,7 +3,7 @@ import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/services/app_version_info_service.dart';
 import 'package:loogisti/app/core/utils/translation_util.dart';
 import 'package:loogisti/app/data/models/general_settings_model.dart';
-import 'package:loogisti/app/data/providers/taxili_api/config_provider.dart';
+import 'package:loogisti/app/data/providers/loogistic_api/config_provider.dart';
 
 class ConfigController extends GetxController {
   String? appVersion;

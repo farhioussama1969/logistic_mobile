@@ -11,7 +11,7 @@ import 'package:loogisti/app/core/constants/storage_keys_constants.dart';
 import 'package:loogisti/app/core/services/app_version_info_service.dart';
 import 'package:loogisti/app/core/services/local_storage_service.dart';
 import 'package:loogisti/app/data/models/user_model.dart';
-import 'package:loogisti/app/data/providers/taxili_api/auth_provider.dart';
+import 'package:loogisti/app/data/providers/loogistic_api/auth_provider.dart';
 import 'package:loogisti/app/modules/config_controller.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
