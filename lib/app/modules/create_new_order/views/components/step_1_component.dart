@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/unit_coversion_util.dart';
 import 'package:loogisti/app/core/utils/validator_util.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
@@ -25,7 +27,9 @@ class Step1Component extends StatelessWidget {
       required this.onDropOffLocationSelected,
       required this.fromKey,
       required this.senderPhoneNumberController,
-      required this.receiverPhoneNumberController});
+      required this.receiverPhoneNumberController,
+      this.price,
+      this.distance});
 
   final TextEditingController pickUpLocationController;
   final TextEditingController dropOffLocationController;
@@ -38,6 +42,8 @@ class Step1Component extends StatelessWidget {
   final GlobalKey fromKey;
   final TextEditingController senderPhoneNumberController;
   final TextEditingController receiverPhoneNumberController;
+  final double? price;
+  final double? distance;
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +197,11 @@ class Step1Component extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.h),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+            if (pickUpLatitude != null &&
+                pickUpLongitude != null &&
+                dropOffLatitude != null &&
+                dropOffLongitude != null &&
+                distance != null)
               Row(
                 children: [
                   Expanded(
@@ -201,7 +211,7 @@ class Step1Component extends StatelessWidget {
                         style: TextStyles.largeBodyTextStyle(context),
                         children: [
                           TextSpan(
-                            text: '40 ${StringsAssetsConstants.km}',
+                            text: '${UnitConversionUtil.distanceInTextFormat(distance!.toInt() * 1000)}',
                             style: TextStyles.mediumBodyTextStyle(context).copyWith(
                               color: MainColors.primaryColor,
                               fontFamily: FontsFamilyAssetsConstants.bold,
@@ -212,10 +222,14 @@ class Step1Component extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              )
+                  .animate(delay: 200.ms)
+                  .fadeIn(duration: 900.ms, delay: 300.ms)
+                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                  .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null && price != null)
               SizedBox(height: 10.h),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null && price != null)
               Row(
                 children: [
                   SvgPicture.asset(
@@ -230,7 +244,7 @@ class Step1Component extends StatelessWidget {
                         style: TextStyles.mediumLabelTextStyle(context),
                         children: [
                           TextSpan(
-                            text: '600 ${StringsAssetsConstants.currency}',
+                            text: '${price?.floor()} ${StringsAssetsConstants.currency}',
                             style: TextStyles.mediumLabelTextStyle(context).copyWith(
                               color: MainColors.primaryColor,
                               fontFamily: FontsFamilyAssetsConstants.bold,
@@ -241,16 +255,40 @@ class Step1Component extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+              )
+                  .animate(delay: 200.ms)
+                  .fadeIn(duration: 900.ms, delay: 300.ms)
+                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                  .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+            if (pickUpLatitude != null &&
+                pickUpLongitude != null &&
+                dropOffLatitude != null &&
+                dropOffLongitude != null &&
+                price != null &&
+                distance != null)
               SizedBox(height: 10.h),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+            if (pickUpLatitude != null &&
+                pickUpLongitude != null &&
+                dropOffLatitude != null &&
+                dropOffLongitude != null &&
+                price != null &&
+                distance != null)
               Divider(
                 color: MainColors.textColor(context)!.withOpacity(0.1),
               ),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+            if (pickUpLatitude != null &&
+                pickUpLongitude != null &&
+                dropOffLatitude != null &&
+                dropOffLongitude != null &&
+                price != null &&
+                distance != null)
               SizedBox(height: 10.h),
-            if (pickUpLatitude != null && pickUpLongitude != null && dropOffLatitude != null && dropOffLongitude != null)
+            if (pickUpLatitude != null &&
+                pickUpLongitude != null &&
+                dropOffLatitude != null &&
+                dropOffLongitude != null &&
+                price != null &&
+                distance != null)
               Column(
                 children: [
                   TextInputComponent(

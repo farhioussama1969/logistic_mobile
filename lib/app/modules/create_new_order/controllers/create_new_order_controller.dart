@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/pop_ups/toast_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
+import 'package:loogisti/app/data/providers/loogistic_api/order_provider.dart';
 import 'package:loogisti/app/modules/create_new_order/views/create_new_order_view.dart';
 
 class CreateNewOrderController extends GetxController {
@@ -27,6 +28,46 @@ class CreateNewOrderController extends GetxController {
 
   final TextEditingController senderPhoneNumberController = TextEditingController();
   final TextEditingController receiverPhoneNumberController = TextEditingController();
+
+  bool getPricingLoading = false;
+  void changePricingLoading(bool value) {
+    getPricingLoading = value;
+    update([GetBuildersIdsConstants.createOrderSteps]);
+  }
+
+  double? price;
+  void changePrice(double? value) {
+    price = value;
+    update([GetBuildersIdsConstants.createOrderSteps]);
+  }
+
+  double? distance;
+  void changeDistance(double? value) {
+    distance = value;
+    update([GetBuildersIdsConstants.createOrderSteps]);
+  }
+
+  void getDeliveryPrice() {
+    if (getPricingLoading) return;
+    OrderProvider()
+        .getDeliveryPricing(
+      pickupLocationLong: pickUpLongitude!,
+      pickupLocationLate: pickUpLatitude!,
+      deliveryLocationLong: dropOffLongitude!,
+      deliveryLocationLate: dropOffLatitude!,
+      onLoading: () {
+        changePricingLoading(true);
+      },
+      onFinal: () {
+        changePricingLoading(false);
+      },
+    )
+        .then((value) {
+      if (value != null) {
+        changePrice(value);
+      }
+    });
+  }
 
   //step 02
 
@@ -57,6 +98,52 @@ class CreateNewOrderController extends GetxController {
     pickupTimeController.text = time.toString().substring(10, 16);
     pickupTime = time;
     update([GetBuildersIdsConstants.createOrderStep3]);
+  }
+
+  double? discountPercentage;
+  void changeDiscountPercentage(double? value) {
+    discountPercentage = value;
+    update([GetBuildersIdsConstants.createNewOrderSummary]);
+  }
+
+  bool checkCouponLoading = false;
+  void changeCheckCouponLoading(bool value) {
+    checkCouponLoading = value;
+    update([GetBuildersIdsConstants.createNewOrderSummary]);
+  }
+
+  bool? isCouponValid;
+  void changeIsCouponValid(bool? value) {
+    isCouponValid = value;
+    update([GetBuildersIdsConstants.createNewOrderSummary]);
+  }
+
+  String? couponCode;
+
+  void checkCoupon(String couponCode) async {
+    changeDiscountPercentage(null);
+    if (checkCouponLoading) return;
+    await OrderProvider()
+        .couponValidate(
+      couponCode: couponCode,
+      onLoading: () => changeCheckCouponLoading(true),
+      onFinal: () => changeCheckCouponLoading(false),
+    )
+        .then((coupon) {
+      if (coupon != null) {
+        changeDiscountPercentage(coupon);
+        changeIsCouponValid(true);
+        couponCode = couponCode;
+        Future.delayed(const Duration(milliseconds: 500), () => changeIsCouponValid(null));
+      } else {
+        if (couponCode.isNotEmpty) {
+          changeIsCouponValid(false);
+          Future.delayed(const Duration(milliseconds: 1000), () => changeIsCouponValid(null));
+        } else {
+          changeIsCouponValid(null);
+        }
+      }
+    });
   }
 
   void nextStep() {

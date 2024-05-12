@@ -136,4 +136,5 @@ static String get updatePersonalInformationSuccess{return "update personal infor
 static String get placesNotFound{return "places not found".tr;}
 static String get back{return "back".tr;}
 static String get itemInvoice{return "item invoice".tr;}
+static String get discount{return "discount".tr;}
 }

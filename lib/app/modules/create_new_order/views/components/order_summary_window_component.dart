@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
+import 'package:loogisti/app/core/components/animations/loading_component.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
 import 'package:loogisti/app/core/components/inputs/text_input_component.dart';
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
@@ -14,6 +16,7 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/debouncer_util.dart';
 import 'package:loogisti/app/modules/create_new_order/controllers/create_new_order_controller.dart';
 
 import '../../../../core/components/buttons/icon_button_component.dart';
@@ -75,7 +78,11 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
+                              .animate(delay: 50.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 10.h),
                           Row(
                             children: [
@@ -96,7 +103,11 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
+                              .animate(delay: 100.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 8.h),
                           Divider(color: MainColors.textColor(context)!.withOpacity(0.1)),
                           SizedBox(height: 8.h),
@@ -221,7 +232,11 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                   ),
                                 ),
                               ],
-                            ),
+                            )
+                                .animate(delay: 300.ms)
+                                .fadeIn(duration: 900.ms, delay: 300.ms)
+                                .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                                .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           if (logic.isChosenTime) SizedBox(height: 8.h),
                           if (logic.isChosenTime) Divider(color: MainColors.textColor(context)!.withOpacity(0.1)),
                           if (logic.isChosenTime) SizedBox(height: 8.h),
@@ -233,7 +248,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '3000 ${StringsAssetsConstants.currency}',
+                                  '${logic.itemPriceController.text} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.largeBodyTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
@@ -242,7 +257,11 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
+                              .animate(delay: 400.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 10.h),
                           Row(
                             children: [
@@ -252,7 +271,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '600 ${StringsAssetsConstants.currency}',
+                                  '${logic.price?.floor()} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.largeBodyTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
@@ -261,7 +280,35 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
+                              .animate(delay: 500.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+                          if (logic.discountPercentage != null) SizedBox(height: 10.h),
+                          if (logic.discountPercentage != null)
+                            Row(
+                              children: [
+                                Text(
+                                  '${StringsAssetsConstants.discount}: (${logic.couponCode})',
+                                  style: TextStyles.largeBodyTextStyle(context),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    '-${(((logic.price ?? 0) * (logic.discountPercentage ?? 0)) / 100).floor()} ${StringsAssetsConstants.currency}',
+                                    style: TextStyles.largeBodyTextStyle(context).copyWith(
+                                      color: MainColors.errorColor(context),
+                                      fontFamily: FontsFamilyAssetsConstants.bold,
+                                    ),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ),
+                              ],
+                            )
+                                .animate(delay: 500.ms)
+                                .fadeIn(duration: 900.ms, delay: 300.ms)
+                                .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                                .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 10.h),
                           Row(
                             children: [
@@ -271,7 +318,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '3600 ${StringsAssetsConstants.currency}',
+                                  '${(double.parse(logic.itemPriceController.text) + (logic.price ?? 0)).floor()} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
@@ -280,7 +327,11 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          ),
+                          )
+                              .animate(delay: 600.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                         ],
                       ),
                     ),
@@ -301,38 +352,69 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  '35%',
-                                  style: TextStyles.largeBodyTextStyle(context).copyWith(
-                                    color: MainColors.primaryColor,
-                                    fontFamily: FontsFamilyAssetsConstants.bold,
+                            if (logic.discountPercentage != null)
+                              Row(
+                                children: [
+                                  Text(
+                                    '${logic.discountPercentage?.floor()}%',
+                                    style: TextStyles.largeBodyTextStyle(context).copyWith(
+                                      color: MainColors.primaryColor,
+                                      fontFamily: FontsFamilyAssetsConstants.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: 5.w),
-                                IconButtonComponent(
-                                  onTap: () {},
-                                  iconLink: IconsAssetsConstants.discountIcon,
-                                  buttonWidth: 30.r,
-                                  buttonHeight: 30.r,
-                                  iconWidth: 18.r,
-                                  iconHeight: 18.r,
-                                  border: Border.all(
-                                    color: MainColors.textColor(context)!.withOpacity(0.1),
-                                    width: 1.r,
+                                  SizedBox(width: 5.w),
+                                  IconButtonComponent(
+                                    onTap: () {},
+                                    iconLink: IconsAssetsConstants.discountIcon,
+                                    buttonWidth: 30.r,
+                                    buttonHeight: 30.r,
+                                    iconWidth: 18.r,
+                                    iconHeight: 18.r,
+                                    border: Border.all(
+                                      color: MainColors.textColor(context)!.withOpacity(0.1),
+                                      width: 1.r,
+                                    ),
+                                    backgroundColor: MainColors.inputColor(context),
+                                    iconColor: MainColors.primaryColor,
                                   ),
-                                  backgroundColor: MainColors.inputColor(context),
-                                  iconColor: MainColors.primaryColor,
-                                ),
-                              ],
-                            ),
+                                ],
+                              )
+                                  .animate(delay: 300.ms)
+                                  .fadeIn(duration: 900.ms, delay: 300.ms)
+                                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                                  .move(begin: const Offset(100, 0), curve: Curves.easeOutQuad),
                           ],
                         ),
                         SizedBox(height: 15.h),
                         TextInputComponent(
-                          label: StringsAssetsConstants.couponCode,
                           hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.couponCode}...',
+                          suffix: Row(
+                            children: [
+                              SizedBox(width: 10.w),
+                              if (logic.checkCouponLoading) const LoadingComponent(),
+                              if (!logic.checkCouponLoading && logic.isCouponValid == false)
+                                SvgPicture.asset(
+                                  IconsAssetsConstants.errorCircleIcon,
+                                  width: 25.r,
+                                  color: MainColors.errorColor(context),
+                                ),
+                              if (!logic.checkCouponLoading && logic.isCouponValid == true)
+                                SvgPicture.asset(
+                                  IconsAssetsConstants.checkedIcon,
+                                  width: 25.r,
+                                  color: MainColors.successColor(context),
+                                ),
+                              SizedBox(width: 20.w),
+                            ],
+                          ),
+                          onChange: (value) => DebouncerUtil.debounce(() => logic.checkCoupon(value)),
+                          prefix: Row(
+                            children: [
+                              SizedBox(width: 20.w),
+                              SvgPicture.asset(IconsAssetsConstants.couponIcon, width: 25.r, color: MainColors.textColor(context)),
+                              SizedBox(width: 10.w),
+                            ],
+                          ),
                         ),
                       ],
                     ),

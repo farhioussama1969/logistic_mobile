@@ -14,4 +14,5 @@ class EndPointsConstants {
   static const String createOrder = 'order/create';
   static const String getOrders = 'user/order/all';
   static const String getDeliveryPricing = 'order/price';
+  static const String couponValidate = 'coupon/validate';
 }

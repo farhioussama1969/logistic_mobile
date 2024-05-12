@@ -8,6 +8,7 @@ import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
+import 'package:loogisti/app/core/services/geolocator_location_service.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/create_new_order_steps_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/order_summary_window_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/step_1_component.dart';
@@ -24,6 +25,13 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
     return Scaffold(
       appBar: HeaderComponent(
         title: StringsAssetsConstants.createNewOrder,
+        onBack: () {
+          if (controller.step == 1) {
+            Get.back();
+          } else {
+            controller.setStep(controller.step - 1);
+          }
+        },
       ),
       body: ScrollableBodyComponent(
         children: [
@@ -52,13 +60,43 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                           onPickUpLocationSelected: (lat, lng) {
                             controller.pickUpLatitude = lat;
                             controller.pickUpLongitude = lng;
+                            controller.changePrice(null);
+                            controller.changeDistance(null);
                             controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                            if (controller.pickUpLatitude != null &&
+                                controller.pickUpLongitude != null &&
+                                controller.dropOffLatitude != null &&
+                                controller.dropOffLongitude != null) {
+                              controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                                controller.pickUpLatitude!,
+                                controller.pickUpLongitude!,
+                                controller.dropOffLatitude!,
+                                controller.dropOffLongitude!,
+                              ));
+                              controller.getDeliveryPrice();
+                            }
                           },
                           onDropOffLocationSelected: (double? lat, double? lng) {
                             controller.dropOffLatitude = lat;
                             controller.dropOffLongitude = lng;
+                            controller.changePrice(null);
+                            controller.changeDistance(null);
                             controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                            if (controller.pickUpLatitude != null &&
+                                controller.pickUpLongitude != null &&
+                                controller.dropOffLatitude != null &&
+                                controller.dropOffLongitude != null) {
+                              controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                                controller.pickUpLatitude!,
+                                controller.pickUpLongitude!,
+                                controller.dropOffLatitude!,
+                                controller.dropOffLongitude!,
+                              ));
+                              controller.getDeliveryPrice();
+                            }
                           },
+                          distance: controller.distance,
+                          price: controller.price,
                           senderPhoneNumberController: controller.senderPhoneNumberController,
                           receiverPhoneNumberController: controller.receiverPhoneNumberController,
                         )

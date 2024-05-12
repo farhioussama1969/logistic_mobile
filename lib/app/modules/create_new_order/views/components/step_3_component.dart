@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -73,7 +74,11 @@ class Step3Component extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                )
+                    .animate(delay: 200.ms)
+                    .fadeIn(duration: 900.ms, delay: 300.ms)
+                    .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                    .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                 SizedBox(height: 30.h),
                 Row(
                   children: [
@@ -100,7 +105,11 @@ class Step3Component extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
+                )
+                    .animate(delay: 200.ms)
+                    .fadeIn(duration: 900.ms, delay: 300.ms)
+                    .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                    .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                 if (logic.isChosenTime) SizedBox(height: 10.h),
                 if (logic.isChosenTime)
                   Form(
