@@ -9,7 +9,9 @@ import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 
 class HomeNoteComponent extends StatelessWidget {
-  const HomeNoteComponent({super.key});
+  const HomeNoteComponent({super.key, required this.onClose});
+
+  final Function onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class HomeNoteComponent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButtonComponent(
-                  onTap: () => Get.back(),
+                  onTap: () => onClose(),
                   iconLink: IconsAssetsConstants.closeIcon,
                   buttonWidth: 18.r,
                   buttonHeight: 18.r,

@@ -10,14 +10,16 @@ import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/data/models/order_model.dart';
 
 class OrdersSectionComponent extends StatelessWidget {
-  const OrdersSectionComponent({super.key, required this.orders, required this.loading});
+  const OrdersSectionComponent({super.key, required this.orders, required this.loading, required this.scrollController});
 
   final List<OrderModel> orders;
   final bool loading;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: scrollController,
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [

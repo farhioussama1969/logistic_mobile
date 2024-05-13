@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
+import 'package:loogisti/app/core/constants/storage_keys_constants.dart';
+import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
+import 'package:loogisti/app/core/services/local_storage_service.dart';
 import 'package:loogisti/app/data/models/home_orders_model.dart';
 import 'package:loogisti/app/data/providers/loogistic_api/order_provider.dart';
 
 class HomeController extends GetxController {
+  bool isNoticed = true;
+  void changeIsNoticed(bool value) {
+    isNoticed = value;
+    update([GetBuildersIdsConstants.homeNote]);
+  }
+
   final ScrollController scrollController = ScrollController();
 
   HomeOrdersModel? homeOrdersData;
@@ -68,8 +77,9 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     getHomeOrdersData();
+    changeIsNoticed(await LocalStorageService.loadData(key: StorageKeysConstants.homeNoteVisibility, type: DataTypes.bool) ?? true);
     super.onInit();
   }
 

@@ -5,9 +5,12 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/data/models/order_status_model.dart';
 
 class OrderStatusCardComponent extends StatelessWidget {
-  const OrderStatusCardComponent({super.key});
+  const OrderStatusCardComponent({super.key, required this.orderStatusData});
+
+  final OrderStatusModel orderStatusData;
 
   @override
   Widget build(BuildContext context) {

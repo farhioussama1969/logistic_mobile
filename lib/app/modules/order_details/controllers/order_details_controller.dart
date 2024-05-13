@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
+import 'package:loogisti/app/data/models/order_model.dart';
 
 class OrderDetailsController extends GetxController {
-  //TODO: Implement OrderDetailsController
+  OrderModel? orderData;
 
-  final count = 0.obs;
   @override
   void onInit() {
+    if (Get.arguments != null) {
+      orderData = Get.arguments['order'];
+    }
     super.onInit();
   }
 
@@ -18,6 +21,4 @@ class OrderDetailsController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

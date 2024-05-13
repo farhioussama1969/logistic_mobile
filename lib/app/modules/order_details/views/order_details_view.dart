@@ -33,7 +33,9 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
           child: Column(
             children: [
               SizedBox(height: 20.h),
-              const OrderCardComponent()
+              OrderCardComponent(
+                orderData: controller.orderData,
+              )
                   .animate(delay: 100.ms)
                   .fadeIn(duration: 900.ms, delay: 300.ms)
                   .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
@@ -105,7 +107,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'ain nadja 2, 2eme etage, appartement 4, 16000, Alger',
+                                    controller.orderData?.puckUpName ?? '',
                                     style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                       fontFamily: FontsFamilyAssetsConstants.bold,
                                     ),
@@ -136,7 +138,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    'ain nadja 2, 2eme etage, appartement 4, 16000, Alger',
+                                    controller.orderData?.deliveryName ?? '',
                                     style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                       fontFamily: FontsFamilyAssetsConstants.bold,
                                     ),
@@ -171,7 +173,9 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                   .fadeIn(duration: 900.ms, delay: 400.ms)
                   .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
                   .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
-              OrderStatusesHistorySectionComponent(),
+              OrderStatusesHistorySectionComponent(
+                orderStatusData: controller.orderData?.status ?? [],
+              ),
             ],
           ),
         ),

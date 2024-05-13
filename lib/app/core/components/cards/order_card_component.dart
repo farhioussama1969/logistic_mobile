@@ -31,7 +31,7 @@ class OrderCardComponent extends StatelessWidget {
     return orderData != null
         ? GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.ORDER_DETAILS);
+              Get.toNamed(Routes.ORDER_DETAILS, arguments: {'order': orderData});
             },
             child: Container(
               decoration: BoxDecoration(
@@ -283,7 +283,7 @@ class OrderCardComponent extends StatelessWidget {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              '${orderData?. ?? '/'}',
+                                              orderData?.deliveryName ?? '/',
                                               style: TextStyles.smallBodyTextStyle(context).copyWith(),
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
@@ -351,7 +351,7 @@ class OrderCardComponent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '${5000} ${StringsAssetsConstants.currency}',
+                              '${orderData?.price?.floor() ?? '/'} ${StringsAssetsConstants.currency}',
                               style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                 color: MainColors.primaryColor,
                                 fontFamily: FontsFamilyAssetsConstants.bold,
@@ -372,7 +372,7 @@ class OrderCardComponent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '${600} ${StringsAssetsConstants.currency}',
+                              '${orderData?.deleveryCost?.floor() ?? '/'} ${StringsAssetsConstants.currency}',
                               style: TextStyles.mediumBodyTextStyle(context).copyWith(
                                 color: MainColors.primaryColor,
                                 fontFamily: FontsFamilyAssetsConstants.bold,
@@ -390,7 +390,7 @@ class OrderCardComponent extends StatelessWidget {
                               style: TextStyles.smallLabelTextStyle(context),
                             ),
                             Text(
-                              '${600} ${StringsAssetsConstants.currency}',
+                              '${((orderData?.price ?? 0) + (orderData?.deleveryNewCost ?? 0)).floor()} ${StringsAssetsConstants.currency}',
                               style: TextStyles.smallLabelTextStyle(context).copyWith(
                                 color: MainColors.primaryColor,
                               ),

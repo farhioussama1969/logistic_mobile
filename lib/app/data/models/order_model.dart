@@ -15,6 +15,8 @@ class OrderModel {
   double? deleveryNewCost;
   double? totaleCost;
   String? driverPhone;
+  String? deliveryName;
+  String? puckUpName;
   List<OrderStatusModel>? status;
 
   OrderModel(
@@ -32,7 +34,9 @@ class OrderModel {
       this.deleveryNewCost,
       this.totaleCost,
       this.driverPhone,
-      this.status});
+      this.status,
+      this.deliveryName,
+      this.puckUpName});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -49,6 +53,8 @@ class OrderModel {
     deleveryNewCost = json['delevery_new_cost'] != null ? double.parse(json['delevery_new_cost'].toString()) : null;
     totaleCost = json['totale_cost'] != null ? double.parse(json['totale_cost'].toString()) : null;
     driverPhone = json['driver_phone'];
+    deliveryName = json['delivery_name'];
+    puckUpName = json['pickup_name'];
     if (json['status'] != null) {
       status = <OrderStatusModel>[];
       json['status'].forEach((v) {
@@ -73,6 +79,8 @@ class OrderModel {
     data['delevery_new_cost'] = this.deleveryNewCost;
     data['totale_cost'] = this.totaleCost;
     data['driver_phone'] = this.driverPhone;
+    data['delivery_name'] = this.deliveryName;
+    data['pickup_name'] = this.puckUpName;
     if (this.status != null) {
       data['status'] = this.status!.map((v) => v.toJson()).toList();
     }
