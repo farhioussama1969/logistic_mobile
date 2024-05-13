@@ -14,6 +14,7 @@ class SignInController extends GetxController {
   }
 
   void signInWithGoogle() {
+    if (googleSignInLoading) return;
     FirebaseAuthenticationService()
         .googleAuthentication(onLoading: () => changeGoogleSignInLoading(true), onFinal: () => changeGoogleSignInLoading(false))
         .then((auth) async {

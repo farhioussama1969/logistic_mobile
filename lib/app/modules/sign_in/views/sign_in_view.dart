@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -137,17 +139,18 @@ class SignInView extends GetView<SignInController> {
                           .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
                           .move(begin: const Offset(15, 0), curve: Curves.easeOutQuad),
                       SizedBox(height: 15.h),
-                      SocialLoginButtonComponent(
-                        iconPath: IconsAssetsConstants.appleIcon,
-                        iconColor: MainColors.textColor(context),
-                        title: StringsAssetsConstants.signInWithApple,
-                        onTap: () {},
-                        isLoading: false,
-                      )
-                          .animate(delay: (2 * 200).ms)
-                          .fadeIn(duration: 900.ms, delay: 300.ms)
-                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
-                          .move(begin: const Offset(-15, 0), curve: Curves.easeOutQuad),
+                      if (Platform.isIOS)
+                        SocialLoginButtonComponent(
+                          iconPath: IconsAssetsConstants.appleIcon,
+                          iconColor: MainColors.textColor(context),
+                          title: StringsAssetsConstants.signInWithApple,
+                          onTap: () {},
+                          isLoading: false,
+                        )
+                            .animate(delay: (2 * 200).ms)
+                            .fadeIn(duration: 900.ms, delay: 300.ms)
+                            .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                            .move(begin: const Offset(-15, 0), curve: Curves.easeOutQuad),
                       SizedBox(height: 30.h),
                       AnimatorComponent(
                         time: const Duration(milliseconds: 500),

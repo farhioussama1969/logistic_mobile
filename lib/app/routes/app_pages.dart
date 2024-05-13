@@ -12,6 +12,8 @@ import '../modules/my_personnel_information/bindings/my_personnel_information_bi
 import '../modules/my_personnel_information/views/my_personnel_information_view.dart';
 import '../modules/new_update/bindings/new_update_binding.dart';
 import '../modules/new_update/views/new_update_view.dart';
+import '../modules/notifications/bindings/notifications_binding.dart';
+import '../modules/notifications/views/notifications_view.dart';
 import '../modules/order_details/bindings/order_details_binding.dart';
 import '../modules/order_details/views/order_details_view.dart';
 import '../modules/pick_location/bindings/pick_location_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.MY_PERSONNEL_INFORMATION,
       page: () => const MyPersonnelInformationView(),
       binding: MyPersonnelInformationBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsView(),
+      binding: NotificationsBinding(),
     ),
   ];
 }

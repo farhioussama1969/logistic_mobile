@@ -42,7 +42,7 @@ class OrdersSectionComponent extends StatelessWidget {
           (orders.isNotEmpty || (orders.isEmpty && loading))
               ? ListView.separated(
                   shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 10.h, bottom: 30.h),
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return OrderCardComponent(

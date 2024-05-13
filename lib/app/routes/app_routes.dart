@@ -13,6 +13,7 @@ abstract class Routes {
   static const PICK_LOCATION = _Paths.PICK_LOCATION;
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
   static const MY_PERSONNEL_INFORMATION = _Paths.MY_PERSONNEL_INFORMATION;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const PICK_LOCATION = '/pick-location';
   static const MY_ACCOUNT = '/my-account';
   static const MY_PERSONNEL_INFORMATION = '/my-personnel-information';
+  static const NOTIFICATIONS = '/notifications';
 }
