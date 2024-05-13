@@ -20,8 +20,8 @@ class OrderProvider {
     required String senderPhone,
     required String reciverPhone,
     required double price,
-    required String bestTimeDelevery,
-    required String coupon,
+    required String? bestTimeDelevery,
+    required String? coupon,
     required File? image,
     required Function onLoading,
     required Function onFinal,
@@ -29,6 +29,7 @@ class OrderProvider {
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.createOrder,
       requestType: HttpRequestTypes.post,
+      showErrorToast: true,
       data: dio.FormData.fromMap({
         "pickup_name": pickupName,
         "pickup_location_long": pickupLocationLong,
@@ -41,8 +42,8 @@ class OrderProvider {
         "sender_phone": senderPhone,
         "reciver_phone": reciverPhone,
         "price": price,
-        "best_time_delevery": bestTimeDelevery,
-        "coupon": coupon,
+        if (bestTimeDelevery != null) "best_time_delevery": bestTimeDelevery,
+        if (coupon != null) "coupon": coupon,
         "image": image == null ? null : await dio.MultipartFile.fromFile(image.path, filename: image.path.split('/').last),
       }),
       onLoading: () => onLoading(),
@@ -83,17 +84,21 @@ class OrderProvider {
   }
 
   Future<HomeOrdersModel?> getHomeOrders({
+    required int page,
     required Function onLoading,
     required Function onFinal,
   }) async {
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.getOrders,
       requestType: HttpRequestTypes.get,
+      queryParameters: {
+        'page': page,
+      },
       onLoading: () => onLoading(),
       onFinal: () => onFinal(),
     );
     if (response?.body != null) {
-      return HomeOrdersModel.fromJson(response?.body);
+      return HomeOrdersModel.fromJson(response?.body['order']);
     }
     return null;
   }

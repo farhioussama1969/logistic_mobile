@@ -318,7 +318,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '${(double.parse(logic.itemPriceController.text) + (logic.price ?? 0)).floor()} ${StringsAssetsConstants.currency}',
+                                  '${(logic.discountPercentage == null) ? ((double.parse(logic.itemPriceController.text) + (logic.price ?? 0)).floor()) : ((double.parse(logic.itemPriceController.text) + (logic.price ?? 0)) - (((logic.price ?? 0) * (logic.discountPercentage ?? 0)) / 100)).floor()} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
@@ -421,8 +421,9 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                     const Expanded(child: SizedBox.shrink()),
                     SizedBox(height: 15.h),
                     PrimaryButtonComponent(
-                      onTap: () {},
+                      onTap: () => logic.createNewOrder(),
                       text: StringsAssetsConstants.confirm,
+                      isLoading: logic.createNewOrderLoading,
                     ),
                     SizedBox(height: 20.h),
                   ],

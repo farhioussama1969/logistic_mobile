@@ -143,7 +143,11 @@
   "back": "Back",
   "item invoice": "Item invoice",
 
-  "discount": "Discount"
+  "discount": "Discount",
+
+  "create order success": "Order has been created successfully",
+
+  "empty orders": "There are no orders yet"
 
 
 

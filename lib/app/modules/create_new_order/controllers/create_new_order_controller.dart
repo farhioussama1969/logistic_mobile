@@ -133,7 +133,7 @@ class CreateNewOrderController extends GetxController {
       if (coupon != null) {
         changeDiscountPercentage(coupon);
         changeIsCouponValid(true);
-        couponCode = couponCode;
+        this.couponCode = couponCode;
         Future.delayed(const Duration(milliseconds: 500), () => changeIsCouponValid(null));
       } else {
         if (couponCode.isNotEmpty) {
@@ -168,6 +168,42 @@ class CreateNewOrderController extends GetxController {
         const CreateNewOrderView().showOrderSummaryWindow();
       }
     }
+  }
+
+  bool createNewOrderLoading = false;
+  void changeCreateNewOrderLoading(bool value) {
+    createNewOrderLoading = value;
+    update([GetBuildersIdsConstants.createNewOrderSummary]);
+  }
+
+  void createNewOrder() {
+    if (createNewOrderLoading) return;
+    OrderProvider()
+        .createNewOrder(
+      pickupName: pickUpLocationController.text,
+      pickupLocationLong: pickUpLongitude!,
+      pickupLocationLate: pickUpLatitude!,
+      deliveryName: dropOffLocationController.text,
+      deliveryLocationLong: dropOffLongitude!,
+      deliveryLocationLate: dropOffLatitude!,
+      distance: distance!,
+      deliveryCost: price!,
+      senderPhone: senderPhoneNumberController.text,
+      reciverPhone: receiverPhoneNumberController.text,
+      price: double.parse(itemPriceController.text),
+      bestTimeDelevery: isChosenTime ? pickupTime.toString().substring(10, 15) : null,
+      coupon: couponCode!,
+      image: selectedInvoiceFile,
+      onLoading: () => changeCreateNewOrderLoading(true),
+      onFinal: () => changeCreateNewOrderLoading(false),
+    )
+        .then((value) {
+      if (value != null) {
+        Get.back();
+        Get.back();
+        ToastComponent.showSuccessToast(Get.context!, text: StringsAssetsConstants.createOrderSuccess);
+      }
+    });
   }
 
   @override

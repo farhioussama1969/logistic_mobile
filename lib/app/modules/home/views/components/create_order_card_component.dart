@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
 import 'package:loogisti/app/core/components/cards/tag_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
@@ -13,7 +14,10 @@ import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
 
 class CreateOrderCardComponent extends StatelessWidget {
-  const CreateOrderCardComponent({super.key});
+  const CreateOrderCardComponent({super.key, required this.count, required this.loading});
+
+  final int? count;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +47,18 @@ class CreateOrderCardComponent extends StatelessWidget {
                         width: 24.r,
                       ),
                       SizedBox(width: 5.w),
-                      Text(
-                        '17 ${StringsAssetsConstants.orders}',
-                        style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                          color: MainColors.whiteColor,
+                      if (count != null)
+                        Text(
+                          '${count ?? 0} ${StringsAssetsConstants.orders}',
+                          style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                            color: MainColors.whiteColor,
+                          ),
                         ),
-                      ),
+                      if (count == null && loading)
+                        LoadingAnimationWidget.staggeredDotsWave(
+                          color: MainColors.whiteColor,
+                          size: 30.r,
+                        ),
                     ],
                   ),
                 ),

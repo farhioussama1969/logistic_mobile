@@ -137,4 +137,6 @@ static String get placesNotFound{return "places not found".tr;}
 static String get back{return "back".tr;}
 static String get itemInvoice{return "item invoice".tr;}
 static String get discount{return "discount".tr;}
+static String get createOrderSuccess{return "create order success".tr;}
+static String get emptyOrders{return "empty orders".tr;}
 }
