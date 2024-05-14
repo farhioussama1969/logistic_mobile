@@ -15,4 +15,7 @@ class EndPointsConstants {
   static const String getOrders = 'user/order/all';
   static const String getDeliveryPricing = 'order/price';
   static const String couponValidate = 'coupon/validate';
+
+  //notification provider
+  static const String getNotifications = 'notification/all';
 }

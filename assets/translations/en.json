@@ -147,7 +147,10 @@
 
   "create order success": "Order has been created successfully",
 
-  "empty orders": "There are no orders yet"
+  "empty orders": "There are no orders yet",
+
+  "empty notifications": "There are no notifications yet",
+  "notifications": "Notifications"
 
 
 

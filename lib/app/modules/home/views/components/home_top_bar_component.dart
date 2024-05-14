@@ -78,7 +78,7 @@ class HomeTopBarComponent extends StatelessWidget {
         ),
         IconButtonComponent(
           iconLink: IconsAssetsConstants.notificationIcon,
-          onTap: () {},
+          onTap: () => Get.toNamed(Routes.NOTIFICATIONS),
         ),
       ]),
     ));

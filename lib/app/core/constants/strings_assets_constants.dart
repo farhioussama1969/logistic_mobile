@@ -139,4 +139,6 @@ static String get itemInvoice{return "item invoice".tr;}
 static String get discount{return "discount".tr;}
 static String get createOrderSuccess{return "create order success".tr;}
 static String get emptyOrders{return "empty orders".tr;}
+static String get emptyNotifications{return "empty notifications".tr;}
+static String get notifications{return "notifications".tr;}
 }

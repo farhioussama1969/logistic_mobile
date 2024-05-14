@@ -23,4 +23,5 @@ class GetBuildersIdsConstants {
   static const String createNewOrderSummary = "create_new_order_summary";
   static const String homeOrders = "home_orders";
   static const String homeNote = "home_note";
+  static const String notificationsList = "notifications_list";
 }
