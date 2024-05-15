@@ -54,20 +54,23 @@ class HomeTopBarComponent extends StatelessWidget {
                     child: GetBuilder<UserController>(
                         id: GetBuildersIdsConstants.userInfosComponents,
                         builder: (logic) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${logic.user?.fullname}',
-                                style: TextStyles.mediumLabelTextStyle(context),
-                              ),
-                              Text(
-                                'Algeria, ben aknoun',
-                                style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                  color: MainColors.textColor(context)!.withOpacity(0.6),
+                          return GestureDetector(
+                            onTap: () => Get.toNamed(Routes.MY_ACCOUNT),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${logic.user?.fullname}',
+                                  style: TextStyles.mediumLabelTextStyle(context),
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'Algeria, ben aknoun',
+                                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                    color: MainColors.textColor(context)!.withOpacity(0.6),
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         }),
                   )

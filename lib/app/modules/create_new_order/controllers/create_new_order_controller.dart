@@ -7,6 +7,7 @@ import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/data/providers/loogistic_api/order_provider.dart';
 import 'package:loogisti/app/modules/create_new_order/views/create_new_order_view.dart';
+import 'package:loogisti/app/modules/home/controllers/home_controller.dart';
 
 class CreateNewOrderController extends GetxController {
   final GlobalKey<FormState> step1FormKey = GlobalKey<FormState>();
@@ -201,6 +202,7 @@ class CreateNewOrderController extends GetxController {
       if (value != null) {
         Get.back();
         Get.back();
+        Get.find<HomeController>().refreshHome();
         ToastComponent.showSuccessToast(Get.context!, text: StringsAssetsConstants.createOrderSuccess);
       }
     });

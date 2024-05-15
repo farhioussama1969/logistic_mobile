@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -50,14 +51,22 @@ class MyAccountView extends GetView<MyAccountController> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                      ),
+                      )
+                          .animate(delay: 300.ms)
+                          .fadeIn(duration: 900.ms, delay: 300.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(0, -100), curve: Curves.easeOutQuad),
                       SizedBox(height: 14.h),
                       Center(
                         child: Text(
                           '${logic.user?.fullname}',
                           style: TextStyles.mediumLabelTextStyle(context),
                         ),
-                      ),
+                      )
+                          .animate(delay: 400.ms)
+                          .fadeIn(duration: 900.ms, delay: 300.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(100, 0), curve: Curves.easeOutQuad),
                       Center(
                         child: Text(
                           '${logic.user?.email}',
@@ -65,7 +74,11 @@ class MyAccountView extends GetView<MyAccountController> {
                             color: MainColors.textColor(context)!.withOpacity(0.6),
                           ),
                         ),
-                      ),
+                      )
+                          .animate(delay: 450.ms)
+                          .fadeIn(duration: 900.ms, delay: 300.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(100, 0), curve: Curves.easeOutQuad),
                       SizedBox(height: 40.h),
                       Column(
                         children: [
@@ -74,7 +87,11 @@ class MyAccountView extends GetView<MyAccountController> {
                               Text(
                                 StringsAssetsConstants.myAccount,
                                 style: TextStyles.mediumLabelTextStyle(context),
-                              ),
+                              )
+                                  .animate(delay: 450.ms)
+                                  .fadeIn(duration: 900.ms, delay: 300.ms)
+                                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                                  .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                             ],
                           ),
                           SizedBox(height: 15.h),
@@ -82,13 +99,21 @@ class MyAccountView extends GetView<MyAccountController> {
                             iconLink: IconsAssetsConstants.myAccountIcon,
                             title: StringsAssetsConstants.myPersonalInformation,
                             onTap: () => Get.toNamed(Routes.MY_PERSONNEL_INFORMATION),
-                          ),
+                          )
+                              .animate(delay: 450.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 15.h),
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.registerAsDriverIcon,
                             title: StringsAssetsConstants.registerAsADriver,
                             onTap: () {},
-                          ),
+                          )
+                              .animate(delay: 450.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                         ],
                       ),
                       SizedBox(height: 30.h),
@@ -104,7 +129,11 @@ class MyAccountView extends GetView<MyAccountController> {
                               Text(
                                 StringsAssetsConstants.support,
                                 style: TextStyles.mediumLabelTextStyle(context),
-                              ),
+                              )
+                                  .animate(delay: 500.ms)
+                                  .fadeIn(duration: 900.ms, delay: 300.ms)
+                                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                                  .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                             ],
                           ),
                           SizedBox(height: 15.h),
@@ -112,26 +141,42 @@ class MyAccountView extends GetView<MyAccountController> {
                             iconLink: IconsAssetsConstants.contactUsIcon,
                             title: StringsAssetsConstants.contactUs,
                             onTap: () {},
-                          ),
+                          )
+                              .animate(delay: 500.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 15.h),
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.aboutUsIcon,
                             title: StringsAssetsConstants.aboutUs,
                             onTap: () {},
-                          ),
+                          )
+                              .animate(delay: 500.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 15.h),
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.termsIcon,
                             title: StringsAssetsConstants.termsAndConditions,
                             onTap: () {},
-                          ),
+                          )
+                              .animate(delay: 500.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                           SizedBox(height: 15.h),
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.deleteAccountIcon,
                             title: StringsAssetsConstants.deleteAccount,
                             onTap: () {},
                             hideArrow: true,
-                          ),
+                          )
+                              .animate(delay: 500.ms)
+                              .fadeIn(duration: 900.ms, delay: 300.ms)
+                              .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                              .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                         ],
                       ),
                       SizedBox(height: 50.h),

@@ -70,7 +70,7 @@ class HomeController extends GetxController {
     );
   }
 
-  void refreshExploreProducts() {
+  void refreshHome() {
     currentOrdersPage = 1;
     changeHomeOrdersData(null, refresh: true);
     getHomeOrdersData();
