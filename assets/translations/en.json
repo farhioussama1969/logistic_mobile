@@ -150,7 +150,9 @@
   "empty orders": "There are no orders yet",
 
   "empty notifications": "There are no notifications yet",
-  "notifications": "Notifications"
+  "notifications": "Notifications",
+
+  "create new order description": "Start with your first delivery order"
 
 
 

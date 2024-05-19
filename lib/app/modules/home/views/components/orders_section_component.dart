@@ -8,6 +8,7 @@ import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/data/models/order_model.dart';
+import 'package:loogisti/app/modules/home/views/components/create_order_card_big_component.dart';
 
 class OrdersSectionComponent extends StatelessWidget {
   const OrdersSectionComponent({super.key, required this.orders, required this.loading, required this.scrollController});
@@ -39,7 +40,7 @@ class OrdersSectionComponent extends StatelessWidget {
               .fadeIn(duration: 900.ms, delay: 300.ms)
               .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
               .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
-          (orders.isNotEmpty || (orders.isEmpty && loading))
+          (orders.isEmpty || (orders.isEmpty && loading))
               ? ListView.separated(
                   shrinkWrap: true,
                   padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 10.h, bottom: 30.h),
@@ -64,8 +65,8 @@ class OrdersSectionComponent extends StatelessWidget {
                 )
               : Column(
                   children: [
-                    EmptyComponent(text: StringsAssetsConstants.emptyOrders),
-                    SizedBox(height: 300.h),
+                    SizedBox(height: 10.h),
+                    CreateOrderCardBigComponent(),
                   ],
                 ),
         ],
