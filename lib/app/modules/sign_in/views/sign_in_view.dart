@@ -16,6 +16,7 @@ import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/theme_util.dart';
 import 'package:loogisti/app/modules/sign_in/views/components/social_login_button_component.dart';
 
 import '../controllers/sign_in_controller.dart';
@@ -89,7 +90,7 @@ class SignInView extends GetView<SignInController> {
                   Padding(
                     padding: EdgeInsets.only(top: 50.h),
                     child: SvgPicture.asset(
-                      LogosAssetsConstants.fullHorizontalLogoBlack,
+                      ThemeUtil.isDarkMode ? LogosAssetsConstants.fullHorizontalLogoWhite : LogosAssetsConstants.fullHorizontalLogoBlack,
                       width: 300.r,
                     ),
                   )

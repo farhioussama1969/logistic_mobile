@@ -15,6 +15,7 @@ import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/theme_util.dart';
 import 'package:loogisti/app/modules/config_controller.dart';
 
 import '../controllers/splash_controller.dart';
@@ -42,14 +43,11 @@ class SplashView extends GetView<SplashController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      LogosAssetsConstants.fullLogoBlack,
+                      ThemeUtil.isDarkMode ? LogosAssetsConstants.fullLogoWhite : LogosAssetsConstants.fullLogoBlack,
                       width: 220.r,
                     ),
                   ],
-                ).animate().blurXY(
-                    begin: 10,
-                    end: 0,
-                    duration: const Duration(milliseconds: 1500))),
+                ).animate().blurXY(begin: 10, end: 0, duration: const Duration(milliseconds: 1500))),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -60,8 +58,7 @@ class SplashView extends GetView<SplashController> {
                     builder: (logic) => logic.appVersion != null
                         ? Text(
                             '${StringsAssetsConstants.appName} (v${logic.appVersion})',
-                            style: TextStyles.mediumLabelTextStyle(context)
-                                .copyWith(),
+                            style: TextStyles.mediumLabelTextStyle(context).copyWith(),
                           )
                         : const SizedBox.shrink()),
                 SizedBox(height: 30.h),
