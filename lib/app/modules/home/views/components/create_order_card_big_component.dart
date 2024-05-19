@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/animations/animated_possition_component.dart';
 import 'package:loogisti/app/core/components/buttons/primary_button_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
@@ -10,6 +11,7 @@ import 'package:loogisti/app/core/constants/logos_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/routes/app_pages.dart';
 
 class CreateOrderCardBigComponent extends StatelessWidget {
   const CreateOrderCardBigComponent({super.key});
@@ -112,7 +114,7 @@ class CreateOrderCardBigComponent extends StatelessWidget {
                                 PrimaryButtonComponent(
                                   height: 50.h,
                                   width: 150.w,
-                                  onTap: () {},
+                                  onTap: () => Get.toNamed(Routes.CREATE_NEW_ORDER),
                                   textStyle: TextStyles.smallBodyTextStyle(context).copyWith(
                                     color: MainColors.whiteColor,
                                   ),
