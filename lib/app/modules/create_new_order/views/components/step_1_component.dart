@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:loogisti/app/core/components/inputs/text_input_component.dart';
 import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
@@ -29,7 +30,8 @@ class Step1Component extends StatelessWidget {
       required this.senderPhoneNumberController,
       required this.receiverPhoneNumberController,
       this.price,
-      this.distance});
+      this.distance,
+      required this.getPricingLoading});
 
   final TextEditingController pickUpLocationController;
   final TextEditingController dropOffLocationController;
@@ -44,6 +46,7 @@ class Step1Component extends StatelessWidget {
   final TextEditingController receiverPhoneNumberController;
   final double? price;
   final double? distance;
+  final bool getPricingLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -260,6 +263,11 @@ class Step1Component extends StatelessWidget {
                   .fadeIn(duration: 900.ms, delay: 300.ms)
                   .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
                   .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+            if (getPricingLoading)
+              LoadingAnimationWidget.staggeredDotsWave(
+                color: MainColors.primaryColor,
+                size: 30.r,
+              ),
             if (pickUpLatitude != null &&
                 pickUpLongitude != null &&
                 dropOffLatitude != null &&

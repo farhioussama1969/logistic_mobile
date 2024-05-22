@@ -21,50 +21,53 @@ class NotificationCardComponent extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: MainColors.backgroundColor(context),
-          border: Border.all(
-              color: isRead ? MainColors.disableColor(context)!.withOpacity(0.3) : MainColors.primaryColor.withOpacity(0.7), width: 1.r),
+          border: Border.all(color: MainColors.disableColor(context)!.withOpacity(0.3), width: 1.5.r),
           borderRadius: BorderRadius.circular(15.r),
         ),
-        padding: EdgeInsets.all(10.r),
+        //padding: EdgeInsets.all(10.r),
         child: Row(
           children: [
             Container(
               alignment: Alignment.center,
-              width: 60.r,
-              height: 60.r,
+              width: 100.r,
+              height: 100.r,
               decoration: BoxDecoration(
-                gradient: isRead
-                    ? LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          MainColors.disableColor(context)!,
-                          MainColors.disableColor(context)!.withOpacity(0.6),
-                        ],
-                      )
-                    : MainColors.primaryGradientColor,
-                // notification.colorCode == null
-                //     ? MainColors.primaryGradientColor
-                // : LinearGradient(
-                //     begin: Alignment.topLeft,
-                //     end: Alignment.bottomRight,
-                //     colors: [
-                //       ColorConvertorUtil().stringColorCodeToColor(
-                //         notification.colorCode,
-                //       ),
-                //       ColorConvertorUtil()
-                //           .stringColorCodeToColor(
-                //             notification.colorCode,
-                //           )
-                //           .withOpacity(0.6),
-                //     ],
-                //   ),
-                borderRadius: BorderRadius.circular(1000.r),
+                color: notification.typeof == "1"
+                    ? MainColors.inputColor(context)
+                    : notification.typeof == "2"
+                        ? MainColors.inputColor(context)
+                        : notification.typeof == "3"
+                            ? MainColors.inputColor(context)
+                            : notification.typeof == "4"
+                                ? MainColors.inputColor(context)
+                                : notification.typeof == "5"
+                                    ? MainColors.inputColor(context)
+                                    : MainColors.primaryColor,
+                borderRadius: BorderRadius.circular(13.r),
               ),
               child: SvgPicture.asset(
-                //notification.iconLink ??
-                IconsAssetsConstants.notificationIcon,
-                color: MainColors.whiteColor,
+                notification.typeof == "1"
+                    ? IconsAssetsConstants.notificationDiscountIcon
+                    : notification.typeof == "2"
+                        ? IconsAssetsConstants.acceptedOrderNotificationIcon
+                        : notification.typeof == "3"
+                            ? IconsAssetsConstants.rejectedOrderNotificationIcon
+                            : notification.typeof == "4"
+                                ? IconsAssetsConstants.deliveredOrderNotificationIcon
+                                : notification.typeof == "5"
+                                    ? IconsAssetsConstants.acceptedOrderNotificationIcon
+                                    : IconsAssetsConstants.notificationDiscountIcon,
+                color: notification.typeof == "1"
+                    ? MainColors.warningColor(context)
+                    : notification.typeof == "2"
+                        ? MainColors.successColor(context)
+                        : notification.typeof == "3"
+                            ? MainColors.errorColor(context)
+                            : notification.typeof == "4"
+                                ? MainColors.successColor(context)
+                                : notification.typeof == "5"
+                                    ? MainColors.successColor(context)
+                                    : MainColors.whiteColor,
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -75,32 +78,48 @@ class NotificationCardComponent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    notification.title ?? '',
-                    style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                      fontSize: 16.sp,
-                    ),
-                    overflow: TextOverflow.clip,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          notification.title ?? '',
+                          style: TextStyles.mediumLabelTextStyle(context).copyWith(
+                            fontSize: 16.sp,
+                          ),
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                      Text(
+                        DateTime.now().toString().substring(10, 16),
+                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                          fontSize: 12.sp,
+                          color: MainColors.disableColor(context),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 5.h,
                   ),
-                  Text(
-                    notification.data ?? '',
-                    style: TextStyles.mediumBodyTextStyle(context).copyWith(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          notification.message ?? '',
+                          style: TextStyles.mediumBodyTextStyle(context).copyWith(),
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 5.h,
-                  ),
-                  Text(
-                    DateTime.now().toString().substring(10, 16),
-                    style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                      fontSize: 12.sp,
-                      color: MainColors.disableColor(context),
-                    ),
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              width: 10.w,
             ),
           ],
         ),

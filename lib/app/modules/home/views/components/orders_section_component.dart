@@ -40,7 +40,7 @@ class OrdersSectionComponent extends StatelessWidget {
               .fadeIn(duration: 900.ms, delay: 300.ms)
               .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
               .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
-          (orders.isEmpty || (orders.isEmpty && loading))
+          (!orders.isEmpty || (orders.isEmpty && loading))
               ? ListView.separated(
                   shrinkWrap: true,
                   padding: EdgeInsets.only(right: 20.w, left: 20.w, top: 10.h, bottom: 30.h),

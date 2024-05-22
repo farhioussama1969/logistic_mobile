@@ -17,17 +17,16 @@ class NotificationsShimmerComponent extends StatelessWidget {
         border: Border.all(color: MainColors.disableColor(context)!.withOpacity(0.3), width: 1.r),
         borderRadius: BorderRadius.circular(15.r),
       ),
-      padding: EdgeInsets.all(10.r),
       child: Row(
         children: [
           ShimmerComponent(
             child: Container(
               alignment: Alignment.center,
-              width: 60.r,
-              height: 60.r,
+              width: 100.r,
+              height: 100.r,
               decoration: BoxDecoration(
                 border: Border.all(color: MainColors.disableColor(context)!),
-                borderRadius: BorderRadius.circular(1000.r),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               child: SvgPicture.asset(
                 //notification.iconLink ??

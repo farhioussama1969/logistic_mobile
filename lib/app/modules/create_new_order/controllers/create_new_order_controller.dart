@@ -98,7 +98,7 @@ class CreateNewOrderController extends GetxController {
   void onPickupTimeSelected(DateTime time) {
     pickupTimeController.text = time.toString().substring(10, 16);
     pickupTime = time;
-    update([GetBuildersIdsConstants.createOrderStep3]);
+    update([GetBuildersIdsConstants.createOrderSteps]);
   }
 
   double? discountPercentage;

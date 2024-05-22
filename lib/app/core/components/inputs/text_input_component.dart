@@ -75,22 +75,22 @@ class TextInputComponent extends StatelessWidget {
       time: const Duration(milliseconds: 300),
       child: Column(
         children: [
-          (isLabelOutside != null && isLabelOutside == true)
-              ? SizedBox(
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(bottom: 5.h, start: 14.w),
-                        child: Text(
-                          label == null ? "" : label!,
-                          style: TextStyles.mediumBodyTextStyle(context),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              : Container(),
+          // (isLabelOutside != null && isLabelOutside == true)
+          //     ? SizedBox(
+          //         width: double.infinity,
+          //         child: Row(
+          //           children: [
+          //             Padding(
+          //               padding: EdgeInsetsDirectional.only(bottom: 5.h, start: 14.w),
+          //               child: Text(
+          //                 label == null ? "" : label!,
+          //                 style: TextStyles.mediumBodyTextStyle(context),
+          //               ),
+          //             )
+          //           ],
+          //         ),
+          //       )
+          //     : Container(),
           SizedBox(
             width: double.infinity,
             child: TextFormField(
@@ -109,6 +109,19 @@ class TextInputComponent extends StatelessWidget {
               cursorColor: MainColors.primaryColor,
               inputFormatters: textInputFormatter != null ? [textInputFormatter!] : null,
               decoration: InputDecoration(
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                label: label == null
+                    ? null
+                    : Text(
+                        label!,
+                        style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                          color: MainColors.textColor(context),
+                          fontSize: 20.sp,
+                        ),
+                      ),
+                labelStyle: TextStyles.mediumBodyTextStyle(context).copyWith(
+                  color: MainColors.textColor(context),
+                ),
                 counterText: '',
                 hintStyle: TextStyles.mediumBodyTextStyle(context).copyWith(
                   color: MainColors.disableColor(context),

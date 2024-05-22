@@ -50,6 +50,7 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                 builder: (logic) {
                   return logic.step == 1
                       ? Step1Component(
+                          getPricingLoading: controller.getPricingLoading,
                           fromKey: controller.step1FormKey,
                           pickUpLocationController: controller.pickUpLocationController,
                           dropOffLocationController: controller.dropOffLocationController,
