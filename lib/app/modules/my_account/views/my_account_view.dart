@@ -11,6 +11,7 @@ import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart
 import 'package:loogisti/app/core/components/windows/confirm_window_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
+import 'package:loogisti/app/core/constants/images_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
@@ -211,8 +212,9 @@ class MyAccountView extends GetView<MyAccountController> {
             onCancel: () => Get.back(),
             onConfirm: () => logic.clearUser(),
             baseColor: MainColors.errorColor(context),
-            iconPath: IconsAssetsConstants.logoutIcon,
+            iconPath: ImagesAssetsConstants.logoutImage,
             isLoading: logic.logoutLoading,
+            iconColor: null,
           );
         },
       ),

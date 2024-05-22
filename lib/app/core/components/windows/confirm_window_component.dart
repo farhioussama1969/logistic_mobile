@@ -20,7 +20,8 @@ class ConfirmWindowComponent extends StatelessWidget {
       required this.onConfirm,
       this.isLoading,
       this.baseColor,
-      this.iconPath});
+      this.iconPath,
+      this.iconColor});
 
   final String title;
   final String subtitle;
@@ -29,6 +30,7 @@ class ConfirmWindowComponent extends StatelessWidget {
   final bool? isLoading;
   final Color? baseColor;
   final String? iconPath;
+  final String? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class ConfirmWindowComponent extends StatelessWidget {
                 SvgPicture.asset(
                   iconPath ?? IconsAssetsConstants.infoIcon,
                   width: 100.r,
-                  color: baseColor ?? MainColors.primaryColor,
+                  color: null,
                 ),
                 SizedBox(height: 20.h),
                 Center(
