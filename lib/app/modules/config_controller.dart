@@ -13,16 +13,6 @@ class ConfigController extends GetxController {
     update([GetBuildersIdsConstants.splashVersionText]);
   }
 
-  GeneralSettingsModel? generalSettingsData;
-
-  Future<void> getGeneralSettingsData() async {
-    await ConfigProvider().generalSettings(onLoading: () {}, onFinal: () {}).then((value) {
-      if (value != null) {
-        generalSettingsData = value;
-      }
-    });
-  }
-
   initialize() async {
     await getPackageVersion();
     //await getGeneralSettingsData();

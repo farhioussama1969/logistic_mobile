@@ -4,18 +4,18 @@ import 'package:loogisti/app/data/models/api_response.dart';
 import 'package:loogisti/app/data/models/general_settings_model.dart';
 
 class ConfigProvider {
-  Future<GeneralSettingsModel?> generalSettings({
+  Future<String?> termsAndConditions({
     required Function onLoading,
     required Function onFinal,
   }) async {
     ApiResponse? response = await HttpClientService.sendRequest(
-      endPoint: EndPointsConstants.generalSettings,
+      endPoint: EndPointsConstants.termsAndConditions,
       requestType: HttpRequestTypes.get,
       onLoading: () => onLoading(),
       onFinal: () => onFinal(),
     );
     if (response?.body != null) {
-      return GeneralSettingsModel.fromJson(response?.body);
+      return response?.body['terms']['content'];
     }
     return null;
   }

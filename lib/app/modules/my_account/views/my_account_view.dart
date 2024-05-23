@@ -161,7 +161,7 @@ class MyAccountView extends GetView<MyAccountController> {
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.termsIcon,
                             title: StringsAssetsConstants.termsAndConditions,
-                            onTap: () {},
+                            onTap: () => Get.toNamed(Routes.TERMS),
                           )
                               .animate(delay: 500.ms)
                               .fadeIn(duration: 900.ms, delay: 300.ms)

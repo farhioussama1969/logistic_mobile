@@ -22,6 +22,8 @@ import '../modules/sign_in/bindings/sign_in_binding.dart';
 import '../modules/sign_in/views/sign_in_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/terms/bindings/terms_binding.dart';
+import '../modules/terms/views/terms_view.dart';
 
 part 'app_routes.dart';
 
@@ -85,6 +87,11 @@ class AppPages {
       name: _Paths.NOTIFICATIONS,
       page: () => const NotificationsView(),
       binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.TERMS,
+      page: () => const TermsView(),
+      binding: TermsBinding(),
     ),
   ];
 }

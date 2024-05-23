@@ -14,6 +14,7 @@ abstract class Routes {
   static const MY_ACCOUNT = _Paths.MY_ACCOUNT;
   static const MY_PERSONNEL_INFORMATION = _Paths.MY_PERSONNEL_INFORMATION;
   static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const TERMS = _Paths.TERMS;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const MY_ACCOUNT = '/my-account';
   static const MY_PERSONNEL_INFORMATION = '/my-personnel-information';
   static const NOTIFICATIONS = '/notifications';
+  static const TERMS = '/terms';
 }

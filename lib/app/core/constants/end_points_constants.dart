@@ -2,7 +2,7 @@ class EndPointsConstants {
   static const String baseUrl = 'https://loogisti.com/api/v1/';
 
   //config provider
-  static const String generalSettings = 'general_settings';
+  static const String termsAndConditions = 'terms-of-use';
 
   //auth provider
   static const String socialSignIn = 'user/login';
