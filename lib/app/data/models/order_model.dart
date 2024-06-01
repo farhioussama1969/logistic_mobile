@@ -17,6 +17,8 @@ class OrderModel {
   String? driverPhone;
   String? deliveryName;
   String? puckUpName;
+  double? distance;
+  double? currentDistance;
   List<OrderStatusModel>? status;
 
   OrderModel(
