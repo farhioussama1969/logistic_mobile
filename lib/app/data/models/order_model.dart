@@ -1,3 +1,4 @@
+import 'package:loogisti/app/data/models/order_component_model.dart';
 import 'package:loogisti/app/data/models/order_status_model.dart';
 
 class OrderModel {
@@ -20,6 +21,7 @@ class OrderModel {
   double? distance;
   double? currentDistance;
   List<OrderStatusModel>? status;
+  OrderComponentModel? orderComponent;
 
   OrderModel(
       {this.id,
@@ -38,7 +40,10 @@ class OrderModel {
       this.driverPhone,
       this.status,
       this.deliveryName,
-      this.puckUpName});
+      this.puckUpName,
+      this.distance,
+      this.currentDistance,
+      this.orderComponent});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -63,6 +68,9 @@ class OrderModel {
         status!.add(new OrderStatusModel.fromJson(v));
       });
     }
+    if (json['component'] != null) {
+      orderComponent = OrderComponentModel.fromJson(json['component']);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -85,6 +93,9 @@ class OrderModel {
     data['pickup_name'] = this.puckUpName;
     if (this.status != null) {
       data['status'] = this.status!.map((v) => v.toJson()).toList();
+    }
+    if (this.orderComponent != null) {
+      data['component'] = this.orderComponent!.toJson();
     }
     return data;
   }

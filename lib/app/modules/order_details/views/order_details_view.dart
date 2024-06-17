@@ -5,7 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/animations/animator_component.dart';
+import 'package:loogisti/app/core/components/animations/loading_component.dart';
 import 'package:loogisti/app/core/components/cards/order_card_component.dart';
+import 'package:loogisti/app/core/components/cards/tag_component.dart';
+import 'package:loogisti/app/core/components/images/network_image_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/text/animated_type_text_component.dart';
 import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
@@ -19,6 +22,7 @@ import '../controllers/order_details_controller.dart';
 
 class OrderDetailsView extends GetView<OrderDetailsController> {
   const OrderDetailsView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,6 +163,67 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                   .fadeIn(duration: 900.ms, delay: 300.ms)
                   .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
                   .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+              if (controller.orderData?.orderComponent != null)
+                GetBuilder<OrderDetailsController>(builder: (logic) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 30.h),
+                      Row(
+                        children: [
+                          SizedBox(width: 10.w),
+                          Text(
+                            StringsAssetsConstants.procedures,
+                            style: TextStyles.mediumLabelTextStyle(context),
+                          )
+                        ],
+                      )
+                          .animate(delay: 200.ms)
+                          .fadeIn(duration: 900.ms, delay: 400.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+                      SizedBox(height: 15.h),
+                      Row(children: [
+                        Expanded(
+                          child: Text(
+                            controller.orderData?.orderComponent?.text ?? '',
+                            style: TextStyles.mediumBodyTextStyle(context),
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        for (int i = 0; i < (controller.orderData?.orderComponent?.buttons?.length ?? 0); i++)
+                          InkWell(
+                            onTap: () {
+                              controller.changeOrderStatus(i);
+                            },
+                            child: TagComponent(
+                              title: '',
+                              titleWidget: controller.orderData?.orderComponent?.buttons?[i].isLoading != true
+                                  ? Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 25.r,
+                                          height: 25.r,
+                                          child: NetworkImageComponent(
+                                            imageLink: '${controller.orderData?.orderComponent?.buttons?[i].icon}',
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                        SizedBox(width: 5.w),
+                                        Text(
+                                          controller.orderData?.orderComponent?.buttons?[i].text ?? '',
+                                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                            color: MainColors.whiteColor,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : const LoadingComponent(color: MainColors.whiteColor),
+                            ),
+                          ),
+                      ]),
+                    ],
+                  );
+                }),
               SizedBox(height: 30.h),
               Row(
                 children: [

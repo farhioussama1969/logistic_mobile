@@ -193,7 +193,7 @@ class CreateNewOrderController extends GetxController {
       reciverPhone: receiverPhoneNumberController.text,
       price: double.parse(itemPriceController.text),
       bestTimeDelevery: isChosenTime ? pickupTime.toString().substring(10, 15) : null,
-      coupon: couponCode!,
+      coupon: couponCode,
       image: selectedInvoiceFile,
       onLoading: () => changeCreateNewOrderLoading(true),
       onFinal: () => changeCreateNewOrderLoading(false),

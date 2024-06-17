@@ -26,7 +26,7 @@ class OrderCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? progress = 0.9;
+    double? progress = orderData?.currentDistance == null ? 0 : (orderData!.currentDistance! / orderData!.distance!);
 
     return orderData != null
         ? GestureDetector(

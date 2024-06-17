@@ -152,7 +152,11 @@
   "empty notifications": "There are no notifications yet",
   "notifications": "Notifications",
 
-  "create new order description": "Start with your first delivery order"
+  "create new order description": "Start with your first delivery order",
+
+  "procedures": "Procedures",
+
+  "order status has been updated successfully": "Order status has been updated successfully"
 
 
 

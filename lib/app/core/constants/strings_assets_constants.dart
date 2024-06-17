@@ -142,4 +142,6 @@ static String get emptyOrders{return "empty orders".tr;}
 static String get emptyNotifications{return "empty notifications".tr;}
 static String get notifications{return "notifications".tr;}
 static String get createNewOrderDescription{return "create new order description".tr;}
+static String get procedures{return "procedures".tr;}
+static String get orderStatusHasBeenUpdatedSuccessfully{return "order status has been updated successfully".tr;}
 }

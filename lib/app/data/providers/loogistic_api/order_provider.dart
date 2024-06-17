@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:loogisti/app/core/constants/end_points_constants.dart';
 import 'package:loogisti/app/core/services/http_client_service.dart';
+import 'package:loogisti/app/data/models/action_status_model.dart';
 import 'package:loogisti/app/data/models/api_response.dart';
 import 'package:loogisti/app/data/models/home_orders_model.dart';
 import 'package:loogisti/app/data/models/order_model.dart';
@@ -117,6 +118,24 @@ class OrderProvider {
     );
     if (response?.body != null) {
       return double.parse(response!.body['discount_percentage'].toString());
+    }
+    return null;
+  }
+
+  Future<ActionStatusModel?> orderAction({
+    required int? orderId,
+    required int? statusId,
+    required Function onLoading,
+    required Function onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.changeOrderStatus(orderId, statusId),
+      requestType: HttpRequestTypes.get,
+      onLoading: () => onLoading(),
+      onFinal: () => onFinal(),
+    );
+    if (response?.body != null) {
+      return ActionStatusModel.fromJson(response?.body['status']);
     }
     return null;
   }

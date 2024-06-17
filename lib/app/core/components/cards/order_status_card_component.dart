@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loogisti/app/core/components/images/network_image_component.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
@@ -19,6 +20,7 @@ class OrderStatusCardComponent extends StatelessWidget {
         Container(
           height: 80.r,
           width: 80.r,
+          padding: EdgeInsets.all(10.r),
           decoration: BoxDecoration(
             color: MainColors.inputColor(context),
             borderRadius: BorderRadius.circular(1000.r),
@@ -27,11 +29,12 @@ class OrderStatusCardComponent extends StatelessWidget {
               width: 2.r,
             ),
           ),
-          child: Center(
-            child: SvgPicture.asset(
-              IconsAssetsConstants.orderPendingIcon,
-              width: 40.r,
-              color: MainColors.textColor(context),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(1000.r),
+            child: Center(
+              child: NetworkImageComponent(
+                imageLink: '${orderStatusData.icon}',
+              ),
             ),
           ),
         ),
@@ -43,7 +46,7 @@ class OrderStatusCardComponent extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      StringsAssetsConstants.pendingOrderTitle,
+                      orderStatusData.name ?? '',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
                         color: MainColors.warningColor(context),
                       ),
@@ -57,7 +60,7 @@ class OrderStatusCardComponent extends StatelessWidget {
                   SizedBox(width: 5.w),
                   Expanded(
                     child: Text(
-                      StringsAssetsConstants.pendingOrderDescription,
+                      orderStatusData.title ?? '',
                       style: TextStyles.mediumBodyTextStyle(context).copyWith(
                         color: MainColors.textColor(context)!.withOpacity(0.6),
                       ),
