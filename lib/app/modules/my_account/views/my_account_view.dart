@@ -141,7 +141,7 @@ class MyAccountView extends GetView<MyAccountController> {
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.contactUsIcon,
                             title: StringsAssetsConstants.contactUs,
-                            onTap: () {},
+                            onTap: () => Get.toNamed(Routes.CONTACT),
                           )
                               .animate(delay: 500.ms)
                               .fadeIn(duration: 900.ms, delay: 300.ms)
@@ -151,7 +151,7 @@ class MyAccountView extends GetView<MyAccountController> {
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.aboutUsIcon,
                             title: StringsAssetsConstants.aboutUs,
-                            onTap: () {},
+                            onTap: () => Get.toNamed(Routes.ABOUT),
                           )
                               .animate(delay: 500.ms)
                               .fadeIn(duration: 900.ms, delay: 300.ms)

@@ -3,6 +3,8 @@ class EndPointsConstants {
 
   //config provider
   static const String termsAndConditions = 'terms-of-use';
+  static const String contact = 'contact-us';
+  static const String about = 'who-are-we';
 
   //auth provider
   static const String socialSignIn = 'user/login';

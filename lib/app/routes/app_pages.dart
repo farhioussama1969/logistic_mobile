@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import '../modules/about/bindings/about_binding.dart';
+import '../modules/about/views/about_view.dart';
 import '../modules/banned/bindings/banned_binding.dart';
 import '../modules/banned/views/banned_view.dart';
+import '../modules/contact/bindings/contact_binding.dart';
+import '../modules/contact/views/contact_view.dart';
 import '../modules/create_new_order/bindings/create_new_order_binding.dart';
 import '../modules/create_new_order/views/create_new_order_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -92,6 +96,16 @@ class AppPages {
       name: _Paths.TERMS,
       page: () => const TermsView(),
       binding: TermsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONTACT,
+      page: () => const ContactView(),
+      binding: ContactBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => const AboutView(),
+      binding: AboutBinding(),
     ),
   ];
 }

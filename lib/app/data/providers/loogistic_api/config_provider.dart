@@ -19,4 +19,36 @@ class ConfigProvider {
     }
     return null;
   }
+
+  Future<String?> contact({
+    required Function onLoading,
+    required Function onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.contact,
+      requestType: HttpRequestTypes.get,
+      onLoading: () => onLoading(),
+      onFinal: () => onFinal(),
+    );
+    if (response?.body != null) {
+      return response?.body['contact']['content'];
+    }
+    return null;
+  }
+
+  Future<String?> about({
+    required Function onLoading,
+    required Function onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.about,
+      requestType: HttpRequestTypes.get,
+      onLoading: () => onLoading(),
+      onFinal: () => onFinal(),
+    );
+    if (response?.body != null) {
+      return response?.body['who']['content'];
+    }
+    return null;
+  }
 }
