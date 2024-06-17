@@ -191,33 +191,36 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                         ),
                         SizedBox(width: 4.w),
                         for (int i = 0; i < (controller.orderData?.orderComponent?.buttons?.length ?? 0); i++)
-                          InkWell(
-                            onTap: () {
-                              controller.changeOrderStatus(i);
-                            },
-                            child: TagComponent(
-                              title: '',
-                              titleWidget: controller.orderData?.orderComponent?.buttons?[i].isLoading != true
-                                  ? Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 25.r,
-                                          height: 25.r,
-                                          child: NetworkImageComponent(
-                                            imageLink: '${controller.orderData?.orderComponent?.buttons?[i].icon}',
-                                            fit: BoxFit.contain,
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                            child: InkWell(
+                              onTap: () {
+                                controller.changeOrderStatus(i);
+                              },
+                              child: TagComponent(
+                                title: '',
+                                titleWidget: controller.orderData?.orderComponent?.buttons?[i].isLoading != true
+                                    ? Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 25.r,
+                                            height: 25.r,
+                                            child: NetworkImageComponent(
+                                              imageLink: '${controller.orderData?.orderComponent?.buttons?[i].icon}',
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        Text(
-                                          controller.orderData?.orderComponent?.buttons?[i].text ?? '',
-                                          style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                            color: MainColors.whiteColor,
+                                          SizedBox(width: 5.w),
+                                          Text(
+                                            controller.orderData?.orderComponent?.buttons?[i].text ?? '',
+                                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                              color: MainColors.whiteColor,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  : const LoadingComponent(color: MainColors.whiteColor),
+                                        ],
+                                      )
+                                    : const LoadingComponent(color: MainColors.whiteColor),
+                              ),
                             ),
                           ),
                       ]),
