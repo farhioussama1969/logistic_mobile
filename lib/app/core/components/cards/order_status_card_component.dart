@@ -6,6 +6,7 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
+import 'package:loogisti/app/core/utils/relative_date_util.dart';
 import 'package:loogisti/app/data/models/order_status_model.dart';
 
 class OrderStatusCardComponent extends StatelessWidget {
@@ -22,7 +23,7 @@ class OrderStatusCardComponent extends StatelessWidget {
           width: 80.r,
           padding: EdgeInsets.all(10.r),
           decoration: BoxDecoration(
-            color: MainColors.inputColor(context),
+            color: orderStatusData.backgroundColor ?? MainColors.inputColor(context),
             borderRadius: BorderRadius.circular(1000.r),
             border: Border.all(
               color: MainColors.textColor(context)!.withOpacity(0.1),
@@ -48,8 +49,16 @@ class OrderStatusCardComponent extends StatelessWidget {
                     child: Text(
                       orderStatusData.name ?? '',
                       style: TextStyles.mediumLabelTextStyle(context).copyWith(
-                        color: MainColors.warningColor(context),
+                        color: orderStatusData.backgroundColor,
                       ),
+                    ),
+                  ),
+                  Text(
+                    RelativeDateUtil.getRelativeDateSinceNow(
+                        relativeDateInUnix: DateTime.parse('${orderStatusData.createdAt}').millisecondsSinceEpoch),
+                    style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                      color: MainColors.textColor(context)!.withOpacity(0.6),
+                      fontSize: 14.sp,
                     ),
                   ),
                 ],

@@ -4,6 +4,7 @@ import 'package:loogisti/app/core/constants/end_points_constants.dart';
 import 'package:loogisti/app/core/services/http_client_service.dart';
 import 'package:loogisti/app/data/models/action_status_model.dart';
 import 'package:loogisti/app/data/models/api_response.dart';
+import 'package:loogisti/app/data/models/comment_model.dart';
 import 'package:loogisti/app/data/models/home_orders_model.dart';
 import 'package:loogisti/app/data/models/order_model.dart';
 import 'package:dio/dio.dart' as dio;
@@ -136,6 +137,30 @@ class OrderProvider {
     );
     if (response?.body != null) {
       return ActionStatusModel.fromJson(response?.body['status']);
+    }
+    return null;
+  }
+
+  Future<CommentModel?> orderRating({
+    required int? orderId,
+    required int? rating,
+    required String? comment,
+    required Function onLoading,
+    required Function onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.commentOrder,
+      requestType: HttpRequestTypes.post,
+      data: {
+        'order_id': orderId.toString(),
+        'type': rating,
+        'content': comment,
+      },
+      onLoading: () => onLoading(),
+      onFinal: () => onFinal(),
+    );
+    if (response?.body != null) {
+      return CommentModel.fromJson(response?.body['comment']);
     }
     return null;
   }

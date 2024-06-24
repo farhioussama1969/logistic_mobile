@@ -5,6 +5,7 @@ class GetBuildersIdsConstants {
   static const String profileAppLangWindowButton = "profile_app_lang_window_button";
 
   static const String logoutConfirmationWindow = "logout_confirmation_window";
+  static const String deleteConfirmationWindow = "delete_confirmation_window";
   static const String profileGanderWindow = "profile_gander_window";
   static const String createOrderSteps = "create_order_steps";
   static const String createOrderStep1 = "create_order_step1";
@@ -27,4 +28,5 @@ class GetBuildersIdsConstants {
   static const String termsAndConditionsBody = "terms_and_conditions_body";
   static const String contactBody = "contact_body";
   static const String aboutBody = "about_body";
+  static const String orderRating = "order_rating";
 }

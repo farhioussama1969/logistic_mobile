@@ -59,9 +59,15 @@ class UserController extends GetxController {
     update([GetBuildersIdsConstants.logoutConfirmationWindow]);
   }
 
-  Future<void> clearUser({bool? withoutLogout}) async {
+  Future<void> clearUser({bool? withoutLogout, bool? deleteAccount}) async {
     if (withoutLogout != true) {
       await auth.AuthProvider().logout(
+        onLoading: () => changeLogoutLoading(true),
+        onFinal: () => changeLogoutLoading(false),
+      );
+    }
+    if (deleteAccount == true) {
+      await auth.AuthProvider().deleteAccount(
         onLoading: () => changeLogoutLoading(true),
         onFinal: () => changeLogoutLoading(false),
       );

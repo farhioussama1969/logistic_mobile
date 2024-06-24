@@ -10,13 +10,16 @@ import 'package:loogisti/app/core/components/cards/order_card_component.dart';
 import 'package:loogisti/app/core/components/cards/tag_component.dart';
 import 'package:loogisti/app/core/components/images/network_image_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
+import 'package:loogisti/app/core/components/pop_ups/dialog_component.dart';
 import 'package:loogisti/app/core/components/text/animated_type_text_component.dart';
 import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
+import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/modules/order_details/views/components/order_statuses_history_section_component.dart';
+import 'package:loogisti/app/modules/order_details/views/components/rating_window_component.dart';
 
 import '../controllers/order_details_controller.dart';
 
@@ -227,20 +230,21 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                     ],
                   );
                 }),
-              SizedBox(height: 30.h),
-              Row(
-                children: [
-                  SizedBox(width: 10.w),
-                  Text(
-                    StringsAssetsConstants.orderStatusesHistory,
-                    style: TextStyles.mediumLabelTextStyle(context),
-                  )
-                ],
-              )
-                  .animate(delay: 200.ms)
-                  .fadeIn(duration: 900.ms, delay: 400.ms)
-                  .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
-                  .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+              if (controller.orderData?.status?.isNotEmpty ?? true) SizedBox(height: 30.h),
+              if (controller.orderData?.status?.isNotEmpty ?? true)
+                Row(
+                  children: [
+                    SizedBox(width: 10.w),
+                    Text(
+                      StringsAssetsConstants.orderStatusesHistory,
+                      style: TextStyles.mediumLabelTextStyle(context),
+                    )
+                  ],
+                )
+                    .animate(delay: 200.ms)
+                    .fadeIn(duration: 900.ms, delay: 400.ms)
+                    .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                    .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
               OrderStatusesHistorySectionComponent(
                 orderStatusData: controller.orderData?.status ?? [],
               ),
@@ -248,6 +252,24 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
           ),
         ),
       ),
+    );
+  }
+
+  void showRatingWindow() {
+    DialogComponent().show(
+      Get.context!,
+      body: GetBuilder<OrderDetailsController>(
+          id: GetBuildersIdsConstants.orderRating,
+          autoRemove: false,
+          builder: (logic) {
+            return RatingWindowComponent(
+              commentController: logic.commentController,
+              selectedRating: logic.selectedRating,
+              selectedRatingChange: logic.selectedRatingChange,
+              orderCommentLoading: logic.orderCommentLoading,
+              onConfirm: logic.orderComment,
+            );
+          }),
     );
   }
 }

@@ -144,4 +144,13 @@ static String get notifications{return "notifications".tr;}
 static String get createNewOrderDescription{return "create new order description".tr;}
 static String get procedures{return "procedures".tr;}
 static String get orderStatusHasBeenUpdatedSuccessfully{return "order status has been updated successfully".tr;}
+static String get deleteAccountDescription{return "delete account description".tr;}
+static String get rating{return "rating".tr;}
+static String get ratingDescription{return "rating description".tr;}
+static String get leaveAComment{return "leave a comment".tr;}
+static String get bad{return "bad".tr;}
+static String get veryBad{return "very bad".tr;}
+static String get satisfied{return "satisfied".tr;}
+static String get good{return "good".tr;}
+static String get excellent{return "excellent".tr;}
 }

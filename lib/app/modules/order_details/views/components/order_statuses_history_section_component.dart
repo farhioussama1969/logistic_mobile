@@ -37,7 +37,7 @@ class OrderStatusesHistorySectionComponent extends StatelessWidget {
           ),
         );
       },
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
+      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 15.h),
       itemCount: orderStatusData.length,
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,

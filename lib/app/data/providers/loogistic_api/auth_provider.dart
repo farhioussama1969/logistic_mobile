@@ -107,4 +107,19 @@ class AuthProvider {
     }
     return null;
   }
+
+  Future<void> deleteAccount({
+    required Function onLoading,
+    required Function onFinal,
+  }) async {
+    ApiResponse? response = await HttpClientService.sendRequest(
+      endPoint: EndPointsConstants.deleteAccount,
+      requestType: HttpRequestTypes.get,
+      showErrorToast: false,
+      onLoading: () => onLoading(),
+      onFinal: () => onFinal(),
+    );
+    if (response?.body != null) {}
+    return null;
+  }
 }

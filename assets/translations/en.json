@@ -156,7 +156,19 @@
 
   "procedures": "Procedures",
 
-  "order status has been updated successfully": "Order status has been updated successfully"
+  "order status has been updated successfully": "Order status has been updated successfully",
+
+  "delete account description": "Are you sure you want to delete your account?",
+
+  "rating": "Rating",
+  "rating description": "How was the process? Please rate the sender",
+  "leave a comment": "Leave a comment",
+  "bad": "Bad",
+
+  "very bad": "Very bad",
+  "satisfied": "Satisfied",
+    "good": "Good",
+    "excellent": "Excellent"
 
 
 

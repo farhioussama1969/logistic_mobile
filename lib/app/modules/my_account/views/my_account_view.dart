@@ -171,7 +171,7 @@ class MyAccountView extends GetView<MyAccountController> {
                           MyAccountItemComponent(
                             iconLink: IconsAssetsConstants.deleteAccountIcon,
                             title: StringsAssetsConstants.deleteAccount,
-                            onTap: () {},
+                            onTap: () => showDeleteAccountConfirmationWindow(context),
                             hideArrow: true,
                           )
                               .animate(delay: 500.ms)
@@ -209,6 +209,27 @@ class MyAccountView extends GetView<MyAccountController> {
           return ConfirmWindowComponent(
             title: StringsAssetsConstants.logout,
             subtitle: StringsAssetsConstants.logoutConfirmationText,
+            onCancel: () => Get.back(),
+            onConfirm: () => logic.clearUser(),
+            baseColor: MainColors.errorColor(context),
+            // iconPath: ImagesAssetsConstants.logoutImage,
+            isLoading: logic.logoutLoading,
+            iconColor: null,
+          );
+        },
+      ),
+    );
+  }
+
+  void showDeleteAccountConfirmationWindow(BuildContext context) {
+    BottomSheetComponent.show(
+      context,
+      body: GetBuilder<UserController>(
+        id: GetBuildersIdsConstants.logoutConfirmationWindow,
+        builder: (logic) {
+          return ConfirmWindowComponent(
+            title: StringsAssetsConstants.deleteAccount,
+            subtitle: StringsAssetsConstants.deleteAccountDescription,
             onCancel: () => Get.back(),
             onConfirm: () => logic.clearUser(),
             baseColor: MainColors.errorColor(context),
