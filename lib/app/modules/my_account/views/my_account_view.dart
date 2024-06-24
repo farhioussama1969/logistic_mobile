@@ -231,7 +231,7 @@ class MyAccountView extends GetView<MyAccountController> {
             title: StringsAssetsConstants.deleteAccount,
             subtitle: StringsAssetsConstants.deleteAccountDescription,
             onCancel: () => Get.back(),
-            onConfirm: () => logic.clearUser(),
+            onConfirm: () => logic.clearUser(deleteAccount: true),
             baseColor: MainColors.errorColor(context),
             iconPath: ImagesAssetsConstants.logoutImage,
             isLoading: logic.logoutLoading,
