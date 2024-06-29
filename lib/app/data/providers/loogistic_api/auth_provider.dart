@@ -66,6 +66,14 @@ class AuthProvider {
     Function? onLoading,
     Function? onFinal,
   }) async {
+    print('data sent: ${{
+      "fullname": fullName,
+      "gender": gender,
+      "phone": phoneNumber,
+      if (avatarFile == null)
+        "photo": avatarFile == null ? null : await dio.MultipartFile.fromFile(avatarFile.path, filename: avatarFile.path.split('/').last),
+    }}');
+
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.updateUserData,
       requestType: HttpRequestTypes.post,
@@ -73,8 +81,7 @@ class AuthProvider {
         "fullname": fullName,
         "gender": gender,
         "phone": phoneNumber,
-        if (avatarFile == null)
-          "photo": avatarFile == null ? null : await dio.MultipartFile.fromFile(avatarFile.path, filename: avatarFile.path.split('/').last),
+        if (avatarFile != null) "photo": await dio.MultipartFile.fromFile(avatarFile.path, filename: avatarFile.path.split('/').last),
       }),
       onLoading: () {
         if (onLoading != null) onLoading();

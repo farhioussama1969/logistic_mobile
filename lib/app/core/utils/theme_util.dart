@@ -5,7 +5,7 @@ import 'package:loogisti/app/core/constants/storage_keys_constants.dart';
 import 'package:loogisti/app/core/services/local_storage_service.dart';
 
 class ThemeUtil {
-  static ThemeMode currentTheme = ThemeMode.system;
+  static ThemeMode currentTheme = ThemeMode.light;
 
   static bool isDarkMode = false;
 

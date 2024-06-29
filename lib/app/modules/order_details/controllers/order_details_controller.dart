@@ -77,7 +77,7 @@ class OrderDetailsController extends GetxController {
 
   @override
   void onReady() {
-    const OrderDetailsView().showRatingWindow();
+    //const OrderDetailsView().showRatingWindow();
     super.onReady();
   }
 
