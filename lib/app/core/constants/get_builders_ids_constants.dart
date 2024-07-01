@@ -29,4 +29,5 @@ class GetBuildersIdsConstants {
   static const String contactBody = "contact_body";
   static const String aboutBody = "about_body";
   static const String orderRating = "order_rating";
+  static const String currentUserAddress = "current_user_address";
 }
