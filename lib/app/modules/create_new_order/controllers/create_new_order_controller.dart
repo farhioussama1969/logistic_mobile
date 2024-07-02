@@ -154,11 +154,11 @@ class CreateNewOrderController extends GetxController {
       }
     } else if (step == 2) {
       if (step2FormKey.currentState!.validate()) {
-        if (selectedInvoiceFile != null) {
-          setStep(3);
-        } else {
-          ToastComponent.showErrorToast(Get.context!, text: '${StringsAssetsConstants.check} ${StringsAssetsConstants.itemInvoice}');
-        }
+        // if (selectedInvoiceFile != null) {
+        setStep(3);
+        // } else {
+        //   ToastComponent.showErrorToast(Get.context!, text: '${StringsAssetsConstants.check} ${StringsAssetsConstants.itemInvoice}');
+        // }
       }
     } else if (step == 3) {
       if (isChosenTime) {

@@ -46,7 +46,8 @@ class OrderProvider {
         "price": price,
         if (bestTimeDelevery != null) "best_time_delevery": bestTimeDelevery,
         if (coupon != null) "coupon": coupon,
-        "image": image == null ? null : await dio.MultipartFile.fromFile(image.path, filename: image.path.split('/').last),
+        if (image != null)
+          "image": image == null ? null : await dio.MultipartFile.fromFile(image.path, filename: image.path.split('/').last),
       }),
       onLoading: () => onLoading(),
       onFinal: () => onFinal(),
