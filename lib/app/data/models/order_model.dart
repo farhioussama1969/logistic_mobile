@@ -22,6 +22,7 @@ class OrderModel {
   double? currentDistance;
   List<OrderStatusModel>? status;
   OrderComponentModel? orderComponent;
+  String? pcolor;
 
   OrderModel(
       {this.id,
@@ -43,7 +44,8 @@ class OrderModel {
       this.puckUpName,
       this.distance,
       this.currentDistance,
-      this.orderComponent});
+      this.orderComponent,
+      this.pcolor});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,6 +64,8 @@ class OrderModel {
     driverPhone = json['driver_phone'];
     deliveryName = json['delivery_name'];
     puckUpName = json['pickup_name'];
+    distance = json['distance'] != null ? double.parse(json['distance'].toString()) : null;
+    currentDistance = json['current_distance'] != null ? double.parse(json['current_distance'].toString()) : null;
     if (json['status'] != null) {
       status = <OrderStatusModel>[];
       json['status'].forEach((v) {
@@ -71,6 +75,7 @@ class OrderModel {
     if (json['component'] != null) {
       orderComponent = OrderComponentModel.fromJson(json['component']);
     }
+    pcolor = json['pcolor'];
   }
 
   Map<String, dynamic> toJson() {
@@ -91,6 +96,9 @@ class OrderModel {
     data['driver_phone'] = this.driverPhone;
     data['delivery_name'] = this.deliveryName;
     data['pickup_name'] = this.puckUpName;
+    data['distance'] = this.distance;
+    data['current_distance'] = this.currentDistance;
+    data['pcolor'] = this.pcolor;
     if (this.status != null) {
       data['status'] = this.status!.map((v) => v.toJson()).toList();
     }
