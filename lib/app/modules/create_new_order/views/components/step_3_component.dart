@@ -114,27 +114,38 @@ class Step3Component extends StatelessWidget {
                 if (logic.isChosenTime)
                   Form(
                     key: formKey,
-                    child: TextInputComponent(
-                      controller: pickupTimeController,
-                      label: StringsAssetsConstants.preferredPickupTime,
-                      isLabelOutside: true,
-                      readOnly: true,
-                      suffix: Row(
+                    child: TimeInputComponent(
+                      selectedDate: pickupTime,
+                      callBack: onPickupTimeSelected,
+                      child: Stack(
                         children: [
-                          SizedBox(width: 10.w),
-                          TimeInputComponent(
-                            selectedDate: pickupTime,
-                            callBack: onPickupTimeSelected,
-                            child: TagComponent(title: StringsAssetsConstants.pickTime),
+                          TextInputComponent(
+                            controller: pickupTimeController,
+                            label: StringsAssetsConstants.preferredPickupTime,
+                            isLabelOutside: true,
+                            readOnly: true,
+                            suffix: Row(
+                              children: [
+                                SizedBox(width: 10.w),
+                                TimeInputComponent(
+                                  selectedDate: pickupTime,
+                                  callBack: onPickupTimeSelected,
+                                  child: TagComponent(title: StringsAssetsConstants.pickTime),
+                                ),
+                                SizedBox(width: 10.w),
+                              ],
+                            ),
+                            borderColor: MainColors.textColor(context),
+                            hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
+                            textInputType: TextInputType.number,
+                            validate: (value) => ValidatorUtil.nullableValidation(pickupTime,
+                                customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.pickTime}'),
                           ),
-                          SizedBox(width: 10.w),
+                          Positioned.fill(
+                            child: Container(color: Colors.transparent),
+                          ),
                         ],
                       ),
-                      borderColor: MainColors.textColor(context),
-                      hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.preferredPickupTime}...',
-                      textInputType: TextInputType.number,
-                      validate: (value) => ValidatorUtil.nullableValidation(pickupTime,
-                          customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.pickTime}'),
                     ),
                   ),
                 SizedBox(height: 15.h),

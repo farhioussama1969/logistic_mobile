@@ -18,6 +18,7 @@ import 'package:loogisti/app/core/utils/translation_util.dart';
 import 'package:loogisti/app/core/utils/translations/translation.dart';
 import 'package:loogisti/app/core/utils/translations/translations_assets_reader.dart';
 import 'package:loogisti/app/modules/config_controller.dart';
+import 'package:loogisti/app/modules/home/controllers/home_controller.dart';
 import 'package:loogisti/app/modules/user_controller.dart';
 
 import 'app/core/services/local_notification_service.dart';
@@ -25,7 +26,9 @@ import 'app/routes/app_pages.dart';
 
 late final FirebaseMessaging _messaging;
 
-Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  LocalStorageService.saveData(key: StorageKeysConstants.newNotification, type: DataTypes.bool, value: true);
+}
 
 Future<void> requestAndRegisterNotification() async {
   await Firebase.initializeApp();
@@ -50,6 +53,10 @@ Future<void> requestAndRegisterNotification() async {
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) {
         LocalNotificationService.showNotification(title: message.notification?.title, body: message.notification?.body);
+        LocalStorageService.saveData(key: StorageKeysConstants.newNotification, type: DataTypes.bool, value: true);
+        if (Get.isRegistered<HomeController>()) {
+          Get.find<HomeController>().changeIsThereIsANewNotification(true);
+        }
       },
     );
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {});

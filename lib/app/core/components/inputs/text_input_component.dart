@@ -98,7 +98,7 @@ class TextInputComponent extends StatelessWidget {
               maxLength: maxLength,
               validator: (value) => validate!(value!),
               maxLines: maxLines ?? 1,
-              onTap: onTap == null ? null : () => onTap!(context),
+              // onTap: onTap == null ? null : () => onTap!(context),
               readOnly: readOnly ?? false,
               obscureText: obscureText ?? false,
               style: TextStyles.mediumBodyTextStyle(context),

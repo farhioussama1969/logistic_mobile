@@ -40,8 +40,8 @@ class PickLocationView extends GetView<PickLocationController> {
                 return GoogleMap(
                   initialCameraPosition: mapController.initialGoogleMapsCameraPosition ??
                       const CameraPosition(
-                        target: LatLng(28.0339, 1.6596),
-                        zoom: 4,
+                        target: LatLng(33.3678, 6.8517),
+                        zoom: 13,
                       ),
                   onMapCreated: (googleMapsController) => mapController.updateGoogleMapsController(googleMapsController),
                   onCameraMove: (cameraPosition) {

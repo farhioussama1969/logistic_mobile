@@ -135,11 +135,11 @@ class CreateNewOrderController extends GetxController {
         changeDiscountPercentage(coupon);
         changeIsCouponValid(true);
         this.couponCode = couponCode;
-        Future.delayed(const Duration(milliseconds: 500), () => changeIsCouponValid(null));
+        //Future.delayed(const Duration(milliseconds: 500), () => changeIsCouponValid(null));
       } else {
         if (couponCode.isNotEmpty) {
           changeIsCouponValid(false);
-          Future.delayed(const Duration(milliseconds: 1000), () => changeIsCouponValid(null));
+          //Future.delayed(const Duration(milliseconds: 1000), () => changeIsCouponValid(null));
         } else {
           changeIsCouponValid(null);
         }

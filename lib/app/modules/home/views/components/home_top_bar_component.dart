@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loogisti/app/core/components/buttons/icon_button_component.dart';
@@ -8,8 +9,10 @@ import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/modules/config_controller.dart';
+import 'package:loogisti/app/modules/home/controllers/home_controller.dart';
 import 'package:loogisti/app/modules/user_controller.dart';
 import 'package:loogisti/app/routes/app_pages.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomeTopBarComponent extends StatelessWidget {
   const HomeTopBarComponent({super.key});
@@ -86,9 +89,18 @@ class HomeTopBarComponent extends StatelessWidget {
             ],
           ),
         ),
-        IconButtonComponent(
-          iconLink: IconsAssetsConstants.notificationIcon,
-          onTap: () => Get.toNamed(Routes.NOTIFICATIONS),
+        GetBuilder<HomeController>(
+          id: GetBuildersIdsConstants.homeNotification,
+          builder: (logic) {
+            return badges.Badge(
+              position: badges.BadgePosition.topEnd(top: 2, end: 2),
+              showBadge: logic.isThereIsANewNotification,
+              child: IconButtonComponent(
+                iconLink: IconsAssetsConstants.notificationIcon,
+                onTap: () => Get.toNamed(Routes.NOTIFICATIONS),
+              ),
+            );
+          },
         ),
       ]),
     ));
