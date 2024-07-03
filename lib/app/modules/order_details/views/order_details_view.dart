@@ -16,6 +16,7 @@ import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
+import 'package:loogisti/app/core/services/url_launcher_service.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
 import 'package:loogisti/app/modules/order_details/views/components/order_statuses_history_section_component.dart';
@@ -123,13 +124,20 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                           Row(
                                             children: [
                                               Expanded(
-                                                child: Text(
-                                                  controller.orderData?.puckUpName ?? '',
-                                                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                                    fontFamily: FontsFamilyAssetsConstants.bold,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    UrlLauncherService.openLink(
+                                                        link:
+                                                            'https://maps.google.com/?ll=${logic.orderData?.pickupLocationLate},${logic.orderData?.pickupLocationLong}');
+                                                  },
+                                                  child: Text(
+                                                    controller.orderData?.puckUpName ?? '',
+                                                    style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                                      fontFamily: FontsFamilyAssetsConstants.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
                                                 ),
                                               ),
                                             ],
@@ -154,13 +162,20 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                           Row(
                                             children: [
                                               Expanded(
-                                                child: Text(
-                                                  controller.orderData?.deliveryName ?? '',
-                                                  style: TextStyles.mediumBodyTextStyle(context).copyWith(
-                                                    fontFamily: FontsFamilyAssetsConstants.bold,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    UrlLauncherService.openLink(
+                                                        link:
+                                                            'https://maps.google.com/?ll=${logic.orderData?.deliveryLocationLate},${logic.orderData?.deliveryLocationLong}');
+                                                  },
+                                                  child: Text(
+                                                    controller.orderData?.deliveryName ?? '',
+                                                    style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                                                      fontFamily: FontsFamilyAssetsConstants.bold,
+                                                    ),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
                                                 ),
                                               ),
                                             ],

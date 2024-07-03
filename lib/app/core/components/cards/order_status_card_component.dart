@@ -18,24 +18,23 @@ class OrderStatusCardComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(1000.r),
-          child: Container(
-            height: 80.r,
-            width: 80.r,
-            padding: EdgeInsets.all(10.r),
-            decoration: BoxDecoration(
-              color: orderStatusData.backgroundColor ?? MainColors.inputColor(context),
-              borderRadius: BorderRadius.circular(1000.r),
-              border: Border.all(
-                color: MainColors.textColor(context)!.withOpacity(0.1),
-                width: 2.r,
-              ),
+        Container(
+          height: 80.r,
+          width: 80.r,
+          padding: EdgeInsets.all(10.r),
+          decoration: BoxDecoration(
+            color: orderStatusData.backgroundColor ?? MainColors.inputColor(context),
+            borderRadius: BorderRadius.circular(1000.r),
+            border: Border.all(
+              color: MainColors.textColor(context)!.withOpacity(0.1),
+              width: 2.r,
             ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(1000.r),
             child: Center(
               child: NetworkImageComponent(
                 imageLink: '${orderStatusData.icon}',
-                fit: BoxFit.contain,
               ),
             ),
           ),
