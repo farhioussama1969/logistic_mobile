@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:loogisti/app/core/constants/fonts_family_assets_constants.dart';
 import 'package:loogisti/app/core/constants/icons_assets_constants.dart';
 import 'package:loogisti/app/core/styles/main_colors.dart';
 import 'package:loogisti/app/core/styles/text_styles.dart';
@@ -17,7 +19,11 @@ class NotificationCardComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (notification.typeof == '1') {
+          Clipboard.setData(new ClipboardData(text: '${notification.data}'));
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           color: MainColors.backgroundColor(context),
@@ -112,6 +118,20 @@ class NotificationCardComponent extends StatelessWidget {
                       ),
                     ],
                   ),
+                  if (notification.typeof == "1")
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            notification.data ?? '',
+                            style: TextStyles.mediumBodyTextStyle(context).copyWith(
+                              fontFamily: FontsFamilyAssetsConstants.bold,
+                            ),
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
                   SizedBox(
                     height: 5.h,
                   ),

@@ -68,13 +68,14 @@ class NotificationsController extends GetxController {
   @override
   void onInit() {
     getNotificationsData();
-    LocalStorageService.deleteData(key: StorageKeysConstants.newNotification);
-    Get.find<HomeController>().changeIsThereIsANewNotification(false);
+
     super.onInit();
   }
 
   @override
   void onReady() {
+    LocalStorageService.deleteData(key: StorageKeysConstants.newNotification);
+    Get.find<HomeController>().changeIsThereIsANewNotification(false);
     scrollEvent();
     super.onReady();
   }
