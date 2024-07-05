@@ -6,6 +6,7 @@ import 'package:loogisti/app/core/components/buttons/primary_button_component.da
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
+import 'package:loogisti/app/core/components/windows/progress_status_window_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 import 'package:loogisti/app/core/services/geolocator_location_service.dart';
@@ -14,6 +15,7 @@ import 'package:loogisti/app/modules/create_new_order/views/components/order_sum
 import 'package:loogisti/app/modules/create_new_order/views/components/step_1_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/step_2_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/step_3_component.dart';
+import 'package:loogisti/app/modules/home/controllers/home_controller.dart';
 
 import '../controllers/create_new_order_controller.dart';
 
@@ -141,6 +143,21 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
     BottomSheetComponent.show(
       Get.context!,
       body: OrderSummaryWindowComponent(),
+    );
+  }
+
+  void showOrderCreateSuccessWindow() {
+    BottomSheetComponent.show(
+      Get.context!,
+      body: ProgressStatusWindowComponent(
+        text: StringsAssetsConstants.createOrderSuccess,
+        onDone: () {
+          Get.back();
+          Get.back();
+          Get.find<HomeController>().refreshHome();
+        },
+        success: true,
+      ),
     );
   }
 }

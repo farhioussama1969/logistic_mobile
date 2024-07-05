@@ -200,10 +200,7 @@ class CreateNewOrderController extends GetxController {
     )
         .then((value) {
       if (value != null) {
-        Get.back();
-        Get.back();
-        Get.find<HomeController>().refreshHome();
-        ToastComponent.showSuccessToast(Get.context!, text: StringsAssetsConstants.createOrderSuccess);
+        CreateNewOrderView().showOrderCreateSuccessWindow();
       }
     });
   }
