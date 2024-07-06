@@ -22,11 +22,9 @@ class GeocodingService {
 
     //log('full address json::: ${response.results.first.toJson()}');
 
-    List<String>? addressComponents = response.results.first.formattedAddress?.split(',');
+    List<String>? addressComponents = await response.results.first.formattedAddress?.split(',');
 
-    addressComponents?.removeAt(0);
-
-    return addressComponents?.join(',').trim();
+    return response.results.first.formattedAddress;
 
     // return '${response.results.first.addressComponents[1].longName}, ${response.results.first.addressComponents[2].longName}, ${response.results.first.addressComponents[3].longName} ,${response.results.first.addressComponents[4].longName}';
   }
