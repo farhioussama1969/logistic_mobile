@@ -39,6 +39,7 @@ class NotificationsView extends GetView<NotificationsController> {
                   builder: (logic) {
                     return (logic.getNotificationsLoading && (logic.notificationsData?.data ?? []).isEmpty)
                         ? ListView.separated(
+                            // controller: logic.scrollController,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: EdgeInsets.only(top: 30.h, bottom: 170.h, right: 20.w, left: 20.w),
                             itemBuilder: (context, index) {

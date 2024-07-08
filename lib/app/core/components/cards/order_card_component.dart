@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +29,7 @@ class OrderCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? progress = orderData?.currentDistance == null ? 0 : (orderData!.currentDistance! / orderData!.distance!);
+    double? progress = min(orderData?.currentDistance == null ? 0 : (orderData!.currentDistance! / orderData!.distance!), 1);
 
     return orderData != null
         ? GestureDetector(

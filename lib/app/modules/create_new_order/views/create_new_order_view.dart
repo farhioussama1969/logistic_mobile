@@ -154,6 +154,7 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
         onDone: () {
           Get.back();
           Get.back();
+          Get.back();
           Get.find<HomeController>().refreshHome();
         },
         success: true,
