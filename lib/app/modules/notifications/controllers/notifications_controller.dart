@@ -57,6 +57,7 @@ class NotificationsController extends GetxController {
       if (scrollController.offset > maxScroll * 0.8) {
         if (!getNotificationsLoading) {
           if (currentPage < (notificationsData?.meta?.lastPage ?? 0)) {
+            print('ok bro');
             currentPage++;
             getNotificationsData();
           }
@@ -68,15 +69,15 @@ class NotificationsController extends GetxController {
   @override
   void onInit() {
     getNotificationsData();
-
     super.onInit();
   }
 
   @override
   void onReady() {
+    scrollEvent();
+
     LocalStorageService.deleteData(key: StorageKeysConstants.newNotification);
     Get.find<HomeController>().changeIsThereIsANewNotification(false);
-    scrollEvent();
     super.onReady();
   }
 
