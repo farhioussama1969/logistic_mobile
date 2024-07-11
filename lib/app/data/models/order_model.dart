@@ -23,6 +23,7 @@ class OrderModel {
   List<OrderStatusModel>? status;
   OrderComponentModel? orderComponent;
   String? pcolor;
+  String? action;
 
   OrderModel(
       {this.id,
@@ -45,7 +46,8 @@ class OrderModel {
       this.distance,
       this.currentDistance,
       this.orderComponent,
-      this.pcolor});
+      this.pcolor,
+      this.action});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -76,6 +78,7 @@ class OrderModel {
       orderComponent = OrderComponentModel.fromJson(json['component']);
     }
     pcolor = json['pcolor'];
+    action = json['action'];
   }
 
   Map<String, dynamic> toJson() {

@@ -99,7 +99,10 @@ class OrderDetailsController extends GetxController {
 
   @override
   void onReady() {
-    //const OrderDetailsView().showRatingWindow();
+    if (orderData?.action == 'rating') {
+      const OrderDetailsView().showRatingWindow();
+    }
+
     super.onReady();
   }
 
