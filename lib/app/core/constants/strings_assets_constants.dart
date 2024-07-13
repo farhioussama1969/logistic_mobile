@@ -154,4 +154,5 @@ static String get satisfied{return "satisfied".tr;}
 static String get good{return "good".tr;}
 static String get excellent{return "excellent".tr;}
 static String get couponCopied{return "coupon copied".tr;}
+static String get shippingLocation{return "shipping location".tr;}
 }

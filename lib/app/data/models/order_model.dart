@@ -24,6 +24,7 @@ class OrderModel {
   OrderComponentModel? orderComponent;
   String? pcolor;
   String? action;
+  int? routeType;
 
   OrderModel(
       {this.id,
@@ -47,7 +48,8 @@ class OrderModel {
       this.currentDistance,
       this.orderComponent,
       this.pcolor,
-      this.action});
+      this.action,
+      this.routeType});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -79,6 +81,7 @@ class OrderModel {
     }
     pcolor = json['pcolor'];
     action = json['action'];
+    routeType = json['route_type'];
   }
 
   Map<String, dynamic> toJson() {
