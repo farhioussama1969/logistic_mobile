@@ -75,14 +75,11 @@ class PickLocationController extends GetxController {
   }
 
   Future<void> getAddressFromCoordinates(double lat, double lng) async {
-    await GeocodingService.getPlaceMarkFromCoordinates(lat, lng).then((value) {
-      if (value != null) {
-        addressSearchController.text = value;
-        update([
-          GetBuildersIdsConstants.pickCurrentActionButton,
-        ]);
-      }
-    });
+    print('lat lng::: ${lat} - ${lng}');
+    addressSearchController.text = await GeocodingService.getPlaceMarkFromCoordinates(lat, lng) ?? '';
+    update([
+      GetBuildersIdsConstants.pickCurrentActionButton,
+    ]);
   }
 
   Position? selectedPosition;
