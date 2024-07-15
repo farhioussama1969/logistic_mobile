@@ -15,6 +15,7 @@ import 'package:loogisti/app/modules/create_new_order/views/components/order_sum
 import 'package:loogisti/app/modules/create_new_order/views/components/step_1_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/step_2_component.dart';
 import 'package:loogisti/app/modules/create_new_order/views/components/step_3_component.dart';
+import 'package:loogisti/app/modules/create_new_order/views/components/success_order_window_component.dart';
 import 'package:loogisti/app/modules/home/controllers/home_controller.dart';
 
 import '../controllers/create_new_order_controller.dart';
@@ -147,18 +148,19 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
   }
 
   void showOrderCreateSuccessWindow() {
-    BottomSheetComponent.show(
-      Get.context!,
-      body: ProgressStatusWindowComponent(
-        text: StringsAssetsConstants.createOrderSuccess,
-        onDone: () {
-          Get.back();
-          Get.back();
-          Get.back();
-          Get.find<HomeController>().refreshHome();
-        },
-        success: true,
-      ),
-    );
+    Get.to(() => SuccessOrderWindowComponent());
+    // BottomSheetComponent.show(
+    //   Get.context!,
+    //   body: ProgressStatusWindowComponent(
+    //     text: StringsAssetsConstants.createOrderSuccess,
+    //     onDone: () {
+    //       Get.back();
+    //       Get.back();
+    //       Get.back();
+    //       Get.find<HomeController>().refreshHome();
+    //     },
+    //     success: true,
+    //   ),
+    // );
   }
 }
