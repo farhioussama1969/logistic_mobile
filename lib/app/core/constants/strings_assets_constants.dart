@@ -157,4 +157,5 @@ static String get couponCopied{return "coupon copied".tr;}
 static String get shippingLocation{return "shipping location".tr;}
 static String get successOrderTitle{return "success order title".tr;}
 static String get successOrderDescription{return "success order description".tr;}
+static String get productPrice{return "product price".tr;}
 }

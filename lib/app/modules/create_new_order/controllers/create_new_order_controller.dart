@@ -56,6 +56,7 @@ class CreateNewOrderController extends GetxController {
       pickupLocationLate: pickUpLatitude!,
       deliveryLocationLong: dropOffLongitude!,
       deliveryLocationLate: dropOffLatitude!,
+      address: dropOffLocationController.text,
       onLoading: () {
         changePricingLoading(true);
       },

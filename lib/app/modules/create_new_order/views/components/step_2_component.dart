@@ -111,8 +111,10 @@ class Step2Component extends StatelessWidget {
                         SizedBox(width: 20.w),
                       ],
                     ),
-                    validate: (value) => ValidatorUtil.numericValidation(value,
-                        customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.itemPrice}'),
+                    validate: (value) => value.isNotEmpty
+                        ? ValidatorUtil.numericValidation(value,
+                            customMessage: '${StringsAssetsConstants.check} ${StringsAssetsConstants.itemPrice}')
+                        : null,
                   ),
                 ),
                 SizedBox(height: 10.h),

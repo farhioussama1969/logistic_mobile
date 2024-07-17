@@ -63,6 +63,7 @@ class OrderProvider {
     required double pickupLocationLate,
     required double deliveryLocationLong,
     required double deliveryLocationLate,
+    String? address,
     required Function onLoading,
     required Function onFinal,
   }) async {
@@ -74,6 +75,7 @@ class OrderProvider {
         "pickup_location_late": pickupLocationLate,
         "delivery_location_long": deliveryLocationLong,
         "delivery_location_late": deliveryLocationLate,
+        "address": address,
       },
       onLoading: () => onLoading(),
       onFinal: () => onFinal(),

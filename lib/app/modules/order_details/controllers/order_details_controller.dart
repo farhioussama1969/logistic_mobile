@@ -85,6 +85,9 @@ class OrderDetailsController extends GetxController {
       if (value != null) {
         orderData = value;
         update([GetBuildersIdsConstants.orderDetails]);
+        if (orderData?.action == 'rate') {
+          const OrderDetailsView().showRatingWindow();
+        }
       }
     });
   }
@@ -99,7 +102,7 @@ class OrderDetailsController extends GetxController {
 
   @override
   void onReady() {
-    if (orderData?.action == 'rating') {
+    if (orderData?.action == 'rate') {
       const OrderDetailsView().showRatingWindow();
     }
 
