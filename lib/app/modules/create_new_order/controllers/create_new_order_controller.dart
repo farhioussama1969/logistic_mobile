@@ -98,7 +98,7 @@ class CreateNewOrderController extends GetxController {
     update([GetBuildersIdsConstants.createOrderStep3]);
   }
 
-  bool isNow = false;
+  bool isNow = true;
   void changeIsNow(bool value) {
     isNow = value;
     if (isNow) {
@@ -204,7 +204,7 @@ class CreateNewOrderController extends GetxController {
       deliveryCost: price!,
       senderPhone: senderPhoneNumberController.text,
       reciverPhone: receiverPhoneNumberController.text,
-      price: double.parse(itemPriceController.text),
+      price: itemPriceController.text.isNotEmpty ? double.parse(itemPriceController.text) : 0,
       bestTimeDelevery: isChosenTime ? pickupTime.toString().substring(10, 15) : null,
       coupon: couponCode,
       image: selectedInvoiceFile,
