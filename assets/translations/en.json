@@ -177,7 +177,9 @@
   "success order title": "Well done, your order is completed",
     "success order description": "We will review your order, confirm it, and send it to you. Expect a call from us on the phone number of the sender or recipient to confirm your order.",
 
-  "product price": "Product price"
+  "product price": "Product price",
+
+  "now": "Now"
 
 
 }

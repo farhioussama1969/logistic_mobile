@@ -93,23 +93,53 @@ class Step3Component extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Row(
                   children: [
-                    Checkbox(
-                      value: logic.isChosenTime,
-                      onChanged: (value) => logic.changeChosenTime(value ?? false),
-                      activeColor: MainColors.primaryColor,
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: logic.isNow,
+                            onChanged: (value) {
+                              print(value);
+                              logic.changeIsNow(value ?? false);
+                            },
+                            activeColor: MainColors.primaryColor,
+                          ),
+                          Expanded(
+                            child: Text(
+                              StringsAssetsConstants.now,
+                              style: TextStyles.largeBodyTextStyle(context),
+                            ),
+                          ),
+                        ],
+                      )
+                          .animate(delay: 200.ms)
+                          .fadeIn(duration: 900.ms, delay: 300.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                     ),
                     Expanded(
-                      child: Text(
-                        StringsAssetsConstants.specificTime,
-                        style: TextStyles.largeBodyTextStyle(context),
-                      ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            value: logic.isChosenTime,
+                            onChanged: (value) => logic.changeChosenTime(value ?? false),
+                            activeColor: MainColors.primaryColor,
+                          ),
+                          Expanded(
+                            child: Text(
+                              StringsAssetsConstants.specificTime,
+                              style: TextStyles.largeBodyTextStyle(context),
+                            ),
+                          ),
+                        ],
+                      )
+                          .animate(delay: 200.ms)
+                          .fadeIn(duration: 900.ms, delay: 300.ms)
+                          .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
+                          .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
                     ),
                   ],
-                )
-                    .animate(delay: 200.ms)
-                    .fadeIn(duration: 900.ms, delay: 300.ms)
-                    .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
-                    .move(begin: const Offset(-100, 0), curve: Curves.easeOutQuad),
+                ),
                 if (logic.isChosenTime) SizedBox(height: 10.h),
                 if (logic.isChosenTime)
                   Form(

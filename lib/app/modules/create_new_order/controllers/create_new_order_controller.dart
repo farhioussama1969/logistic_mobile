@@ -92,6 +92,18 @@ class CreateNewOrderController extends GetxController {
   bool isChosenTime = false;
   void changeChosenTime(bool value) {
     isChosenTime = value;
+    if (isChosenTime) {
+      isNow = false;
+    }
+    update([GetBuildersIdsConstants.createOrderStep3]);
+  }
+
+  bool isNow = false;
+  void changeIsNow(bool value) {
+    isNow = value;
+    if (isNow) {
+      isChosenTime = false;
+    }
     update([GetBuildersIdsConstants.createOrderStep3]);
   }
 

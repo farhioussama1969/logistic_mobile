@@ -248,7 +248,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '${logic.itemPriceController.text} ${StringsAssetsConstants.currency}',
+                                  '${logic.itemPriceController.text.isNotEmpty ? logic.itemPriceController.text : 0} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.largeBodyTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
@@ -318,7 +318,7 @@ class OrderSummaryWindowComponent extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  '${(logic.discountPercentage == null) ? ((double.parse(logic.itemPriceController.text) + (logic.price ?? 0)).floor()) : ((double.parse(logic.itemPriceController.text) + (logic.price ?? 0)) - (((logic.price ?? 0) * (logic.discountPercentage ?? 0)) / 100)).floor()} ${StringsAssetsConstants.currency}',
+                                  '${(logic.discountPercentage == null) ? (((logic.itemPriceController.text.isNotEmpty ? double.parse(logic.itemPriceController.text) : 0) + (logic.price ?? 0)).floor()) : ((double.parse(logic.itemPriceController.text) + (logic.price ?? 0)) - (((logic.price ?? 0) * (logic.discountPercentage ?? 0)) / 100)).floor()} ${StringsAssetsConstants.currency}',
                                   style: TextStyles.mediumLabelTextStyle(context).copyWith(
                                     color: MainColors.primaryColor,
                                     fontFamily: FontsFamilyAssetsConstants.bold,
