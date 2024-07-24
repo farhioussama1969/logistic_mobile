@@ -163,7 +163,9 @@ class CreateNewOrderController extends GetxController {
   void nextStep() {
     if (step == 1) {
       if (step1FormKey.currentState!.validate()) {
-        setStep(2);
+        if (senderPhoneNumberController.text.isNotEmpty) {
+          setStep(2);
+        }
       }
     } else if (step == 2) {
       if (step2FormKey.currentState!.validate()) {
