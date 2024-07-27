@@ -182,7 +182,9 @@
   "now": "Now",
 
 
-  "step 2 description optional": "This screen is optional, you can skip it by clicking Next."
+  "step 2 description optional": "This screen is optional, you can skip it by clicking Next.",
+
+  "pick up location condition": "Pick up location must be in El Oued"
 
 
 }

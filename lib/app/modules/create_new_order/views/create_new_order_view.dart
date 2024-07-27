@@ -6,6 +6,7 @@ import 'package:loogisti/app/core/components/buttons/primary_button_component.da
 import 'package:loogisti/app/core/components/layouts/scrollable_body_component.dart';
 import 'package:loogisti/app/core/components/others/header_component.dart';
 import 'package:loogisti/app/core/components/pop_ups/bottom_sheet_component.dart';
+import 'package:loogisti/app/core/components/pop_ups/toast_component.dart';
 import 'package:loogisti/app/core/components/windows/progress_status_window_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
@@ -71,13 +72,18 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                                 controller.pickUpLongitude != null &&
                                 controller.dropOffLatitude != null &&
                                 controller.dropOffLongitude != null) {
-                              controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
-                                controller.pickUpLatitude!,
-                                controller.pickUpLongitude!,
-                                controller.dropOffLatitude!,
-                                controller.dropOffLongitude!,
-                              ));
-                              controller.getDeliveryPrice();
+                              if (controller.pickUpLocationController.text.contains('الوادي ,') ||
+                                  controller.pickUpLocationController.text.contains('El Oued ,')) {
+                                controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                                  controller.pickUpLatitude!,
+                                  controller.pickUpLongitude!,
+                                  controller.dropOffLatitude!,
+                                  controller.dropOffLongitude!,
+                                ));
+                                controller.getDeliveryPrice();
+                              } else {
+                                ToastComponent.showErrorToast(context, text: StringsAssetsConstants.pickUpLocationCondition);
+                              }
                             }
                           },
                           onDropOffLocationSelected: (double? lat, double? lng) {
@@ -90,13 +96,18 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                                 controller.pickUpLongitude != null &&
                                 controller.dropOffLatitude != null &&
                                 controller.dropOffLongitude != null) {
-                              controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
-                                controller.pickUpLatitude!,
-                                controller.pickUpLongitude!,
-                                controller.dropOffLatitude!,
-                                controller.dropOffLongitude!,
-                              ));
-                              controller.getDeliveryPrice();
+                              if (controller.pickUpLocationController.text.contains('الوادي ,') ||
+                                  controller.pickUpLocationController.text.contains('El Oued ,')) {
+                                controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                                  controller.pickUpLatitude!,
+                                  controller.pickUpLongitude!,
+                                  controller.dropOffLatitude!,
+                                  controller.dropOffLongitude!,
+                                ));
+                                controller.getDeliveryPrice();
+                              } else {
+                                ToastComponent.showErrorToast(context, text: StringsAssetsConstants.pickUpLocationCondition);
+                              }
                             }
                           },
                           distance: controller.distance,
