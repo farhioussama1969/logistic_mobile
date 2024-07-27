@@ -96,7 +96,7 @@ class Step2Component extends StatelessWidget {
                   key: formKey,
                   child: TextInputComponent(
                     controller: itemPriceController,
-                    label: StringsAssetsConstants.itemPrice,
+                    label: '${StringsAssetsConstants.itemPrice} (${StringsAssetsConstants.optional})',
                     isLabelOutside: true,
                     borderColor: MainColors.textColor(context),
                     hint: '${StringsAssetsConstants.enter} ${StringsAssetsConstants.itemPrice}...',
@@ -143,6 +143,16 @@ class Step2Component extends StatelessWidget {
                     .shimmer(blendMode: BlendMode.srcOver, color: MainColors.backgroundColor(context)?.withOpacity(0.3))
                     .move(begin: const Offset(0, 30), curve: Curves.easeOutQuad),
                 SizedBox(height: 15.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        StringsAssetsConstants.step2DescriptionOptional,
+                        style: TextStyles.largeBodyTextStyle(context),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           );

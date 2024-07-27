@@ -2,7 +2,7 @@ import 'package:loogisti/app/core/constants/strings_assets_constants.dart';
 
 class UnitConversionUtil {
   static String? distanceInTextFormat(int distanceInMeters) {
-    if (distanceInMeters == 0) return null;
+    if (distanceInMeters == 0) return '0 ${StringsAssetsConstants.kilometerUnit}';
     if (distanceInMeters < 1000) {
       return '$distanceInMeters ${StringsAssetsConstants.meterUnit}';
     } else {

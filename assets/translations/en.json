@@ -179,7 +179,10 @@
 
   "product price": "Product price",
 
-  "now": "Now"
+  "now": "Now",
+
+
+  "step 2 description optional": "This screen is optional, you can skip it by clicking Next."
 
 
 }

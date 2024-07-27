@@ -159,4 +159,5 @@ static String get successOrderTitle{return "success order title".tr;}
 static String get successOrderDescription{return "success order description".tr;}
 static String get productPrice{return "product price".tr;}
 static String get now{return "now".tr;}
+static String get step2DescriptionOptional{return "step 2 description optional".tr;}
 }
