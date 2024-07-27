@@ -82,7 +82,7 @@ class NotificationCardComponent extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateTime.now().toString().substring(10, 16),
+                        '${notification.createdAt?.substring(11, 16)}',
                         style: TextStyles.mediumBodyTextStyle(context).copyWith(
                           fontSize: 12.sp,
                           color: MainColors.disableColor(context),
