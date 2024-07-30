@@ -184,7 +184,13 @@
 
   "step 2 description optional": "This screen is optional, you can skip it by clicking Next.",
 
-  "pick up location condition": "Pick up location must be in El Oued"
+  "pick up location condition": "Pick up location must be in El Oued",
+
+
+  "contact us on the following numbers": "Contact us on the following numbers",
+  "or contact us via": "Or contact us via",
+  "social media": "social media",
+  "do not hesitate to ask for a loogisti team inquiry": "Do not hesitate to ask for a loogisti team inquiry"
 
 
 }

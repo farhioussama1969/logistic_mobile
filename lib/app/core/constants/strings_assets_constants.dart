@@ -161,4 +161,8 @@ static String get productPrice{return "product price".tr;}
 static String get now{return "now".tr;}
 static String get step2DescriptionOptional{return "step 2 description optional".tr;}
 static String get pickUpLocationCondition{return "pick up location condition".tr;}
+static String get contactUsOnTheFollowingNumbers{return "contact us on the following numbers".tr;}
+static String get orContactUsVia{return "or contact us via".tr;}
+static String get socialMedia{return "social media".tr;}
+static String get doNotHesitateToAskForALoogistiTeamInquiry{return "do not hesitate to ask for a loogisti team inquiry".tr;}
 }
