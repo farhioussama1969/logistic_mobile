@@ -70,6 +70,7 @@ class OrderProvider {
     ApiResponse? response = await HttpClientService.sendRequest(
       endPoint: EndPointsConstants.getDeliveryPricing,
       requestType: HttpRequestTypes.post,
+      showErrorToast: true,
       data: {
         "pickup_location_long": pickupLocationLong,
         "pickup_location_late": pickupLocationLate,

@@ -53,12 +53,14 @@ class HttpClientService {
       if ((response?.statusCode == 200)) {
         if (onSuccess != null) onSuccess(response!);
         return response;
-      } else {
+      }else if(response?.statusCode == 200){
+        ToastComponent.showErrorToast(Get.context!, text: response?.message);
+
+      }else {
         if (response?.requestStatus == RequestStatus.serverError) {
           if (showErrorToast != false) {
             ToastComponent.showErrorToast(Get.context!, text: StringsAssetsConstants.serverErrorMessage);
           }
-          print('ok');
         } else if (response?.requestStatus == RequestStatus.clientError) {
           if (response?.statusCode == 401) {
             ToastComponent.showErrorToast(Get.context!, text: StringsAssetsConstants.sessionExpired);
@@ -240,6 +242,11 @@ class HttpClientService {
       apiResponse.message = response.data['message'];
       apiResponse.error = response.data['errors'];
       apiResponse.requestStatus = RequestStatus.serverError;
+    }else{
+      apiResponse.statusCode = response.statusCode;
+      apiResponse.message = response.data['message'];
+      apiResponse.error = response.data['errors'];
+      apiResponse.requestStatus = RequestStatus.clientError;
     }
     return apiResponse;
   }
