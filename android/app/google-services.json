@@ -110,6 +110,82 @@
       },
       "oauth_client": [
         {
+          "client_id": "427296167611-guehc9jv28t6hlajab474i789bebgso7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loogisti.clientapp",
+            "certificate_hash": "0768a7a51aeab8d9c360ae48d2e051452898484b"
+          }
+        },
+        {
+          "client_id": "427296167611-hbtlae9ldb2vg3fj1l9kunakka22m2td.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loogisti.clientapp",
+            "certificate_hash": "ac00bb5dba901401e1eb167e4ea4d3a3e87eda65"
+          }
+        },
+        {
+          "client_id": "427296167611-o9v511fdovat50gf3a5j3t8nafle9i53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loogisti.clientapp",
+            "certificate_hash": "1c0ad524c643f303badd7fb5a4d87272fd642032"
+          }
+        },
+        {
+          "client_id": "427296167611-rcfefv4sk4b8aeer0ng1gucirm22q8k7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loogisti.clientapp",
+            "certificate_hash": "57acce564a27725d89bfde4227239b2e0c9d506a"
+          }
+        },
+        {
+          "client_id": "427296167611-gp98op7s9ua23o8n5gn05ta32436fgto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQPxNpNiWxdJIg318-H3a4bUZtf0gZlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427296167611-gp98op7s9ua23o8n5gn05ta32436fgto.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427296167611-uarqofn5quafcrcrh6ii3i9e2tv693du.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.solvodev.mexaMeubleMobile"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427296167611:android:a921f8bf13a0b729bfbb9e",
+        "android_client_info": {
+          "package_name": "com.loogisti.driverapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427296167611-pncasb80hdfq1296qtrrks0l3vm8dimt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.loogisti.driverapp",
+            "certificate_hash": "0768a7a51aeab8d9c360ae48d2e051452898484b"
+          }
+        },
+        {
           "client_id": "427296167611-gp98op7s9ua23o8n5gn05ta32436fgto.apps.googleusercontent.com",
           "client_type": 3
         }
