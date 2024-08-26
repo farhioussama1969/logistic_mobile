@@ -116,7 +116,7 @@ class ToastComponent {
                 style: TextStyles.mediumBodyTextStyle(context).copyWith(
                   color: MainColors.whiteColor,
                 ),
-                maxLines: 3,
+                maxLines: 7,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -126,7 +126,8 @@ class ToastComponent {
     }
   }
 
-  static void showInfoToast(BuildContext context, {required String text, String? title}) {
+  static void showInfoToast(BuildContext context,
+      {required String text, String? title}) {
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
         '',

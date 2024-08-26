@@ -56,8 +56,10 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                       ? Step1Component(
                           getPricingLoading: controller.getPricingLoading,
                           fromKey: controller.step1FormKey,
-                          pickUpLocationController: controller.pickUpLocationController,
-                          dropOffLocationController: controller.dropOffLocationController,
+                          pickUpLocationController:
+                              controller.pickUpLocationController,
+                          dropOffLocationController:
+                              controller.dropOffLocationController,
                           pickUpLatitude: controller.pickUpLatitude,
                           pickUpLongitude: controller.pickUpLongitude,
                           dropOffLatitude: controller.dropOffLatitude,
@@ -67,14 +69,19 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                             controller.pickUpLongitude = lng;
                             controller.changePrice(null);
                             controller.changeDistance(null);
-                            controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                            controller.update(
+                                [GetBuildersIdsConstants.createOrderSteps]);
                             if (controller.pickUpLatitude != null &&
                                 controller.pickUpLongitude != null &&
                                 controller.dropOffLatitude != null &&
                                 controller.dropOffLongitude != null) {
-                              if (controller.pickUpLocationController.text.contains('الوادي ,') ||
-                                  controller.pickUpLocationController.text.contains('El Oued ,')) {
-                                controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                              if (controller.pickUpLocationController.text
+                                      .contains('El Oued') ||
+                                  controller.pickUpLocationController.text
+                                      .contains('ولاية الوادي')) {
+                                controller.changeDistance(
+                                    GeolocatorLocationService
+                                        .calculateDistanceBetweenTwoPoints(
                                   controller.pickUpLatitude!,
                                   controller.pickUpLongitude!,
                                   controller.dropOffLatitude!,
@@ -82,23 +89,33 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                                 ));
                                 controller.getDeliveryPrice();
                               } else {
-                                ToastComponent.showErrorToast(context, text: StringsAssetsConstants.pickUpLocationCondition);
+                                print(
+                                    'address:::: ${controller.pickUpLocationController.text}');
+                                ToastComponent.showErrorToast(context,
+                                    text: StringsAssetsConstants
+                                        .pickUpLocationCondition);
                               }
                             }
                           },
-                          onDropOffLocationSelected: (double? lat, double? lng) {
+                          onDropOffLocationSelected:
+                              (double? lat, double? lng) {
                             controller.dropOffLatitude = lat;
                             controller.dropOffLongitude = lng;
                             controller.changePrice(null);
                             controller.changeDistance(null);
-                            controller.update([GetBuildersIdsConstants.createOrderSteps]);
+                            controller.update(
+                                [GetBuildersIdsConstants.createOrderSteps]);
                             if (controller.pickUpLatitude != null &&
                                 controller.pickUpLongitude != null &&
                                 controller.dropOffLatitude != null &&
                                 controller.dropOffLongitude != null) {
-                              if (controller.pickUpLocationController.text.contains('الوادي ,') ||
-                                  controller.pickUpLocationController.text.contains('El Oued ,')) {
-                                controller.changeDistance(GeolocatorLocationService.calculateDistanceBetweenTwoPoints(
+                              if (controller.pickUpLocationController.text
+                                      .contains('El Oued') ||
+                                  controller.pickUpLocationController.text
+                                      .contains('ولاية الوادي')) {
+                                controller.changeDistance(
+                                    GeolocatorLocationService
+                                        .calculateDistanceBetweenTwoPoints(
                                   controller.pickUpLatitude!,
                                   controller.pickUpLongitude!,
                                   controller.dropOffLatitude!,
@@ -106,27 +123,35 @@ class CreateNewOrderView extends GetView<CreateNewOrderController> {
                                 ));
                                 controller.getDeliveryPrice();
                               } else {
-                                ToastComponent.showErrorToast(context, text: StringsAssetsConstants.pickUpLocationCondition);
+                                ToastComponent.showErrorToast(context,
+                                    text: StringsAssetsConstants
+                                        .pickUpLocationCondition);
                               }
                             }
                           },
                           distance: controller.distance,
                           price: controller.price,
-                          senderPhoneNumberController: controller.senderPhoneNumberController,
-                          receiverPhoneNumberController: controller.receiverPhoneNumberController,
+                          senderPhoneNumberController:
+                              controller.senderPhoneNumberController,
+                          receiverPhoneNumberController:
+                              controller.receiverPhoneNumberController,
                         )
                       : logic.step == 2
                           ? Step2Component(
                               formKey: controller.step2FormKey,
-                              itemPriceController: controller.itemPriceController,
-                              selectedInvoiceFile: controller.selectedInvoiceFile,
+                              itemPriceController:
+                                  controller.itemPriceController,
+                              selectedInvoiceFile:
+                                  controller.selectedInvoiceFile,
                               onFileSelected: controller.onFileSelected,
                             )
                           : Step3Component(
                               formKey: controller.step3FormKey,
-                              pickupTimeController: controller.pickupTimeController,
+                              pickupTimeController:
+                                  controller.pickupTimeController,
                               pickupTime: controller.pickupTime,
-                              onPickupTimeSelected: controller.onPickupTimeSelected,
+                              onPickupTimeSelected:
+                                  controller.onPickupTimeSelected,
                             );
                 }),
           ),

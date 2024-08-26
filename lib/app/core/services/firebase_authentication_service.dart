@@ -17,13 +17,16 @@ class FirebaseAuthenticationService {
       FirebaseAuthCredentialModel? firebaseAuthCredential;
       GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser != null) {
-        GoogleSignInAuthentication? googleAuth = await googleUser.authentication;
+        GoogleSignInAuthentication? googleAuth =
+            await googleUser.authentication;
         OAuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-        firebaseAuthCredential = FirebaseAuthCredentialModel(firebaseUserCredential: userCredential, googleUserData: googleUser);
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithCredential(credential);
+        firebaseAuthCredential = FirebaseAuthCredentialModel(
+            firebaseUserCredential: userCredential, googleUserData: googleUser);
         if (onFinal != null) onFinal();
         return firebaseAuthCredential;
       }
@@ -46,8 +49,10 @@ class FirebaseAuthenticationService {
     if (onLoading != null) onLoading();
     try {
       FirebaseAuthCredentialModel? firebaseAuthCredential;
-      UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
-      firebaseAuthCredential = FirebaseAuthCredentialModel(firebaseUserCredential: userCredential);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInAnonymously();
+      firebaseAuthCredential =
+          FirebaseAuthCredentialModel(firebaseUserCredential: userCredential);
       if (onFinal != null) onFinal();
       return firebaseAuthCredential;
     } catch (error) {
@@ -68,7 +73,8 @@ class FirebaseAuthenticationService {
       if (onLoading != null) onLoading();
       final rawNonce = generateNonce();
       final nonce = CryptoService.sha256ofString(rawNonce);
-      AuthorizationCredentialAppleID? appleCredential = await SignInWithApple.getAppleIDCredential(
+      AuthorizationCredentialAppleID? appleCredential =
+          await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
@@ -81,12 +87,18 @@ class FirebaseAuthenticationService {
         rawNonce: rawNonce,
       );
 
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
 
-      print('user data::: ${userCredential.user?.uid}, ${userCredential.user?.email}');
-      return FirebaseAuthCredentialModel(appleUserData: appleCredential, firebaseUserCredential: userCredential);
+      print(
+          'user data::: ${userCredential.user?.uid}, ${userCredential.user?.email}');
+      return FirebaseAuthCredentialModel(
+          appleUserData: appleCredential,
+          firebaseUserCredential: userCredential);
     } catch (error) {
       if (onFinal != null) onFinal();
+      ToastComponent.showErrorToast(Get.context!,
+          text: 'error::: ${error.toString()}');
       print('error::::: $error');
     }
     return null;

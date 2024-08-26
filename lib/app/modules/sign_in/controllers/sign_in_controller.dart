@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:loogisti/app/core/components/pop_ups/toast_component.dart';
 import 'package:loogisti/app/core/constants/get_builders_ids_constants.dart';
 import 'package:loogisti/app/core/services/firebase_authentication_service.dart';
 import 'package:loogisti/app/data/providers/loogistic_api/auth_provider.dart';
