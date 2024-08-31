@@ -38,23 +38,26 @@ class PickLocationView extends GetView<PickLocationController> {
               id: GetBuildersIdsConstants.chooseLocationOnMapGoogleMaps,
               builder: (mapController) {
                 return GoogleMap(
-                  initialCameraPosition: mapController.initialGoogleMapsCameraPosition ??
-                      const CameraPosition(
-                        target: LatLng(33.3678, 6.8517),
-                        zoom: 13,
-                      ),
-                  onMapCreated: (googleMapsController) => mapController.updateGoogleMapsController(googleMapsController),
+                  initialCameraPosition:
+                      mapController.initialGoogleMapsCameraPosition ??
+                          const CameraPosition(
+                            target: LatLng(33.3678, 6.8517),
+                            zoom: 13,
+                          ),
+                  onMapCreated: (googleMapsController) => mapController
+                      .updateGoogleMapsController(googleMapsController),
                   onCameraMove: (cameraPosition) {
                     controller.changeIsMapCameraMoving(true);
                     controller.currentLatitude = cameraPosition.target.latitude;
-                    controller.currentLongitude = cameraPosition.target.longitude;
+                    controller.currentLongitude =
+                        cameraPosition.target.longitude;
                   },
                   onCameraIdle: () {
                     controller.changeIsMapCameraMoving(false);
                   },
                   mapToolbarEnabled: false,
                   zoomControlsEnabled: false,
-                  rotateGesturesEnabled: false,
+                  rotateGesturesEnabled: true,
                   myLocationEnabled: false,
                   myLocationButtonEnabled: false,
                   // markers:
@@ -87,7 +90,8 @@ class PickLocationView extends GetView<PickLocationController> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
             decoration: BoxDecoration(
               color: MainColors.backgroundColor(context),
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.r)),
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(20.r)),
               boxShadow: [
                 BoxShadow(
                   color: MainColors.shadowColor(context)!.withOpacity(0.1),
@@ -103,7 +107,10 @@ class PickLocationView extends GetView<PickLocationController> {
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
                       controller.addressSearchController.selection =
-                          TextSelection(baseOffset: 0, extentOffset: controller.addressSearchController.text.length);
+                          TextSelection(
+                              baseOffset: 0,
+                              extentOffset: controller
+                                  .addressSearchController.text.length);
                     }
                   },
                   child: TextInputComponent(
@@ -112,7 +119,8 @@ class PickLocationView extends GetView<PickLocationController> {
                     isLabelOutside: true,
                     borderColor: MainColors.textColor(context),
                     hint: '${StringsAssetsConstants.pickUpLocation}...',
-                    onChange: (value) => DebouncerUtil.debounce(() => controller.getPlacesSuggestions(value)),
+                    onChange: (value) => DebouncerUtil.debounce(
+                        () => controller.getPlacesSuggestions(value)),
                     prefix: Row(
                       children: [
                         SizedBox(width: 20.w),
@@ -128,7 +136,8 @@ class PickLocationView extends GetView<PickLocationController> {
                 ),
                 SizedBox(height: 10.h),
                 GetBuilder<PickLocationController>(
-                  id: GetBuildersIdsConstants.chooseLocationOnMapPlacesSuggestions,
+                  id: GetBuildersIdsConstants
+                      .chooseLocationOnMapPlacesSuggestions,
                   builder: (logic) {
                     return PlacesSuggestionsListComponent(
                         placesSuggestions: logic.placesSuggestions,
@@ -167,24 +176,29 @@ class PickLocationView extends GetView<PickLocationController> {
                 return logic.showPlacesSuggestions
                     ? SizedBox()
                     : Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 30.h),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GetBuilder<PickLocationController>(
-                                id: GetBuildersIdsConstants.pickCurrentLocationButton,
+                                id: GetBuildersIdsConstants
+                                    .pickCurrentLocationButton,
                                 builder: (logic) {
                                   return IconButtonComponent(
-                                    iconLink: IconsAssetsConstants.myLocationIcon,
-                                    onTap: () async => controller.enableAndGetStartingPositionFromGeolocator(),
+                                    iconLink:
+                                        IconsAssetsConstants.myLocationIcon,
+                                    onTap: () async => controller
+                                        .enableAndGetStartingPositionFromGeolocator(),
                                     buttonHeight: 45.r,
                                     buttonWidth: 45.r,
                                     child: logic.getCurrentPositionLoading
                                         ? const LoadingComponent()
                                         : SvgPicture.asset(
                                             IconsAssetsConstants.myLocationIcon,
-                                            color: MainColors.textColor(context),
+                                            color:
+                                                MainColors.textColor(context),
                                             width: 22.r,
                                           ),
                                   );
@@ -198,7 +212,8 @@ class PickLocationView extends GetView<PickLocationController> {
                                   Get.back(result: {
                                     'latitude': logic.currentLatitude,
                                     'longitude': logic.currentLongitude,
-                                    'address': logic.addressSearchController.text,
+                                    'address':
+                                        logic.addressSearchController.text,
                                   });
                                 },
                                 text: StringsAssetsConstants.confirm,
