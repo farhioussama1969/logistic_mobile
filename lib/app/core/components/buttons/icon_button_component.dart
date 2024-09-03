@@ -54,10 +54,9 @@ class IconButtonComponent extends StatelessWidget {
       ),
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: EdgeInsets.zero,
+          foregroundColor: iconColor ?? MainColors.textColor(context), padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius ?? 1000.r)),
           backgroundColor: MainColors.transparentColor,
-          primary: iconColor ?? MainColors.textColor(context),
         ),
         onPressed: () => onTap(),
         child: Center(
